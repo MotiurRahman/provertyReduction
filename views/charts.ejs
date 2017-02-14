@@ -1,0 +1,191 @@
+<%- contentFor('body') %>
+
+<div id="page-wrapper">
+	<div class="container-fluid">
+		<h2>Chart View</h2>
+		<!-- /.row -->
+
+		<div class="row">
+
+			<div class="col-md-6 .col-md-offset-3">
+			<div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Percentage of population by specific area!</h3><br>
+						<form class="form-inline">
+							
+							<div class="form-group">
+
+								<input type="number" class="form-control" id="post_code" placeholder="Enter your post code">
+							</div>
+							<button type="button" class="btn btn-default" id="search">Search</button>
+						</form>
+
+						
+					</div>
+
+					<div class="panel-heading" id="panel">
+									<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i>  Total Population: <%=social_Status.total%></h3>
+								</div>
+
+					<div id="chartContainer" style="height: 400px; width: 150%;"></div>
+
+					
+
+				
+			</div>
+			
+
+		</div>
+		<br>
+		<br>
+		 <br>
+
+		<div class="row">
+
+			<div class="col-md-6 .col-md-offset-3">
+			<div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Bar Chart</h3>
+					</div>
+					<ul>
+						<li>Rich Man Income> 60k</li>
+						<li>Middle Class 30k< income >60k</li>
+						<li>Lower Middle Class 10k< income >30k</li>
+						<li>Poor 5k< income >10k</li>
+						<li>Extremly Poor income< 5k</li>
+					</ul>
+					<div id="barChart" style="height: 400px; width: 150%;"></div>
+
+				
+			</div>
+			
+
+		</div>
+
+
+	</div>
+
+</div>
+<script type="text/javascript" src="/js/canvasjs.min.js"></script>
+<script type="text/javascript">
+	window.onload = function () {
+		var chart = new CanvasJS.Chart("chartContainer",
+		{
+			theme: "theme1",
+			title:{
+				text: "Percentage of population by Social_Status"
+			},    
+			data: [
+			{       
+				type: "pie",
+				showInLegend: true,
+				toolTipContent: "#percent %",
+				//yValueFormatString: "#,##0,,.## Million",
+				legendText: "{indexLabel}",
+				dataPoints: [
+				{  y: <%=social_Status.richMan%>, indexLabel: "Rich Man" },
+				{  y: <%=social_Status.middleClass%>, indexLabel: "Middle Class" },
+				{  y: <%=social_Status.lowerMiddleClass%>, indexLabel: "Lower Middle Class" },
+				{  y: <%=social_Status.poor%>, indexLabel: "Poor"},
+				{  y: <%=social_Status.extremelyPoor%>, indexLabel: "Extremly Poor" },
+				
+				]
+			}
+			]
+		});
+		chart.render();
+		
+
+
+	var barchart = new CanvasJS.Chart("barChart", {
+		theme: "theme1",//theme1
+		title:{
+			text: "Income Vs Social Status"              
+		},
+		animationEnabled: false,   // change to true
+		data: [              
+		{
+			// Change type to "bar", "area", "spline", "pie",etc.
+			type: "column",
+			dataPoints: [
+				{ label: "Rich Man",  y: 65 },
+				{ label: "Middle Class", y: 55.99  },
+				{ label: "Lower Middle Class", y: 25.99  },
+				{ label: "Poor",  y: 7.99 },
+				{ label: "Extremly Poor",  y: 3.99  }
+			]
+		}
+		]
+	});
+	barchart.render();
+	
+	}
+
+
+</script>
+<script type="text/javascript">
+	
+	$("#search").click(function(event) {
+	var postCode = $("#post_code").val();
+
+
+	$.ajax({
+		url: '/charts/api/'+postCode,
+		type: 'GET',
+		dataType: 'json',
+		
+	})
+	.done(function(result) {
+
+		$("#panel").empty();
+
+		
+
+		var header = $("<h3> </h3>");
+		header.attr = ("class", "panel-title");
+		var sty  = $("<i></i>");
+		sty.attr = ("class","fa fa-bar-chart-o fa-fw");
+		header.append(sty);
+		header.append("<p>Total Population:"+result.total+"</p>")
+		
+	
+
+		$("#panel").append(header).text("Total Population:"+result.total);
+		
+
+		var population = new CanvasJS.Chart("chartContainer",
+		{
+			theme: "theme1",
+			title:{
+				text: "Percentage of population by specific area!"
+			},    
+			data: [
+			{       
+				type: "pie",
+				showInLegend: true,
+				toolTipContent: "#percent %",
+				//yValueFormatString: "#,##0,,.## Million",
+				legendText: "{indexLabel}",
+				dataPoints: [
+				{  y: result.richMan, indexLabel: "Rich Man" },
+				{  y: result.middleClass, indexLabel: "Middle Class" },
+				{  y: result.lowerMiddleClass, indexLabel: "Lower Middle Class" },
+				{  y: result.poor, indexLabel: "Poor"},
+				{  y: result.extremelyPoor, indexLabel: "Extremly Poor" }
+				
+				]
+			}
+			]
+		});
+		population.render();
+	
+	
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+	
+});
+	
+</script>>

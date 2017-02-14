@@ -1,0 +1,222 @@
+<%- contentFor('body') %>
+
+<div id="page-wrapper">
+	<div class="container-fluid">
+		<h2>Poor Chart View</h2>
+		<!-- /.row -->
+
+		<div class="row">
+
+			<div class="ccol-xs-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-money fa-fw"></i>The main reason of Poor for Specific Area!</h3>
+						<form class="form-inline">
+							<div class="form-group">
+								<div class="panel-footer">
+
+								<select id="status" onchange="run()" style="width: 200px; height: 35px;">
+										<option value="poor">Poor</option>
+										<option value="extremelyPoor">Extremly Poor</option>
+										<option value="both">Both</option>
+
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+
+								<input type="number" class="form-control" id="post_code" placeholder="Enter your post code">
+							</div>
+							<button type="button" class="btn btn-default" id="search_poor">Search</button>
+						</form>
+
+						
+					</div>
+					<div class="panel-body">
+						
+						<div class="row">
+
+							<div class="col-md-6 .col-md-offset-3">
+								<div class="panel-heading" id="panel">
+									<h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Pie Chart Total Population: <%=totalNum%></h3>
+								</div>
+								<div id="listOfReason">
+								<ul style="font-size: 15px">
+								    <li><b>Lack of Education: </b><%=resonOfPoor.no_savings%></li>
+									<li><b>Lack of Savings: </b> <%=resonOfPoor.no_savings%></li>
+									<li><b>Lack of Technical or Agricultural Training:</b> <%=resonOfPoor.no_t_a_trainig%></li>
+									<li><b>Don't know about Technical or Agricultural Training:</b> <%=resonOfPoor.no_know_t_a_trainig%></li>
+									<li><b>No Working Scope: </b> <%=resonOfPoor.no_working_scope%></li>
+									<li><b>No Cultivation Land: </b> <%=resonOfPoor.no_any_c_land%></li>
+									<li><b>Drug Addicted: </b> <%=resonOfPoor.yes_drugAddiction%></li>
+									<li><b>Chain Smoker: </b> <%=resonOfPoor.yes_drugAddiction%></li>
+									<li><b>Natural Reason: </b> <%=resonOfPoor.natural_reson%></li>
+								</ul>
+								</div>
+							
+
+								<div id="chartContainer" style="height: 400px; width: 150%;"></div>
+
+
+							</div>
+
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+
+		
+
+
+	</div>
+
+</div>
+<script type="text/javascript" src="/js/canvasjs.min.js"></script>
+<script type="text/javascript">
+	window.onload = function () {
+		var chart = new CanvasJS.Chart("chartContainer",
+		{
+			theme: "theme1",
+			title:{
+				text: "Percentage reason of poor for specific Area"
+			},    
+			data: [
+			{       
+				type: "pie",
+				showInLegend: true,
+				toolTipContent: "#percent %",
+				//yValueFormatString: "#,##0,,.## Million",
+				legendText: "{indexLabel}",
+				dataPoints: [
+				{  y: <%=resonOfPoor.yes_savings%>, indexLabel: "Savings" },
+				{  y: <%=resonOfPoor.no_savings%>, indexLabel: "No Savings" },
+				{  y: <%=resonOfPoor.yes_t_a_trainig%>, indexLabel: "T_A_trainig" },
+				{  y: <%=resonOfPoor.no_t_a_trainig%>, indexLabel: "No T_A_trainig"},
+				{  y: <%=resonOfPoor.yes_working_scope%>, indexLabel: "working_scope" },
+				{  y: <%=resonOfPoor.no_working_scope%>, indexLabel: "No working_scope" },
+				{  y: <%=resonOfPoor.yes_know_t_a_trainig%>, indexLabel: "know_t_a_trainig" },
+				{  y: <%=resonOfPoor.no_know_t_a_trainig%>, indexLabel: "Don't know_t_a_trainig" },
+				{  y: <%=resonOfPoor.yes_any_c_land%>, indexLabel: "Cultivation Land" },
+				{  y: <%=resonOfPoor.no_any_c_land%>, indexLabel: "No Cultivation Land" },
+				{  y: <%=resonOfPoor.yes_drugAddiction%>, indexLabel: "DrugA ddiction" },
+				{  y: <%=resonOfPoor.yes_drugAddiction%>, indexLabel: "Chani Smoker" },
+				{  y: <%=resonOfPoor.natural_reson%>, indexLabel: "Natural Reason" }
+
+				
+				
+				]
+			}
+			]
+		});
+		chart.render();
+	
+	}
+
+</script>
+<script type="text/javascript">
+$("#search_poor").click(function(event) {
+	var status = $("#status").val();
+	var postCode = $("#post_code").val();
+
+	$.ajax({
+		url: '/poorCharts/api/'+status+'/'+postCode,
+		type: 'GET',
+		dataType: 'json',
+		
+	})
+	.done(function(result) {
+		
+
+		$("#panel").empty();
+		
+
+		var header = $("<h3> </h3>");
+		header.attr = ("class", "panel-title");
+		var sty  = $("<i></i>");
+		sty.attr = ("class","fa fa-bar-chart-o fa-fw");
+		header.append(sty);
+		header.append("Total Population:"+result.total);
+		$("#panel").append(header);
+
+		$("#listOfReason").empty();
+		var list = $("<ul></ul>");
+		list.css({
+			"font-size": "15px",
+		});
+		var education = $("<li><b>Lack of Education: </b>"+result.no_savings+"</li>");
+		var no_savings = $("<li><b>Lack of Savings: </b>"+result.no_savings+"</li>");
+		var no_t_a_trainig = $("<li><b>Lack of Technical or Agricultural Training: </b>"+result.no_t_a_trainig+"</li>");
+		var no_know_t_a_trainig = $("<li><b>Don't know about Technical or Agricultural Training: </b> "+result.no_know_t_a_trainig+"</li>");
+		var no_working_scope = $("<li><b>No Working Scope: </b>"+result.no_working_scope+"</li>");
+		var no_cultivation = $("<li><b>No Cultivation Land: </b>"+result.no_any_c_land+"</li>");
+		var drugAddicted = $("<li><b>Drug Addicted: </b>"+result.yes_drugAddiction+"</li>");
+		var ChaniSmoker = $("<li><b>Chain Smoker: </b>"+result.yes_drugAddiction+"</li>");
+		var natural_reson = $("<li><b>Natural Reason: </b>"+result.natural_reson+"</li>");
+		
+
+		list.append(education);
+		list.append(no_savings);	
+		list.append(no_t_a_trainig);
+		list.append(no_know_t_a_trainig);
+		list.append(no_working_scope);
+		list.append(no_cultivation);
+		list.append(drugAddicted);
+		list.append(ChaniSmoker);
+		list.append(natural_reson);
+		$("#listOfReason").append(list);
+		
+		
+		var chart = new CanvasJS.Chart("chartContainer",
+		{
+			theme: "theme1",
+			title:{
+				text: "Percentage reason of poor for specific Area"
+			},    
+			data: [
+			{       
+				type: "pie",
+				showInLegend: true,
+				toolTipContent: "#percent %",
+				//yValueFormatString: "#,##0,,.## Million",
+				legendText: "{indexLabel}",
+				dataPoints: [
+				{  y: result.yes_savings, indexLabel: "Savings" },
+				{  y: result.no_savings, indexLabel: "No Savings" },
+				{  y: result.yes_t_a_trainig, indexLabel: "T_A_trainig" },
+				{  y: result.no_t_a_trainig, indexLabel: "No T_A_trainig"},
+				{  y: result.yes_working_scope, indexLabel: "working_scope" },
+				{  y: result.no_working_scope, indexLabel: "No working_scope" },
+				{  y: result.yes_know_t_a_trainig, indexLabel: "know_t_a_trainig" },
+				{  y: result.no_know_t_a_trainig, indexLabel: "Don't know_t_a_trainig" },
+				{  y: result.yes_any_c_land, indexLabel: "Cultivation Land" },
+				{  y: result.no_any_c_land, indexLabel: "No Cultivation Land" },
+				{  y: result.yes_drugAddiction, indexLabel: "DrugAddiction" },
+				{  y: result.yes_drugAddiction, indexLabel: "ChaniSmoker" },
+				{  y: result.natural_reson, indexLabel: "Natural Reson" },
+				
+				
+				]
+			}
+			]
+		});
+		chart.render();
+	
+	
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+	});
+	
+});
+	
+
+</script>>

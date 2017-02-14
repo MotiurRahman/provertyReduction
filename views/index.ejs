@@ -1,0 +1,383 @@
+  <%- contentFor('body') %>
+  <div id="page-wrapper">
+
+    <div class="container-fluid">
+
+      <!-- Page Heading -->
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header">
+            Dashboard <small>Statistics Overview</small>
+          </h1>
+          <ol class="breadcrumb">
+            <li class="active">
+              <i class="fa fa-dashboard"></i> Data analytics can play a vital role to reduce poverty.
+            </li>
+          </ol>
+        </div>
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-3">
+                  <i class="fa fa-comments fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                  <%var total = data.length%>
+                  <div class="huge"><%=total%></div>
+                  <div>Total Entry!</div>
+                </div>
+              </div>
+            </div>
+            <a href="#richMan">
+              <div class="panel-footer">
+                <span class="pull-left">View Details</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                <div class="clearfix"></div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="panel panel-green">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-3">
+
+                </div>
+                <div class="col-xs-9 text-right">
+
+
+                 <div class="huge"><%= social_Status.richMan%></div>
+                 <div> Rich Man!</div>
+               </div>
+             </div>
+           </div>
+           <a href="#richMan">
+            <div class="panel-footer">
+              <span class="pull-left">View Details</span>
+              <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+              <div class="clearfix"></div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="panel panel-green">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-3">
+
+              </div>
+              <div class="col-xs-9 text-right">
+
+
+               <div class="huge"><%= social_Status.middleClass%></div>
+               <div>  Middle Class!</div>
+             </div>
+           </div>
+         </div>
+         <a href="#midleClass">
+          <div class="panel-footer">
+            <span class="pull-left">View Details</span>
+            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="clearfix"></div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="panel panel-green">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-xs-3">
+
+            </div>
+            <div class="col-xs-9 text-right">
+
+
+             <div class="huge"><%= social_Status.lowerMiddleClass%></div>
+             <div> Lower Middle Class!</div>
+           </div>
+         </div>
+       </div>
+       <a href="#lowerMiddleClass">
+        <div class="panel-footer">
+          <span class="pull-left">View Details</span>
+          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+          <div class="clearfix"></div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <div class="panel panel-yellow">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+
+          </div>
+          <div class="col-xs-9 text-right">
+
+            <div class="huge"><%= social_Status.poor%></div>
+            <div> Poor Man!</div>
+          </div>
+        </div>
+      </div>
+      <a href="#poorMan">
+        <div class="panel-footer">
+          <span class="pull-left">View Details</span>
+          <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+          <div class="clearfix"></div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-6">
+    <div class="panel panel-red">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-xs-3">
+
+          </div>
+          <div class="col-xs-9 text-right">
+
+
+           <div class="huge" id="monthly"><%=social_Status.extremelyPoor%></div>
+           <div> Extremely Poor!</div>
+         </div>
+       </div>
+     </div>
+     <a href="#extremelyPoor">
+      <div class="panel-footer">
+        <span class="pull-left">View Details</span>
+        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+        <div class="clearfix"></div>
+      </div>
+    </a>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+
+  <div class="row">
+
+
+    <div class="ccol-xs-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+         <select id="status" onchange="run()" style="width: 200px; height: 35px;">
+           <option value="richMan">Select Specific Status</option>
+          <option value="richMan">Rich Mam</option>
+          <option value="middleClass">Middle Class</option>
+          <option value="lowerMiddleClass">Lower Middle Class</option>
+          <option value="poor">Poor Man</option>
+          <option value="extremelyPoor">Extremely Poor</option>
+
+        </select>
+
+      </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover table-striped">
+            <thead>
+              <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Father Name</th>
+                <th>Address</th>
+                <th>Important Reason</th>
+
+
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+
+              
+
+
+              <% for(var i=0; i<data.length; i++) { %>
+
+
+              <tr>
+                <td><%=i%></td>
+                <td><%=data[i].name%><br>
+                  Status:<%=data[i].status%>
+                </td>
+                <td><%=data[i].father_name%></td>
+                <td>Div:<%=data[i].division%><br>
+
+                  Dist:<%=data[i].district%>,
+                  P.S:<%=data[i].ps%>,<br>
+                  Post Code:<%=data[i].postCode%>,
+                  vill:<%=data[i].area%><br>
+                  Phone: <%=data[i].phone%><br>
+                  Email: <%=data[i].email%>
+
+                </td>
+                <td>
+
+                    <b>Education:</b> <%=data[i].lastDegree%><br>
+                    <% if(data[i].saving=="NO"){%>
+                    <b>Savings:</b> <%=data[i].saving%><br>
+                    <%}%>
+
+                    <% if(data[i].t_a_trainig=="NO"){%>
+                    <b>T_A_trainig:</b> <%=data[i].t_a_trainig%><br>
+                    <%}%>
+
+                    <% if(data[i].working_scope=="NO"){%>
+                    <b>Working Scope:</b> <%=data[i].working_scope%><br>
+                    <%}%>
+
+                    <% if(data[i].know_t_a_trainig=="NO"){%>
+                    <b>know_T_A_Trainig:</b> <%=data[i].know_t_a_trainig%><br>
+                    <%}%>
+
+                    <% if(data[i].any_c_land=="NO"){%>
+                    <b>Any_C_Land:</b> <%=data[i].any_c_land%><br>
+                    <%}%>
+
+                    <% if(data[i].drugAddiction=="YES"){%>
+                    <b>Drug Addiction:</b> <%=data[i].drugAddiction%><br>
+                    <%}%>
+
+                    <b>Natural Reson:</b> <%=data[i].natural_reson%>
+                    </td>
+                                                                     
+
+                </tr>
+
+                <%} %>
+
+
+
+
+              </tbody>
+            </table>
+          </div>
+          <div class="text-right">
+            <a href="#">View All Transactions <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!-- /.row -->
+
+<!-- /.row -->
+<div class="row">
+  <div class="col-md-6">
+
+    <form class="form-horizontal" >
+
+     <div class="form-group">
+      <label class="control-label col-sm-2" for="id">ID:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="id" name="id" placeholder="Enter Deleted Customer ID" required>
+        <br>
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="delete" >Delete</button>
+
+      </div>
+    </div>
+  </form>
+
+</div>
+
+</div>
+
+<!-- /.row -->
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- /#page-wrapper -->
+
+<script type="text/javascript">
+
+   
+     
+    $(document).ready(function() {  
+    $('#status').change(function(){
+      $("#tableBody").empty();
+       var cur_status =  $(this).find("option:selected").attr('value');  
+
+        $.ajax({
+        url: '/api/'+cur_status,
+        type: 'GET',
+        dataType: 'json',
+        
+      })
+      .done(function(result) {
+
+        for (var i = 0; i < result.length; i++) {
+        
+          var table_row = $("<tr></tr>");
+          var table_id = $("<td>"+result[i]._id+"</td>");
+          var table_name = $("<td>"+result[i].name+"<br> Status:"+result[i].status+"</td>");
+          var table_email = $("<td>"+result[i].father_name+"</td>");
+          
+          
+          var table_address = $("<td>Divi:"+result[i].division +"<br> Dist:"+result[i].district +"<br>P.S:"+result[i].ps+"<br> Post Code:"+result[i].postCode +"<br> vill:"+result[i].area+"<br>Phone:"+result[i].phone+"<br>Email:"+result[i].email+"</td>");
+
+          var reasonOfPoor = $("<td><b>Education:</b>"+result[i].lastDegree
+                      +"<br><b>Savings:</b>"+result[i].saving
+                      +"<br><b>T_A_Trainig:</b>"+result[i].t_a_trainig
+                      +"<br><b>Working Scope:</b>"+result[i].working_scope
+                      +"<br><b>Know_T_A_Trainig:</b>"+result[i].know_t_a_trainig
+                      +"<br><b>Any_C_Land:</b>"+result[i].any_c_land
+                      +"<br><b>Drug Addiction:</b>"+result[i].drugAddiction
+                      +"<br><b>Natural Reson:</b>"+result[i].natural_reson+"</td>");
+
+
+          
+          table_row.append(table_id);
+          table_row.append(table_name);
+          
+          table_row.append(table_email);
+          table_row.append(table_address);
+          table_row.append(reasonOfPoor);
+          
+          
+          $("#tableBody").append(table_row);
+        }
+        
+
+        //alert(result);
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+           
+    });
+ });
+
+
+  </script>
+
+

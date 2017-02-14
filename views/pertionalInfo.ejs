@@ -1,0 +1,540 @@
+  <%- contentFor('body') %>
+
+	 
+
+
+<div style="padding-left:25px;padding-right:25px;margin-bottom:20px;">
+<form method="POST" enctype="multipart/form-data" class="application" action="http://www.kansathighschool.com/centennial/member/edit_profile_action">
+  <input type="hidden" name="member_type" value="Student" />
+  <input type="hidden" name="number_of_member" value="1" />
+  <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 grid_content padding_all">
+      <div class="padded background_white margin_top basic_info padding_all">
+        <h6 class="column-title"><i class="fa fa-user fa-2x blue"> Personal Information</i></h6>
+        <div class="account-wall"> 
+
+          <div class="form-group">
+            <label for="student_name">Applicant's Name *</label>
+            <input type="text" id="student_name" name="student_name" class="form-control"/>
+            <span class="red"></span>
+          </div> 
+
+
+          <div class="form-group">
+            <label for="father_name">Father's Name *</label>
+            <input type="text" id="father_name" name="father_name" class="form-control"/>
+            <span class="red"></span>
+          </div> 
+
+
+          <div class="form-group">
+            <label for="mother_name">Mother's Name *</label>
+            <input type="text" id="mother_name" name="mother_name" class="form-control"/>
+            <span class="red"></span>
+          </div>
+
+          <div class="form-group">
+          	<label for="mobile">Mobile *</label>
+          	<input type="text" id="mobile" name="mobile" placeholder="Applicant's Mobile (8801XXXXXXXXX)" class="form-control"/>
+          	<span class="red"></span>
+          </div> 
+
+          <div class="form-group">
+          	<label for="email">Email </label>
+          	<input type="text" id="email" name="email" placeholder="Applicant's Email" class="form-control"/>
+          	<span class="red"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="date_of_birth">Date of Birth *</label>
+            <input type="text" class="form-control datepicker" name="date_of_birth" placeholder="mm/dd/yyyy" />
+            <span class="red"></span>       
+          </div>
+
+          <div class="form-group">
+            <label for="nid">National ID No. *</label>
+            <input type="text" class="form-control" id="nid" name="nid" />
+            <span class="red"></span>       
+          </div>
+
+          <div class="form-group">
+            <label>Gender *</label>
+            <label class="radio-inline">
+              <input type="radio" name="gender" value="Male" checked>Male
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="gender" value="Female" >Female
+            </label>
+            <span class="red"></span>     
+          </div>         
+
+          <div class="form-group">
+            <label for="religion">Religion *</label>
+            <select name="religion" class="form-control" id="religion">
+<option value="Islam" selected="selected">Islam</option>
+<option value="Hinduism">Hinduism</option>
+<option value="Christanity">Christanity</option>
+<option value="Buddhist">Buddhist</option>
+<option value="Others">Others</option>
+<option value="">Select Religion</option>
+</select>               
+            <span class="red"></span>            
+          </div>
+
+      
+
+          
+        </div>
+
+        
+      </div>
+    </div> <!-- end col -->
+
+    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 grid_content padding_all address">
+    	<div class="row grid_content">
+	      <div class="padded background_white margin_top padding_all">
+	        <h6 class="column-title"><i class="fa fa-home fa-2x blue"> Present Address</i></h6>
+	        <div class="account-wall"> 
+	          <div class="form-group">
+	            <label for="present_district">District </label>
+	            <select name="present_district" class="form-control" id="present_district">
+<option value="1">Bagerhat</option>
+<option value="2">Bandarban</option>
+<option value="3">Barguna</option>
+<option value="4">Barisal</option>
+<option value="5">Bhola</option>
+<option value="6">Bogra</option>
+<option value="7">Brahamanbaria</option>
+<option value="8">Chandpur</option>
+<option value="9">Chapai Nawabganj</option>
+<option value="10">Chittagong</option>
+<option value="11">Chuadanga</option>
+<option value="12">Comilla</option>
+<option value="13">Cox's Bazar</option>
+<option value="14" selected="selected">Dhaka</option>
+<option value="15">Dinajpur</option>
+<option value="16">Faridpur</option>
+<option value="17">Feni</option>
+<option value="18">Gaibandha</option>
+<option value="19">Gazipur</option>
+<option value="20">Gopalganj</option>
+<option value="21">Habiganj</option>
+<option value="22">Jamalpur</option>
+<option value="23">Jessore</option>
+<option value="24">Jhalokathi</option>
+<option value="25">Jhenaidah</option>
+<option value="26">Joypurhat</option>
+<option value="27">Khagrachhari</option>
+<option value="28">Khulna</option>
+<option value="29">Kishorganj</option>
+<option value="30">Kurigram</option>
+<option value="31">Kushtia</option>
+<option value="32">Lalmonirhat</option>
+<option value="33">Laxmipur</option>
+<option value="34">Madaripur</option>
+<option value="35">Magura</option>
+<option value="36">Manikganj</option>
+<option value="37">Meherpur</option>
+<option value="38">Moulavibazar</option>
+<option value="39">Munshiganj</option>
+<option value="40">Mymensingh</option>
+<option value="41">Naogaon</option>
+<option value="42">Narayanganj</option>
+<option value="43">Natore</option>
+<option value="44">Netrakona</option>
+<option value="45">Nilphamari</option>
+<option value="46">Noakhali</option>
+<option value="47">Norail</option>
+<option value="48">Norsingdi</option>
+<option value="49">Pabna</option>
+<option value="50">Panchagarh</option>
+<option value="51">Patuakhali</option>
+<option value="52">Pirojpur</option>
+<option value="53">Rajbari</option>
+<option value="54">Rajshahi</option>
+<option value="55">Rangamati</option>
+<option value="56">Rangpur</option>
+<option value="57">Satkhira</option>
+<option value="58">Shariatpur</option>
+<option value="59">Sherpur</option>
+<option value="60">Sirajganj</option>
+<option value="61">Sunamganj</option>
+<option value="62">Sylhet</option>
+<option value="63">Tangail</option>
+<option value="64">Thakurgaon</option>
+<option value="">Select District</option>
+</select>	            <span class="red"></span>
+	          </div>
+	          <div class="form-group">
+	            <label for="present_thana">Thana </label>
+	            <div id="present_thana_container">
+	              <select name="present_thana" class="form-control" id="present_thana">
+<option value="125">Adabar</option>
+<option value="126">Ashulia</option>
+<option value="127">Badda</option>
+<option value="128">Banani</option>
+<option value="129">Bangshal</option>
+<option value="130">Bashabo</option>
+<option value="131">Cantonment</option>
+<option value="132">Chalk Bazar</option>
+<option value="133">Dakkhin Khan</option>
+<option value="134">Darus Salam</option>
+<option value="135">Demra</option>
+<option value="136">Dhamrai</option>
+<option value="137">Dhanmondi</option>
+<option value="138">Dohar</option>
+<option value="139">Gandaria</option>
+<option value="140">Gulshan</option>
+<option value="141">Hazaribagh</option>
+<option value="142">Jatrabari</option>
+<option value="143">Kadamtali</option>
+<option value="144">Kafrul</option>
+<option value="145">Kamrangir Char</option>
+<option value="146">Keraniganj</option>
+<option value="147">Khilgaon</option>
+<option value="148">Khilkhet</option>
+<option value="149">Kotwali</option>
+<option value="150">Lalbag</option>
+<option value="151" selected="selected">Mirpur</option>
+<option value="152">Mohammadpur</option>
+<option value="153">Motijheel</option>
+<option value="154">Nawabganj</option>
+<option value="155">New Market</option>
+<option value="156">Pallabi</option>
+<option value="157">Ramna</option>
+<option value="158">Rampura</option>
+<option value="159">Sabujbag</option>
+<option value="160">Savar</option>
+<option value="161">Shahbag</option>
+<option value="162">Shere Bangla</option>
+<option value="163">Suttrapur</option>
+<option value="164">Syampur</option>
+<option value="165">Tejgaon</option>
+<option value="166">Turag</option>
+<option value="167">Uttara</option>
+<option value="168">Uttarkhan</option>
+<option value="">Select Thana</option>
+</select>	            </div>
+	            <span class="red"></span>
+	          </div>
+	          <div class="form-group">
+	            <label for="present_post">Post Office * </label>
+	            <input type="text" id="present_post" name="present_post"  class="form-control"/>
+	            <span class="red"></span>
+	          </div>
+	          <div class="form-group">
+	            <label for="present_village">Village/ Moholla * </label>
+	            <input type="text" id="present_village" name="present_village" class="form-control"/>
+	            <span class="red"></span>
+	          </div>
+	        </div>
+	      </div>
+	    </div> 
+
+
+	    <div class="row grid_content" style="margin-top:25px;">
+	      <div class="padded background_white margin_top padding_all">
+	        <h6 class="column-title"><i class="fa fa-home fa-2x blue"> Permanent Address</i></h6>
+	        <div class=""> 
+	          <div class="form-group">
+	            <label for="permanent_district">District </label>
+	            <select name="permanent_district" class="form-control" id="permanent_district">
+<option value="1">Bagerhat</option>
+<option value="2">Bandarban</option>
+<option value="3">Barguna</option>
+<option value="4">Barisal</option>
+<option value="5">Bhola</option>
+<option value="6">Bogra</option>
+<option value="7">Brahamanbaria</option>
+<option value="8">Chandpur</option>
+<option value="9" selected="selected">Chapai Nawabganj</option>
+<option value="10">Chittagong</option>
+<option value="11">Chuadanga</option>
+<option value="12">Comilla</option>
+<option value="13">Cox's Bazar</option>
+<option value="14">Dhaka</option>
+<option value="15">Dinajpur</option>
+<option value="16">Faridpur</option>
+<option value="17">Feni</option>
+<option value="18">Gaibandha</option>
+<option value="19">Gazipur</option>
+<option value="20">Gopalganj</option>
+<option value="21">Habiganj</option>
+<option value="22">Jamalpur</option>
+<option value="23">Jessore</option>
+<option value="24">Jhalokathi</option>
+<option value="25">Jhenaidah</option>
+<option value="26">Joypurhat</option>
+<option value="27">Khagrachhari</option>
+<option value="28">Khulna</option>
+<option value="29">Kishorganj</option>
+<option value="30">Kurigram</option>
+<option value="31">Kushtia</option>
+<option value="32">Lalmonirhat</option>
+<option value="33">Laxmipur</option>
+<option value="34">Madaripur</option>
+<option value="35">Magura</option>
+<option value="36">Manikganj</option>
+<option value="37">Meherpur</option>
+<option value="38">Moulavibazar</option>
+<option value="39">Munshiganj</option>
+<option value="40">Mymensingh</option>
+<option value="41">Naogaon</option>
+<option value="42">Narayanganj</option>
+<option value="43">Natore</option>
+<option value="44">Netrakona</option>
+<option value="45">Nilphamari</option>
+<option value="46">Noakhali</option>
+<option value="47">Norail</option>
+<option value="48">Norsingdi</option>
+<option value="49">Pabna</option>
+<option value="50">Panchagarh</option>
+<option value="51">Patuakhali</option>
+<option value="52">Pirojpur</option>
+<option value="53">Rajbari</option>
+<option value="54">Rajshahi</option>
+<option value="55">Rangamati</option>
+<option value="56">Rangpur</option>
+<option value="57">Satkhira</option>
+<option value="58">Shariatpur</option>
+<option value="59">Sherpur</option>
+<option value="60">Sirajganj</option>
+<option value="61">Sunamganj</option>
+<option value="62">Sylhet</option>
+<option value="63">Tangail</option>
+<option value="64">Thakurgaon</option>
+<option value="">Select District</option>
+</select>	            <span class="red"></span>
+	          </div>
+	          <div class="form-group">
+	            <label for="permanent_thana">Thana </label>
+	            <div id="permanent_thana_container">
+	              <select name="permanent_thana" class="form-control" id="permanent_thana">
+<option value="68">Bholahat</option>
+<option value="69">Gomastapur</option>
+<option value="70">Nachole</option>
+<option value="71">Sadar</option>
+<option value="72" selected="selected">Shibganj</option>
+<option value="">Select Thana</option>
+</select>	            </div>
+	            <span class="red"></span>
+	          </div>
+	          <div class="form-group">
+	            <label for="permanent_post">Post Office * </label>
+	            <input type="text" id="permanent_post" name="permanent_post" class="form-control"/>
+	            <span class="red"></span>
+	          </div>
+	          <div class="form-group">
+	            <label for="permanent_village">Village/ Moholla * </label>
+	            <input type="text" id="permanent_village" name="permanent_village" class="form-control"/>
+	            <span class="red"></span>
+	          </div>          
+	        </div>
+	      </div>
+	    </div> <!-- end col -->
+    </div>
+    
+  </div> <!-- end row -->
+<!-- second step start here -->
+
+  <div class="row">
+    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 grid_content padding_all">
+      <div class="padded background_white margin_top basic_info padding_all" style="min-height:580px;">
+        <h6 class="column-title"><i class="fa fa-plus fa-2x blue"> Additional Information</i></h6>
+        <div class="account-wall"> 
+			     
+          <div class="form-group">
+        		<label for="blood_group">Your Blood Group * </label>
+        		<div id="blood_group_container">
+        			<select name="blood_group" class="form-control" id="blood_group">
+<option value="">Blood Group</option>
+<option value="A+" selected="selected">A+</option>
+<option value="A-">A-</option>
+<option value="B+">B+</option>
+<option value="B-">B-</option>
+<option value="O+">O+</option>
+<option value="O-">O-</option>
+<option value="AB+">AB+</option>
+<option value="AB-">AB-</option>
+</select>        		</div>
+        		<span class="red"></span>
+        	</div> 
+
+          <div class="form-group">
+            <label for="spouse_name">Spouse's Name </label>
+            <input type="text" id="spouse_name" name="spouse_name" class="form-control"/>
+            <span class="red"></span>
+          </div> 
+
+        	<div class="form-group">
+        		<label for="favourite_quote">Favourite Quote </label>
+        		<div id="">
+        			<select name="favourite_quote" class="form-control" id="favourite_quote">
+<option value="">favourite quote</option>
+</select>        		</div>
+        		<span class="red"></span>
+        	</div>
+        	<div class="form-group">
+        		<label for="memory_at_cc">Memory at Kansat High School </label>
+        		<textarea id="memory_at_cc" name="memory_at_cc" class="form-control"></textarea>
+        		<span class="red"></span>
+        	</div>
+        	<div class="form-group">
+        		<label for="hobby">Hobby</label>
+        		<input type="text" id="hobby" name="hobby" class="form-control"/>
+        		<span class="red"></span>
+        	</div>
+        	<div class="form-group">
+        		<label for="service_at">Occupation</label>
+        		<input type="text" id="service_at" name="service_at" class="form-control"/>
+        		<span class="red"></span>
+        	</div>
+          
+        </div>
+      </div>
+    </div> <!-- end col -->
+
+    
+    <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6 grid_content padding_all address">
+    	<div class="row grid_content">
+	      <div class="padded background_white margin_top padding_all">
+	        <h6 class="column-title"><i class="fa fa-institution fa-2x blue"> Academic Information</i></h6>
+	        <div class="account-wall"> 
+	        	<div class="form-group">
+	        		<label for="last_degree">Last Obtained Degree From Kansat High School *</label>
+	        		<div id="">
+	        			<select name="last_degree" class="form-control" id="last_degree">
+<option value="">Last Obtained Degree</option>
+<option value="SSC" selected="selected">SSC</option>
+<option value="Class IX">Class IX</option>
+<option value="Class VIII">Class VIII</option>
+<option value="Class VII">Class VII</option>
+<option value="Class VI">Class VI</option>
+</select>	        		</div>
+	        		<span class="red"></span>
+	        	</div>
+	        	<div class="form-group">
+	        		<label for="session">Session *</label>
+	        		<input type="text" id="session" name="session"  value="2003-2004"  class="form-control"/>
+	        		<span class="red"></span>
+	        	</div> 
+	        	<div class="form-group">
+	        		<label for="subject">Subject </label>
+	        		<input type="text" id="subject" name="subject"  value="0"  class="form-control"/>
+	        		<span class="red"></span>
+	        	</div> 
+	          
+	        </div>
+	      </div>
+	    </div> 
+    </div>
+
+    
+    
+  </div> <!-- end row -->
+
+
+
+
+  <div class="row">
+    <div class="col-xs-12">
+       <div class="padded margin_top text-center">         
+        <input type="submit"  name="next"  value="Save"  class="btn btn-primary btn-lg"/>  
+           
+      </div>
+    </div>
+  </div>
+
+
+</form>
+
+</div>
+
+
+
+
+<script type="text/javascript">
+  $j(function() {
+        $(".datepicker").datepicker();
+    }); 
+
+  $j("document").ready(function(){
+
+    function readURL(input) {
+
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          $('#edit_image').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#photo").change(function(){
+      readURL(this);
+    });
+
+      $("#present_district").on('change',function(){        
+      var base_url="http://www.kansathighschool.com/centennial/";
+      var img_src=base_url+"assets/pre-loader/Fading squares.gif";
+      var img= "<img src='"+img_src+ "' alt='Loading,'> Please wait...";           
+      $("#present_thana_container").html(img);     
+      var district_id=$("#present_district").val();
+
+      if(district_id=='') district_id='Null';
+
+      $.ajax
+      ({
+        type:'POST',
+        async:false,
+        url:"http://www.kansathighschool.com/centennial/"+'home/thana_select_as_district/'+district_id+'/present_thana',
+        success:function(response)
+        {               
+          $("#present_thana_container").html(response);
+        }                
+      });                         
+    });
+
+    $("#permanent_district").on('change',function(){        
+      var base_url="http://www.kansathighschool.com/centennial/";
+      var img_src=base_url+"assets/pre-loader/Fading squares.gif";
+      var img= "<img src='"+img_src+ "' alt='Loading,'> Please wait...";           
+      $("#permanent_thana_container").html(img);     
+      var district_id=$("#permanent_district").val();
+
+      if(district_id=='') district_id='Null';
+
+      $.ajax
+      ({
+        type:'POST',
+        async:false,
+        url:"http://www.kansathighschool.com/centennial/"+'home/thana_select_as_district/'+district_id+'/permanent_thana',
+        success:function(response)
+        {               
+          $("#permanent_thana_container").html(response);
+        }                
+      });                         
+    });
+
+  });
+  
+</script>
+
+
+  
+      </div><!-- /.content-wrapper -->
+
+      <!-- footer was here -->
+
+      <!-- Control Sidebar -->
+            <!-- /.control-sidebar -->
+
+      <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+      <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
+
+   

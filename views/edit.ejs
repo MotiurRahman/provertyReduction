@@ -1,0 +1,504 @@
+<%- contentFor('body')%>  
+
+
+
+<div id="page-wrapper">
+ <div class="container-fluid">
+  <br>
+  <!-- Page Heading/Breadcrumbs -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Edit
+        <small>Profile</small>
+      </h1>
+      <div class="col-md-6 col-md-offset-3" style="text-align: center;">
+        <div id="showResult" role="alert"></div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  
+
+
+  <div class="col-xs-6">
+
+    <form class="form-horizontal" role="form" method="post">
+  
+
+     <div class="form-group">
+       <label for="name">ID:</label>
+
+       <input type="text" class="form-control" id="id" name="id" placeholder="Enter your name" required>
+       
+     </div>
+     <button type="button" class="btn btn-default" id="search">Search</button>
+
+
+
+     <div class="form-group">
+      <h6 class="column-title"><i class="fa fa-user fa-2x blue"> Personal Information</i></h6>
+      <label for="name">Name:*</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+      <span class="red"></span>
+    </div>
+
+    <div class="form-group">
+
+      <label for="name">Father Name or Guardian:*</label>
+      <input type="text" class="form-control" id="father_name" name="father_name" placeholder="Enter your father name" required>
+      <span class="red"></span>
+    </div>
+
+    <div class="form-group">
+      <label  for="email">Contact Email:</label>
+
+      <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
+
+    </div>
+
+
+    <div class="form-group">
+      <label  for="phone">Contact Phone:</label>
+
+      <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter contact number">
+
+    </div>
+
+    <div class="form-group">
+      <label>Gender: *</label>
+      <label class="radio-inline">
+        <input type="radio" name="gender" value="Male" id="m_gender" >Male
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="gender" value="Female" id="f_gender" >Female
+      </label>
+      <span class="red"></span>     
+    </div>    
+
+
+    <div class="form-group">
+      <label  for="nid">NID:</label>
+
+      <input type="number" class="form-control" id="nid" name="nid" placeholder="Enter your NID number">
+
+    </div>
+
+    <div class="form-group">
+      <label for="religion">Religion *</label>
+      <select name="religion" class="form-control" id="religion">
+        <option value="Islam" selected="selected">Islam</option>
+        <option value="Hinduism">Hinduism</option>
+        <option value="Christanity">Christanity</option>
+        <option value="Buddhist">Buddhist</option>
+        <option value="Others">Others</option>
+        <option value="">Select Religion</option>
+      </select>               
+      <span class="red"></span>            
+    </div>
+
+    <div class="form-group">
+      <label  for="nid">Married:*</label>
+
+      <label class="radio-inline">
+        <input type="radio" name="marital_Status" value="YES" id="yesMarrage" checked>Yes
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="marital_Status" value="NO"  id="noMarrage">NO
+      </label>
+      <span class="red"></span>  
+
+    </div>
+    <div class="form-group" id="childNumber">
+      <label  for="child_number">Child Number:</label>
+
+      <input type="number" class="form-control" id="child_number" name="child_number" placeholder="Enter your child_number number" >
+
+    </div>
+
+    <div class="form-group">
+      <label for="bloadGroup">Your Blood Group * </label>
+      <div id="blood_group_container">
+        <select name="bloadGroup" class="form-control" id="bloadGroup">
+          <option value="">Blood Group</option>
+          <option value="A+" selected="selected">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+        </select>           </div>
+        <span class="red"></span>
+      </div> 
+
+      <div class="form-group">
+        <label  for="dateOfBirth">Date of Birth*:</label>
+
+        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
+
+      </div>
+
+       <div class="form-group">
+        <label  for="dateOfBirth">Type of Residence*:</label>
+
+        <div id="residence_container">
+        <select name="residence" class="form-control" id="residence">
+          <option value="">Select Residence</option>
+          <option value="Urban">Urban</option>
+          <option value="Rural">Rural</option>  
+        </select>  
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label  for="dateOfBirth">Chairman or Local Elite person:</label>
+
+        <input type="text" class="form-control" id="localAgent" name="localAgent" placeholder="Enter the Chairman or Local elite person name" >
+
+      </div>
+
+      <div class="form-group">
+        <label  for="dateOfBirth">Phone Number:</label>
+
+        <input type="tel" class="form-control" id="agent_phone" name="agent_phone" placeholder="Enter the Phone Number of the Chairman or Local elite person name">
+
+      </div>
+
+
+    </div>
+
+    <div class="col-xs-6">
+
+     <h6 class="column-title"><i class="fa fa-home fa-2x blue"> Address</i></h6>
+
+     <div class="form-group">
+      <label  for="division">Division:*</label>
+
+      <input type="text" class="form-control" id="division" name="division" placeholder="Enter division name" required>
+
+    </div>
+    <div class="form-group">
+      <label for="district">District:*</label>
+
+      <input type="text" class="form-control" id="district" name="district" placeholder="Enter district Name">
+
+    </div>
+    <div class="form-group">
+      <label for="ps">P.S:*</label>
+
+      <input type="text" class="form-control" id="ps" name="ps" placeholder="Enter ps Address" required>
+
+    </div>
+    <div class="form-group">
+      <label  for="postCode">Post Code:*</label>
+
+      <input type="number" class="form-control" id="postCode" name="postCode" placeholder="Enter post code" required>
+
+    </div>
+
+
+    <div class="form-group">
+      <label for="area">Village/Mohalla:*</label>
+
+      <input type="text" class="form-control" id="area" name="area" placeholder="Enter your vill Address" required>
+
+    </div>
+
+    <br>
+
+
+    <h6 class="column-title"><i class="fa fa-institution fa-2x blue"> Academic Information</i></h6>
+    <div class="form-group">
+
+      <label for="lastDegree">Last Obtained Degree</label>
+      <input type="tex" class="form-control" id="lastDegree" name="lastDegree" placeholder="Last Obtained Degree" >
+    </div>
+
+
+    <div class="form-group">
+      <label for="subject">Subject </label>
+      <input type="text" id="subject" name="subject" class="form-control" placeholder="Enter your Subject Name" />
+      <span class="red"></span>
+    </div> 
+
+    <br>
+    <br>
+
+    <h6 class="column-title"><i class="fa fa-plus fa-2x blue"> Additional Information</i></h6>
+
+    <div class="form-group">
+      <label for="Occupation">Occupation:*</label>
+
+      <input type="tex" class="form-control" id="occupation" name="occupation" placeholder="Enter your Occupation" required>
+
+    </div>
+    <div class="form-group">
+      <label for="monthlyIncom">Monthly Income AVG:*</label>
+
+      <input type="number" class="form-control" id="monthlyIncom" name="monthlyIncom" placeholder="Enter your monthly income" required>
+
+    </div>
+
+
+    <div class="form-group">
+      <label  for="profile">Profile pic:</label>
+      <input type="file" class="form-control" id="profile" name="profile" placeholder="Enter your profile pic">
+
+
+    </div> 
+
+
+      <h6 class="column-title"><i class="fa fa-plus fa-2x blue"> Effective for Poor People</i></h6> 
+
+      <div class="form-group">
+        <label>Savings: *</label>
+        <label class="radio-inline">
+          <input type="radio" name="saving" value="YES" id="yes_savings">Yes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="saving" value="NO" id="no_savings">NO
+        </label>
+        <span class="red"></span>     
+      </div>    
+   
+    <div class="form-group">
+        <label>Any Tec. or Agr. Training? *</label>
+        <label class="radio-inline">
+          <input type="radio" name="t_a_trainig" value="YES" id="yes_t_a_trainig">Yes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="t_a_trainig" value="NO" id="no_t_a_trainig">No
+        </label>
+        <span class="red"></span>     
+      </div>
+
+      <div class="form-group">
+        <label>Any Working Scope in the neighborhood? *</label>
+        <label class="radio-inline">
+          <input type="radio" name="working_scope" value="YES" id="yes_working_scope">Yes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="working_scope" value="NO" id="no_working_scope">No
+        </label>
+        <span class="red"></span>     
+      </div> 
+
+       <div class="form-group">
+        <label>Do you know about Tec or Agr training? *</label>
+        <label class="radio-inline">
+          <input type="radio" name="know_t_a_trainig" value="YES" id="yes_know_t_a_trainig">Yes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="know_t_a_trainig" value="NO" id="no_know_t_a_trainig">No
+        </label>
+        <span class="red"></span>     
+      </div>
+
+       <div class="form-group">
+        <label>Any personal land for cultivation? *</label>
+        <label class="radio-inline">
+          <input type="radio" name="any_c_land" value="YES" id="yes_any_c_land">Yes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="any_c_land" value="NO" id="no_any_c_land">No
+        </label>
+        <span class="red"></span>     
+      </div>    
+
+       <div class="form-group">
+        <label>Drug Addiction? *</label>
+        <label class="radio-inline">
+          <input type="radio" name="drugAddiction" id="yes_drugAddiction" value="YES" >Yes
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="drugAddiction" id="no_drugAddiction" value="NO" >No
+        </label>
+        <span class="red"></span>     
+      </div>     
+
+
+      <div class="form-group">
+       <label for="natural_reson">Any Other Reason *</label>
+        <select name="natural_reson" class="form-control" id="natural_reson">
+          <option value="Flood">Flood</option>
+          <option value="River Erosion">River Erosion</option>
+          <option value="Cyclone">Cyclone</option>
+          <option value="Natural Disaster">Natural Disaster</option>
+          <option value="Others">Others</option>
+          <option value="non">None of them</option>
+          
+        </select>               
+        <span class="red"></span>       
+      </div>    
+    
+
+
+  </div>
+
+
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+
+      <button type="submit" id="insert" class="btn btn-primary btn-lg btn-block">Update</button>
+
+    </div>
+  </div>
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script type="text/javascript">
+  $("#search").click(function(event) {
+   var id  = $("#id").val();
+
+   $.ajax({
+     url: '/edit/api/data/'+id,
+     type: 'get',
+     dataType: 'json',
+     //data: {param1: 'value1'},
+     headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+
+  })
+   .done(function(result) {
+
+     $("#name").val(result[0].name);
+     $("#email").val(result[0].email);
+     $("#phone").val(result[0].phone);
+     $("#father_name").val(result[0].father_name);
+     $("#nid").val(result[0].nid);
+
+     if(result[0].gender=="Female")
+     {
+      $("#f_gender").prop("checked", true);
+    }else{
+
+
+     $("#m_gender").prop("checked", true);
+   }
+
+
+   if(result[0].marital_Status=="YES")
+   {
+    $("#yesMarrage").prop("checked", true);
+    $("#childNumber").show();
+  }else{
+
+
+   $("#noMarrage").prop("checked", true);
+   $("#childNumber").hide();
+ }
+
+ $("#noMarrage").click(function(event) {
+  $("#childNumber").hide();
+});
+
+ $("#yesMarrage").click(function(event) {
+  $("#childNumber").show();
+});
+
+ $("#child_number").val(result[0].child_number);
+ $("#dateOfBirth").val(result[0].dateOfBirth);
+ $("#localAgent").val(result[0].localAgent);
+ $("#agent_phone").val(result[0].agent_phone);
+ $("#division").val(result[0].division);
+ $("#district").val(result[0].district);
+
+
+ $("#ps").val(result[0].ps);
+ $("#postCode").val(result[0].postCode);
+ $("#area").val(result[0].area);
+
+ $("#lastDegree").val(result[0].lastDegree);
+ $("#subject").val(result[0].subject);
+ $("#occupation").val(result[0].occupation);
+ $("#monthlyIncom").val(result[0].monthlyIncom);
+ $("#religion").val(result[0].religion).change();
+ $("#bloadGroup").val(result[0].bloadGroup).change();
+
+switch(result[0].saving) {
+  case "YES": 
+  $("#yes_savings").prop("checked", true);
+  break;
+  case "NO":
+  $("#no_savings").prop("checked", true);
+  break;
+}
+
+switch(result[0].t_a_trainig) {
+  case "YES": 
+  $("#yes_t_a_trainig").prop("checked", true);
+  break;
+  case "NO":
+  $("#no_t_a_trainig").prop("checked", true);
+  break;
+}
+
+
+switch(result[0].working_scope) {
+  case "YES": 
+   $("#yes_working_scope").prop("checked", true);
+  break;
+  case "NO":
+  $("#no_working_scope").prop("checked", true);
+  break;
+}
+
+
+switch(result[0].know_t_a_trainig) {
+  case "YES": 
+   $("#yes_know_t_a_trainig").prop("checked", true);
+  break;
+  case "NO":
+ $("#no_know_t_a_trainig").prop("checked", true);
+ break;
+}
+
+
+switch(result[0].any_c_land) {
+  case "YES": 
+  $("#yes_any_c_land").prop("checked", true);
+  break;
+  case "NO":
+   $("#no_any_c_land").prop("checked", true);
+   break;
+}
+
+switch(result[0].drugAddiction) {
+  case "YES": 
+  $("#yes_drugAddiction").prop("checked", true);
+  break;
+  case "NO":
+   $("#no_drugAddiction").prop("checked", true);
+   break;
+}
+
+
+$("#natural_reson").val(result[0].natural_reson).change();
+
+
+
+
+})
+   .fail(function() {
+     console.log("error");
+   })
+   .always(function() {
+     console.log("complete");
+   });
+   
+ });
+
+</script>>
+

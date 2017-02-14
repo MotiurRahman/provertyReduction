@@ -1,0 +1,154 @@
+<%- contentFor('body') %>
+
+<div id="page-wrapper">
+	<div class="container-fluid">
+		<h2>Added the following peoples to my Institute</h2>
+		<div class="row">
+
+			<div class="ccol-xs-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Add people to my institute</h3>
+						<form class="form-inline" role="form" method="post">
+							<div class="form-group">
+
+								<input type="text" class="form-control" id="id" name="id" placeholder="Enter peoples ID" required="">
+							</div>
+							<div class="form-group">
+
+								<input type="text" class="form-control" id="dept" name="dept" placeholder="Enter Department name" required="">
+							</div>
+							<div class="form-group">
+							<button type="submit" class="btn btn-default">Add</button>
+							</div>
+							
+						</form>
+
+						
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover table-striped" id="poorTable">
+								<thead>
+									<tr>
+										<th>id</th>
+										<th>Name</th>
+										<th>Father_Name/Guardian</th>
+										<th>Address</th>
+										<th>Department</th>
+
+									</tr>
+								</thead>
+								<tbody id="addDept">
+									<% for(var i=0; i<data.length; i++) { %>
+
+
+									<tr>
+										<td><%=data[i]._id%></td>
+										<td><%=data[i].name%><br>
+											Status:<%=data[i].status%>
+										</td>
+										<td><%=data[i].father_name%></td>
+										<td>Div:<%=data[i].division%><br>
+
+											Dist:<%=data[i].district%>,
+											P.S:<%=data[i].ps%>,<br>
+											Post Code:<%=data[i].postCode%>,
+											vill:<%=data[i].area%><br>
+											Phone: <%=data[i].phone%><br>
+											Email: <%=data[i].email%>
+
+										</td>
+
+										<td><%=data[i].dept%></td>
+
+									</tr>
+
+									<%} %>
+
+
+								</tbody>
+							</table>
+						</div>
+						<div class="text-right">
+							<a href="#">Go to next Page <i class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	// $("#addToInstitute").click(function(event) {
+	// 	var id = $("#id").val();
+	// 	var dept = $("#dept").val();
+	// 	var institute = "bktc";
+
+	// 	alert(id+'\n'+dept);
+
+	// 	var content = {
+	// 		id:id,
+	// 		dept:dept,
+	// 		institute:"bktc"
+	// 	}
+
+	// 	$.ajax({
+	// 		url: '/addTo/api/'+id+'/'+dept+'/'+institute,
+	// 		type: 'POST',
+	// 		dataType: 'json',
+	// 		data: JSON.stringify(content),
+	// 		headers: {
+	// 			'Content-Type': 'application/json;charset=utf-8'
+	// 		},
+
+	// 	})
+	// 	.done(function(result) {
+
+	// 		alert(result);
+	// 		for (var i = 0; i < result.length; i++) {
+				
+	// 			var table_row = $("<tr></tr>");
+	// 			var table_id = $("<td>"+result[i]._id+"</td>");
+	// 			var table_name = $("<td>"+result[i].name+"</td>");
+	// 			var table_father_aame = $("<td>"+result[i].father_name+"</td>");
+
+
+	// 			var table_address = $("<td>Divi:"+result[i].division +"<br> Dist:"+result[i].district +"<br>P.S:"+result[i].ps+"<br> Post Code:"+result[i].postCode +"<br> vill:"+result[i].area+"<br>Phone:"+result[i].phone+"</td>");
+
+	// 			var table_dept = $("<td>"+result[i].dept+"</td>");
+
+				
+	// 			table_row.append(table_id);
+	// 			table_row.append(table_name);
+
+	// 			table_row.append(table_father_aame);
+	// 			table_row.append(table_address);
+	// 			table_row.append(table_dept);
+
+
+
+	// 			$("#addDept").append(table_row);
+	// 		}
+
+
+	// 	})
+	// 	.fail(function() {
+	// 		console.log("error");
+	// 	})
+	// 	.always(function() {
+	// 		console.log("complete");
+	// 	});
+
+	// });
+
+</script>
+
+
+
+<script type="text/javascript">
+	
+
+</script>

@@ -1,0 +1,228 @@
+<%- contentFor('body') %>
+
+<div id="page-wrapper">
+	<div class="container-fluid">
+		<h2>Find out specific status people using post code</h2>
+		<div class="row">
+
+			<div class="ccol-xs-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Search Poor Man Specific Area!</h3>
+						<form class="form-inline">
+							<div class="form-group">
+								<div class="panel-footer">
+
+								<select id="status" onchange="run()" style="width: 200px; height: 35px;">
+										<option value="">Select Status</option>
+										<option value="Poor">Poor</option>
+										<option value="Extremely Poor">Extremely Poor</option>
+										<option value="Rich Man">Rich Man</option>
+										<option value="Middle Class">Middle Class</option>
+										<option value="Lower Middle Class">Lower Middle Class</option>
+
+									</select>
+								</div>
+							</div>
+							<div class="form-group">
+
+								<input type="number" class="form-control" id="post_code" placeholder="Enter your post code">
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-default" id="search_poor">Search</button>
+							</div>
+							<div class="form-group" id="totalPopu">
+							<h5>Total Population: <%=data.length%></h5>
+							</div>
+						</form>
+
+						
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover table-striped" id="poorTable">
+								<thead>
+									<tr>
+										<th>id</th>
+										<th>Name</th>
+										<th>Father_Name/Guardian</th>
+										<th>Address</th>
+										<th>Might be the reason</th>
+										<th>Connected With</th>
+
+
+									</tr>
+								</thead>
+								<tbody id="poorBody">
+
+									<% for(var i=0; i<data.length; i++) { %>
+
+
+									<tr>
+										<td><%=i%>:<%=data[i].id%></td>
+										<td><%=data[i].name%><br>Status:<%=data[i].status%></td>
+										<td><%=data[i].father_name%></td>
+										<td>Div:<%=data[i].division%><br>
+
+											Dist:<%=data[i].district%>,
+											P.S:<%=data[i].ps%>,<br>
+											Post Code:<%=data[i].postCode%>,
+											vill:<%=data[i].area%><br>
+											Phone: <%=data[i].phone%>
+
+										</td>
+										<td>
+
+											<b>Education:</b> <%=data[i].lastDegree%><br>
+											<% if(data[i].saving=="NO"){%>
+											<b>Savings:</b> <%=data[i].saving%><br>
+											<%}%>
+
+											<% if(data[i].t_a_trainig=="NO"){%>
+											<b>T_A_trainig:</b> <%=data[i].t_a_trainig%><br>
+											<%}%>
+
+											<% if(data[i].working_scope=="NO"){%>
+											<b>Working Scope:</b> <%=data[i].working_scope%><br>
+											<%}%>
+
+											<% if(data[i].know_t_a_trainig=="NO"){%>
+											<b>know_T_A_Trainig:</b> <%=data[i].know_t_a_trainig%><br>
+											<%}%>
+
+											<% if(data[i].any_c_land=="NO"){%>
+											<b>Any_C_Land:</b> <%=data[i].any_c_land%><br>
+											<%}%>
+
+											<% if(data[i].drugAddiction=="YES"){%>
+											<b>Drug Addiction:</b> <%=data[i].drugAddiction%><br>
+											<%}%>
+
+											<b>Natural Reson:</b> <%=data[i].natural_reson%>
+										</td>
+
+										<td>Ins:<%=data[i].institute%><br>Dept:<%=data[i].dept%></td>
+
+										
+									</tr>
+
+									<%} %>
+
+
+
+
+								</tbody>
+							</table>
+						</div>
+						<div class="text-right">
+							<a href="#">Go to next Page <i class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$("#search_poor").click(function(event) {
+		$("#poorBody").empty();
+		$("#totalPopu").empty();
+		var post_code = $("#post_code").val();
+		var status = $("#status").val();
+
+		$.ajax({
+			url: '/tables/api/'+status+'/'+post_code,
+			type: 'GET',
+			dataType: 'json',
+
+		})
+		.done(function(result) {
+
+			var total =$("<h5>Total Population:"+result.length+"</h5>");
+			$("#totalPopu").append(total);
+
+
+			for (var i = 0; i < result.length; i++) {
+				
+				var table_row = $("<tr></tr>");
+				var table_id = $("<td>"+i+":"+result[i]._id+"</td>");
+				var table_name = $("<td>"+result[i].name+"</td>");
+				var table_father = $("<td>"+result[i].father_name+"</td>");
+
+
+				var table_address = $("<td>Divi:"+result[i].division +"<br> Dist:"+result[i].district +"<br>P.S:"+result[i].ps+"<br> Post Code:"+result[i].postCode +"<br> vill:"+result[i].area+"<br>Phone:"+result[i].phone+"</td>");
+
+				var tableData = $("<td></td>");
+
+				tableData.append('<b>Education:</b>'+result[i].lastDegree+"<br>");
+
+				if(result[i].saving=="NO")
+				{
+					tableData.append('<b>Savings:</b>'+result[i].saving+"<br>");
+
+				}
+
+				if(result[i].t_a_trainig=="NO")
+				{
+					tableData.append('<b>T_A_Trainig:</b>'+result[i].t_a_trainig+"<br>");
+				}
+
+				if(result[i].working_scope=="NO")
+				{
+					tableData.append('<b>Aorking Scope:</b>'+result[i].working_scope+"<br>");
+				}
+
+				if(result[i].know_t_a_trainig=="NO")
+				{
+					tableData.append('<b>Know_T_A_Trainig:</b>'+result[i].know_t_a_trainig+"<br>");
+				}
+
+				if(result[i].any_c_land=="NO")
+				{
+					tableData.append('<b>Any_C_Land:</b>'+result[i].any_c_land+"<br>");
+				}
+
+				if(result[i].drugAddiction=="YES")
+				{
+					tableData.append('<b>Drug Addiction:</b>'+result[i].drugAddiction+"<br>");
+				}
+
+				tableData.append('<b>Natural Reson:</b>'+result[i].natural_reson);
+				var table_connectedWith = $("<td>Ins:"+result[i].institute+"<br> Dept:"+result[i].dept+"</td>");
+
+
+
+				table_row.append(table_id);
+				table_row.append(table_name);
+
+				table_row.append(table_father);
+				table_row.append(table_address);
+				table_row.append(tableData);
+				table_row.append(table_connectedWith);
+
+
+
+				$("#poorBody").append(table_row);
+			}
+
+
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+
+	});
+
+</script>
+
+
+
+<script type="text/javascript">
+	
+
+</script>
