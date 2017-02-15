@@ -7,7 +7,8 @@ var instituteSchema = new db.Schema({
     name: String,
     short_name: String,  
     email: String,
-    phone: Number, 
+    phone: String,
+    webAddress:String,
     training_name:String,
 
     division: String,
@@ -16,9 +17,8 @@ var instituteSchema = new db.Schema({
     postCode: Number,
  
     userName:String,
-    password: Number,
-    re_password:String,
-
+    password: String,
+   
 });
 
 instituteSchema.plugin(mongoosePaginate);

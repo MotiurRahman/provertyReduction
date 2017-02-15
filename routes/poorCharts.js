@@ -49,7 +49,7 @@ router.get('/api/:status/:post_code', function(req, res, next) {
     console.log("post_code:" + post_code);
 
     if (status == "both") {
-        customer.find({ $or: [{ status: "poor" }, { status: "extremelyPoor" }], "postCode": post_code }).sort({ _id: -1 }).exec(function(err, docs) {
+        customer.find({ $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": post_code }).sort({ _id: -1 }).exec(function(err, docs) {
 
             if (err) {
                 res.json(err)

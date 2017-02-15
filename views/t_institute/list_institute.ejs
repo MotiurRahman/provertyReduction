@@ -1,0 +1,141 @@
+<%- contentFor('body') %>
+
+<div id="page-wrapper">
+	<div class="container-fluid">
+		<h2>List of Training Institute</h2>
+		<div class="row">
+
+			<div class="ccol-xs-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-money fa-fw"></i>Search the training institute using post code!</h3><br>
+						<form class="form-inline">
+							
+							<div class="form-group">
+
+								<input type="number" class="form-control" id="post_code" placeholder="Enter your post code">
+							</div>
+							<button type="button" class="btn btn-default" id="search">Search</button>
+						</form>
+
+						
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover table-striped" id="poorTable">
+								<thead>
+									<tr>
+										<th>ID.</th>
+										<th>Name</th>
+										<th>Address</th>
+										<th>Web</th>
+
+									</tr>
+								</thead>
+								<tbody id="list_institute">
+									<% for(var i=0; i<data.length; i++) { %>
+
+
+									<tr>
+										<td><%=i%>:<%=data[i]._id%></td>
+										<td><%=data[i].name%><br>
+										userName:<%=data[i].userName%><br>
+										Pass:<%=data[i].password%>
+											
+										</td>
+										
+										<td>Div:<%=data[i].division%><br>
+
+											Dist:<%=data[i].district%>,
+											P.S:<%=data[i].ps%>,<br>
+											Post Code:<%=data[i].postCode%>,
+											
+											Phone: <%=data[i].phone%><br>
+											Email: <%=data[i].email%>
+
+										</td>
+
+										<td><a href=<%=data[i].webAddress%> target="_blank"><%=data[i].short_name%></a></td>
+
+									</tr>
+
+									<%} %>
+
+
+								</tbody>
+							</table>
+						</div>
+						<div class="text-right">
+							<a href="#">Go to next Page <i class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$("#search").click(function(event) {
+		var post_code = $("#post_code").val();
+
+		$("#list_institute").empty();
+
+
+		$.ajax({
+			url: '/list_institute/api/'+post_code,
+			type: 'GET',
+			dataType: 'json',
+			
+
+		})
+		.done(function(result) {
+
+			// var total =$("<h5>Total Population:"+result.length+"</h5>");
+			// $("#totalPopu").append(total);
+
+
+			for (var i = 0; i < result.length; i++) {
+				
+				var table_row = $("<tr></tr>");
+				var table_id = $("<td>"+i+":"+result[i]._id+"</td>");
+				var table_name = $("<td>"+result[i].name+"</td>");
+				
+
+
+				var table_address = $("<td>Divi:"+result[i].division +"<br> Dist:"+result[i].district +"<br>P.S:"+result[i].ps+"<br> Post Code:"+result[i].postCode +"<br>Phone:"+result[i].phone+"<br>Email:"+result[i].email+"</td>");
+
+				var webAddress = $("<td>"+result[i].webAddress+"</td>");
+
+				
+
+
+				table_row.append(table_id);
+				table_row.append(table_name);
+
+				
+				table_row.append(table_address);
+				table_row.append(webAddress);
+				
+
+
+
+				$("#list_institute").append(table_row);
+			}
+
+
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+
+	});
+
+</script>
+
+
+

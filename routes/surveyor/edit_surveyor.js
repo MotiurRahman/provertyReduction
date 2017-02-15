@@ -1,10 +1,14 @@
 var express = require('express');
 var router = express.Router();
-var customer = require('./../libs/customerSchema');
-var status = require('./../libs/social_status');
+
+var surveyor = require('../../libs/surveyorSchema');
+
+
+
 
 router.get('/', function(req, res, next) {
-    res.render('edit');
+
+    res.render('surveyor/edit_surveyor');
 });
 
 
@@ -20,8 +24,6 @@ router.post('/', function(req, res, next) {
     var gender = req.body.gender;
     var nid = req.body.nid;
     var religion = req.body.religion;
-    var marital_Status = req.body.marital_Status;
-    var child_number = req.body.child_number;
     var dateOfBirth = req.body.dateOfBirth;
     var residence = req.body.residence;
     var bloadGroup = req.body.bloadGroup;
@@ -40,19 +42,7 @@ router.post('/', function(req, res, next) {
 
     var lastDegree = req.body.lastDegree;
     var subject = req.body.subject;
-
-    var monthlyIncom = req.body.monthlyIncom;
     var occupation = req.body.occupation;
-
-    var statusValue = status.check_status(monthlyIncom);
-
-    var saving = req.body.saving;
-    var t_a_trainig = req.body.t_a_trainig;
-    var working_scope = req.body.working_scope;
-    var know_t_a_trainig = req.body.know_t_a_trainig;
-    var any_c_land = req.body.any_c_land;
-    var natural_reson = req.body.natural_reson;
-    var drugAddiction = req.body.drugAddiction;
 
     console.log("id:" + id);
     console.log("name:" + name);
@@ -61,8 +51,7 @@ router.post('/', function(req, res, next) {
     console.log("phone:" + phone);
     console.log("gender:" + gender);
     console.log("religion:" + religion);
-    console.log("marital_Status:" + marital_Status);
-    console.log("child_number:" + child_number);
+   
     console.log("nid:" + nid);
     console.log("dateOfBirth:" + dateOfBirth);
     console.log("residence:" + residence);
@@ -82,19 +71,13 @@ router.post('/', function(req, res, next) {
     console.log("lastDegree:" + lastDegree);
     console.log("subject:" + subject);
 
-    console.log("monthlyIncom:" + monthlyIncom);
+    
     console.log("occupation:" + occupation);
 
-    console.log("saving:" + saving);
-    console.log("t_a_trainig:" + t_a_trainig);
-    console.log("working_scope:" + working_scope);
-    console.log("know_t_a_trainig:" + know_t_a_trainig);
-    console.log("any_c_land:" + any_c_land);
-    console.log("natural_reson:" + natural_reson);
-    console.log("drugAddiction:" + drugAddiction);
+   
 
 
-    var customerinfo = {
+    var surveyorinfo = {
         name: name,
         father_name: father_name,
         email: email,
@@ -102,8 +85,7 @@ router.post('/', function(req, res, next) {
         gender: gender,
         nid: nid,
         religion: religion,
-        marital_Status: marital_Status,
-        child_number: child_number,
+        
         dateOfBirth: dateOfBirth,
         residence:residence,
         bloadGroup: bloadGroup,
@@ -121,26 +103,16 @@ router.post('/', function(req, res, next) {
 
 
         occupation: occupation,
-        monthlyIncom: monthlyIncom,
-        status: statusValue,
-
-        saving: saving,
-        t_a_trainig: t_a_trainig,
-        working_scope: working_scope,
-        know_t_a_trainig: know_t_a_trainig,
-        any_c_land: any_c_land,
-        natural_reson: natural_reson,
-        drugAddiction:drugAddiction
-
+    
 
     };
 
     var conditions = { "_id": id },
-        update = { $set: customerinfo };
+        update = { $set: surveyorinfo };
 
 
 
-    customer.update(conditions, update, callback);
+    surveyor.update(conditions, update, callback);
 
     function callback(err, updatdata) {
         if (err) {
@@ -154,18 +126,15 @@ router.post('/', function(req, res, next) {
 
 });
 
+router.get('/api/surveyor/:id', function(req, res, next) {
 
-
-
-router.get('/api/data/:id', function(req, res, next) {
-
-    customer.find({ "_id": req.params.id }).exec(function(err, result) {
+    surveyor.find({ "_id": req.params.id }).exec(function(err, result) {
 
         if (err) {
             res.json(err)
         } else {
 
-            console.log("hello man how are u");
+            console.log("surveyor Data");
 
             res.json(result);
 
@@ -173,6 +142,5 @@ router.get('/api/data/:id', function(req, res, next) {
 
     });
 });
-
 
 module.exports = router;

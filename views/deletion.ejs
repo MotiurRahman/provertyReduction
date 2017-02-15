@@ -1,0 +1,131 @@
+ 
+<%- contentFor('body')%>  
+<div id="page-wrapper">
+	<div class="container-fluid">
+
+		<div class="panel panel-green">
+			<div class="panel-heading">
+				<h3 class="panel-title">Delete Institure Account, Survayor Account or Peoplese Info</h3>
+			</div>
+			<div class="panel-body">
+				<form class="form-horizontal" >
+
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="id">ID:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="id" name="id" placeholder="Enter the Corresponding ID" required>
+							<br>
+							<button type="button" class="btn btn-danger btn-lg btn-block" id="delete_institute" >Delete Training Center Account</button>
+							<br>
+							<button type="button" class="btn btn-danger btn-lg btn-block" id="delete_surveyor" >Delete Surveyor Account</button>
+							<br>
+
+							<button type="button" class="btn btn-danger btn-lg btn-block" id="delete_peoples" >Delete Peoples info</button>
+
+
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+
+	</div>
+</div>
+
+<script type="text/javascript">
+	$("#delete_institute").click(function(event) {
+
+
+		var id = $("#id").val();
+
+		if (confirm("Would you like to Delete?") == true) {
+			$.ajax({
+				url: '/deletion/institute/'+id,
+				type: 'DELETE',
+				dataType: 'json',
+
+			})
+			.done(function(result) {
+				alert(result);
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+
+
+		} else {
+
+		}
+
+		
+		
+	});
+
+</script>
+<script type="text/javascript">
+	
+	$("#delete_surveyor").click(function(event) {
+
+		var id = $("#id").val();
+
+		if (confirm("Would you like to Delete?") == true) {
+
+			$.ajax({
+				url: '/deletion/surveyor/'+id,
+				type: 'DELETE',
+				dataType: 'json',
+
+			})
+			.done(function(result) {
+				alert(result);
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+
+		} else {
+
+		}
+		
+		
+	});
+
+</script>
+<script type="text/javascript">
+	
+	$("#delete_peoples").click(function(event) {
+
+		var id = $("#id").val();
+
+		if (confirm("Would you like to Delete?") == true) {
+			$.ajax({
+				url: '/deletion/peoples/'+id,
+				type: 'DELETE',
+				dataType: 'json',
+				
+			})
+			.done(function(result) {
+				alert(result);
+			})
+			.fail(function() {
+				console.log("error");
+			})
+			.always(function() {
+				console.log("complete");
+			});
+
+		} else {
+			
+		}
+		
+		
+	});
+
+</script>

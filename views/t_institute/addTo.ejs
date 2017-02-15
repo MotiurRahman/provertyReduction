@@ -19,7 +19,11 @@
 								<input type="text" class="form-control" id="dept" name="dept" placeholder="Enter Department name" required="">
 							</div>
 							<div class="form-group">
-							<button type="submit" class="btn btn-default">Add</button>
+							<button type="submit" class="btn btn-default">Add To My Institute</button>
+							</div>
+
+							<div class="form-group">
+							<button type="button" class="btn btn-default" id="remove">Remove From My Institute</button>
 							</div>
 							
 						</form>
@@ -44,7 +48,7 @@
 
 
 									<tr>
-										<td><%=data[i]._id%></td>
+										<td><%=i%>:<%=data[i]._id%></td>
 										<td><%=data[i].name%><br>
 											Status:<%=data[i].status%>
 										</td>
@@ -82,7 +86,44 @@
 </div>
 
 <script type="text/javascript">
-	// $("#addToInstitute").click(function(event) {
+	$("#remove").click(function(event) {
+		var id = $("#id").val();
+
+
+		var content = {
+			id:id,
+		}
+
+		$.ajax({
+			url: '/addTo/api/'+id,
+			type: 'PUT',
+			dataType: 'json',
+			data: JSON.stringify(content),
+			headers: {
+				'Content-Type': 'application/json;charset=utf-8'
+			},
+
+		})
+		.done(function(result) {
+
+			location.reload();
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+
+	});
+
+</script>
+
+
+
+<script type="text/javascript">
+	
+// $("#addToInstitute").click(function(event) {
 	// 	var id = $("#id").val();
 	// 	var dept = $("#dept").val();
 	// 	var institute = "bktc";
@@ -143,12 +184,4 @@
 	// 	});
 
 	// });
-
-</script>
-
-
-
-<script type="text/javascript">
-	
-
 </script>

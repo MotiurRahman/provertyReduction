@@ -23,6 +23,7 @@ router.post('/', function(req, res, next) {
     var marital_Status = req.body.marital_Status;
     var child_number = req.body.child_number;
     var dateOfBirth = req.body.dateOfBirth;
+    var residence = req.body.residence;
     var bloadGroup = req.body.bloadGroup;
     var localAgent = req.body.localAgent;
     var agent_phone = req.body.agent_phone;
@@ -65,6 +66,7 @@ router.post('/', function(req, res, next) {
     console.log("child_number:" + child_number);
     console.log("nid:" + nid);
     console.log("dateOfBirth:" + dateOfBirth);
+    console.log("residence:" + residence);
     console.log("bloadGroup:" + bloadGroup);
     console.log("localAgent:" + localAgent);
     console.log("agent_phone:" + agent_phone);
@@ -104,6 +106,7 @@ router.post('/', function(req, res, next) {
         marital_Status: marital_Status,
         child_number: child_number,
         dateOfBirth: dateOfBirth,
+        residence:residence,
         bloadGroup: bloadGroup,
         localAgent:localAgent,
         agent_phone:agent_phone,

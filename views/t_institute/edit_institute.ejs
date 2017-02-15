@@ -8,8 +8,8 @@
   <!-- Page Heading/Breadcrumbs -->
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Registration:
-        <small>Register to your Institute</small>
+      <h1 class="page-header">Edit:
+        <small>Edit to My Institute</small>
       </h1>
       <div class="col-md-6 col-md-offset-3" style="text-align: center;">
         <div id="showResult" role="alert"></div>
@@ -20,6 +20,14 @@
 
 
     <form class="form-horizontal" role="form" method="post">
+
+    <div class="form-group">
+       <label for="name">ID:</label>
+
+       <input type="text" class="form-control" id="id" name="id" placeholder="Enter your name" required>
+       
+     </div>
+     <button type="button" class="btn btn-default" id="search">Search</button>
 
       <div class="form-group">
         <h6 class="column-title"><i class="fa fa-user fa-2x blue"> Institute Information</i></h6>
@@ -38,7 +46,7 @@
       <div class="form-group">
         <label  for="email">Contact Email:</label>
 
-        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
 
       </div>
 
@@ -46,24 +54,16 @@
       <div class="form-group">
         <label  for="phone">Contact Phone:</label>
 
-        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter contact number">
+        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter contact number" required>
 
       </div>
 
-      
-      
       <div class="form-group">
-      <h6 class="column-title"><i class="fa fa-graduation-cap fa-2x blue"> Academic Information</i></h6>
+        <label  for="webAddress">Web Address:</label>
 
-        <label for="training_name">List of Training Name</label>
-        <p>Example <br>1. Automobiles<br> 2. Electronics</p>
-       <textarea rows="8" cols="60" id="training_name" name="training_name">
-        
-        </textarea>
+        <input type="text" class="form-control" id="webAddress" name="webAddress" placeholder="Enter Your web Address">
 
       </div>
-
-
 
 
       </div>
@@ -99,25 +99,14 @@
 
         <br>
 
-      <h6 class="column-title"><i class="glyphicon glyphicon-log-in fa-2x blue"> Login Info</i></h6>
-
-       <div class="form-group">
-        <label  for="userName">User Name:*</label>
-
-        <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter your user name" required>
-
-      </div>
       <div class="form-group">
-        <label for="password">Password:*</label>
+      <h6 class="column-title"><i class="fa fa-graduation-cap fa-2x blue"> Academic Information</i></h6>
 
-
-        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
-
-      </div>
-      <div class="form-group">
-        <label for="re_password">Confirm Password:*</label>
-
-        <input type="password" class="form-control" id="re_password" name="re_password" placeholder="Enter your password again" required>
+        <label for="training_name">List of Training Name</label>
+        <p>Example <br>1. Automobiles<br> 2. Electronics</p>
+       <textarea rows="8" cols="60" id="training_name" name="training_name">
+        
+        </textarea>
 
       </div>
 
@@ -129,11 +118,11 @@
       <div class="col-sm-offset-2 col-sm-10">
        <div class="form-group">
         <label>
-          <input type="checkbox" id="check"> Yes, I would like to work for the people!
+          <input type="checkbox" id="check"> Yes, I would like to Update My Profile!
         </label>
       </div>
 
-      <button type="submit" id="insert" class="btn btn-primary btn-lg btn-block">Submit</button>
+      <button type="submit" id="update" class="btn btn-primary btn-lg btn-block">Update</button>
 
     </div>
   </div>
@@ -149,24 +138,60 @@
 
 
 <script type="text/javascript"> 
- $('#insert').attr('disabled','disabled');
- $("#noMarrage").click(function(event) {
-  $("#childNumber").hide();
-});
-
- $("#yesMarrage").click(function(event) {
-  $("#childNumber").show();
-});
-
+ $('#update').attr('disabled','disabled');
  
 
  $("#check").change( function(){
    if( $(this).is(':checked') ) {
-     $('#insert').removeAttr('disabled');
+     $('#update').removeAttr('disabled');
    }else{
-    $('#insert').attr('disabled','disabled');
+    $('#update').attr('disabled','disabled');
   }
 });
+
+
+ $("#search").click(function(event) {
+   var id  = $("#id").val();
+
+   $.ajax({
+     url: '/edit_institute/api/institute/'+id,
+     type: 'get',
+     dataType: 'json',
+     //data: {param1: 'value1'},
+     headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+
+  })
+   .done(function(result) {
+
+     $("#name").val(result[0].name);
+     $("#email").val(result[0].email);
+     $("#phone").val(result[0].phone);
+     $("#short_name").val(result[0].short_name);
+     $("#webAddress").val(result[0].webAddress);
+      $("#training_name").val(result[0].training_name);
+
+     $("#division").val(result[0].division);
+     $("#district").val(result[0].district);
+
+
+     $("#ps").val(result[0].ps);
+     $("#postCode").val(result[0].postCode);
+ 
+
+
+
+
+})
+   .fail(function() {
+     console.log("error");
+   })
+   .always(function() {
+     console.log("complete");
+   });
+   
+ });
 
 
 

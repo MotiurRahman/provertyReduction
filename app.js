@@ -17,8 +17,13 @@ var tables = require('./routes/tables');
 var algorithm = require('./routes/algorithm');
 var solution = require('./routes/solution');
 var surveyor = require('./routes/signup/surveyor');
-var govt_org = require('./routes/signup/govt_org');
+var institute = require('./routes/signup/institute');
 var addTo = require('./routes/t_institute/addTo');
+var list_institute = require('./routes/t_institute/list_institute');
+var edit_institute = require('./routes/t_institute/edit_institute');
+var list_surveyor = require('./routes/surveyor/list_surveyor');
+var edit_surveyor = require('./routes/surveyor/edit_surveyor');
+var deletion = require('./routes/deletion');
 
 var app = express();
 
@@ -47,8 +52,14 @@ app.use('/tables', tables);
 app.use('/algorithm', algorithm);
 app.use('/solution', solution);
 app.use('/surveyor_signup', surveyor);
-app.use('/govt_org_signup', govt_org);
+app.use('/institute_signup', institute);
 app.use('/addTo', addTo);
+app.use('/list_institute', list_institute);
+app.use('/list_surveyor', list_surveyor);
+app.use('/edit_surveyor', edit_surveyor);
+app.use('/edit_institute', edit_institute);
+app.use('/deletion', deletion);
+
 
 
 // catch 404 and forward to error handler

@@ -63,4 +63,42 @@ router.post('/', function(req, res, next) {
 });
 
 
+router.put('/api/:id', function(req, res, next) {
+
+    var id = req.body.id;
+    
+
+    console.log("id:" + id);
+   
+
+
+    var instituteInfo = {
+        dept: "",
+        institute: ""
+    }
+
+    var conditions = { "_id": id },
+        update = { $set: instituteInfo };
+
+
+
+    customer.update(conditions, update, callback);
+
+    function callback(err, updatdata) {
+        if (err) {
+            res.json("Data is not valid");
+            // mongoose.connection.close();
+        } else {
+
+            res.json(updatdata);
+        }
+    };
+
+
+
+
+});
+
+
+
 module.exports = router;
