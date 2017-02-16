@@ -29,7 +29,26 @@ router.get('/', function(req, res, next) {
 
 
 
-            res.render('poorCharts', { data: docs, resonOfPoor: resonOfPoor, totalNum: total });
+            
+
+
+             switch (req.session.loginType) {
+                case "Institute":
+
+                    res.render('poorCharts', { data: docs, resonOfPoor: resonOfPoor, totalNum: total, layout: "ins_layout" });
+
+                    break;
+                case "Survayor":
+                    res.render('poorCharts', { data: docs, resonOfPoor: resonOfPoor, totalNum: total, layout: "sur_layout" });
+                    break;
+                case "Admin":
+                    res.render('poorCharts', { data: docs, resonOfPoor: resonOfPoor, totalNum: total, layout: "admin_layout" });
+                    break;
+                default:
+                    res.render('poorCharts', { data: docs, resonOfPoor: resonOfPoor, totalNum: total });
+
+            }
+
         }
 
     });

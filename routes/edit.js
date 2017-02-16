@@ -4,7 +4,23 @@ var customer = require('./../libs/customerSchema');
 var status = require('./../libs/social_status');
 
 router.get('/', function(req, res, next) {
-    res.render('edit');
+
+    switch (req.session.loginType) {
+        case "Institute":
+
+            res.render('edit', { layout: "ins_layout" });
+
+            break;
+        case "Survayor":
+            res.render('edit', { layout: "sur_layout" });
+            break;
+        case "Admin":
+            res.render('edit', { layout: "admin_layout" });
+            break;
+        default:
+            res.render('edit');
+
+    }
 });
 
 
@@ -105,7 +121,7 @@ router.post('/', function(req, res, next) {
         marital_Status: marital_Status,
         child_number: child_number,
         dateOfBirth: dateOfBirth,
-        residence:residence,
+        residence: residence,
         bloadGroup: bloadGroup,
         localAgent: localAgent,
         agent_phone: agent_phone,
@@ -130,7 +146,7 @@ router.post('/', function(req, res, next) {
         know_t_a_trainig: know_t_a_trainig,
         any_c_land: any_c_land,
         natural_reson: natural_reson,
-        drugAddiction:drugAddiction
+        drugAddiction: drugAddiction
 
 
     };

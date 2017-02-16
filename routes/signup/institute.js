@@ -5,7 +5,26 @@ var institute = require("../../libs/t_institute");
 
 
 router.get('/', function(req, res, next) {
-    res.render('signup/institute');
+    
+
+    console.log("session:"+req.session.loginType);
+
+    switch (req.session.loginType) {
+        case "Institute":
+
+            res.render('signup/institute', { layout: "ins_layout" });
+
+            break;
+        case "Survayor":
+            res.render('signup/institute', { layout: "sur_layout"  });
+            break;
+        case "Admin":
+            res.render('signup/institute', { layout: "admin_layout"  });
+            break;
+        default:
+            res.render('signup/institute' );
+
+    }
 });
 
 
@@ -48,10 +67,10 @@ router.post('/', function(req, res, next) {
         email: email,
         phone: phone,
         training_name: training_name,
-        webAddress:webAddress,
+        webAddress: webAddress,
         userName: userName,
         password: password,
-    
+
         division: division,
         district: district,
         ps: ps,
@@ -79,7 +98,7 @@ router.post('/', function(req, res, next) {
 
 
     } else {
-     res.json("password Does not matrch");
+        res.json("password Does not matrch");
     }
 
 

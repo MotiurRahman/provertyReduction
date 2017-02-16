@@ -14,7 +14,23 @@ router.get('/', function(req, res, next) {
             res.json(err)
         } else {
 
-            res.render('surveyor/list_surveyor', { data: docs });
+
+            switch (req.session.loginType) {
+                case "Institute":
+
+                    res.render('surveyor/list_surveyor', { data: docs, layout: "ins_layout" });
+
+                    break;
+                case "Survayor":
+                    res.render('surveyor/list_surveyor', { data: docs, layout: "sur_layout" });
+                    break;
+                case "Admin":
+                    res.render('surveyor/list_surveyor', { data: docs, layout: "admin_layout" });
+                    break;
+                default:
+                    res.render('surveyor/list_surveyor',{data: docs});
+
+            }
 
         }
 
@@ -26,10 +42,10 @@ router.get('/', function(req, res, next) {
 
 router.get('/api/:post_code', function(req, res, next) {
 
-	var post_code = req.params.post_code;
-	console.log("post_code:"+post_code);
+    var post_code = req.params.post_code;
+    console.log("post_code:" + post_code);
 
-    surveyor.find({postCode:post_code}).exec(function(err, docs) {
+    surveyor.find({ postCode: post_code }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)

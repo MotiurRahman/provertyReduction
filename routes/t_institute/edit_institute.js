@@ -7,7 +7,25 @@ var institute = require('../../libs/t_institute');
 
 
 router.get('/', function(req, res, next) {
-    res.render('t_institute/edit_institute');
+   
+
+    switch (req.session.loginType) {
+        case "Institute":
+
+            res.render('t_institute/edit_institute', { layout: "ins_layout" });
+
+            break;
+        case "Survayor":
+            res.render('t_institute/edit_institute', { layout: "sur_layout" });
+            break;
+        case "Admin":
+            res.render('t_institute/edit_institute', { layout: "admin_layout" });
+            break;
+        default:
+            res.render('t_institute/edit_institute');
+
+    }
+
 
 });
 
@@ -24,7 +42,7 @@ router.post('/', function(req, res, next) {
     var phone = req.body.phone;
     var training_name = req.body.training_name;
     var webAddress = req.body.webAddress;
-    
+
     var division = req.body.division;
     var district = req.body.district;
     var ps = req.body.ps;
@@ -37,7 +55,7 @@ router.post('/', function(req, res, next) {
     console.log("phone:" + phone);
     console.log("training_name:" + training_name);
     console.log("webAddress:" + webAddress);
-   
+
     console.log("division:" + division);
     console.log("district:" + district);
     console.log("ps:" + ps);
@@ -51,8 +69,8 @@ router.post('/', function(req, res, next) {
         email: email,
         phone: phone,
         training_name: training_name,
-        webAddress:webAddress,
-      
+        webAddress: webAddress,
+
         division: division,
         district: district,
         ps: ps,

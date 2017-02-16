@@ -12,6 +12,7 @@
     "ejs": "^2.5.5",
     "express": "~4.13.4",
     "express-ejs-layouts": "^2.2.0",
+    "express-session": "^1.15.1",
     "mongodb": "^2.2.21",
     "mongoose": "^4.7.7",
     "mongoose-paginate": "^5.0.3",

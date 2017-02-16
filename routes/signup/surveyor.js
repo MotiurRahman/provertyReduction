@@ -5,7 +5,24 @@ var surveyor = require("../../libs/surveyorSchema");
 
 
 router.get('/', function(req, res, next) {
-    res.render('signup/surveyor');
+   
+
+    switch (req.session.loginType) {
+        case "Institute":
+
+            res.render('signup/surveyor', { layout: "ins_layout" });
+
+            break;
+        case "Survayor":
+            res.render('signup/surveyor', { layout: "sur_layout"  });
+            break;
+        case "Admin":
+            res.render('signup/surveyor', { layout: "admin_layout"  });
+            break;
+        default:
+            res.render('signup/surveyor' );
+
+    }
 });
 
 

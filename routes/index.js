@@ -17,7 +17,24 @@ router.get('/', function(req, res, next) {
             var socialStatus = status.social_status(docs);
 
 
-            res.render('index', { data: docs, social_Status: socialStatus});
+
+            switch (req.session.loginType) {
+                case "Institute":
+
+                    res.render('index', { data: docs, social_Status: socialStatus, layout: "ins_layout" });
+
+                    break;
+                case "Survayor":
+                    res.render('index', { data: docs, social_Status: socialStatus, layout: "sur_layout" });
+                    break;
+                case "Admin":
+                    res.render('index', { data: docs, social_Status: socialStatus, layout: "admin_layout" });
+                    break;
+                default:
+                    res.render('index', { data: docs, social_Status: socialStatus });
+
+            }
+
         }
 
     });
@@ -29,11 +46,11 @@ router.get('/', function(req, res, next) {
 router.get('/api/:status', function(req, res, next) {
 
     var status = req.params.status;
-    
+
 
     console.log("status:" + status);
 
-    customer.find({ "status": status}).sort({ _id: -1 }).limit(100).exec(function(err, docs) {
+    customer.find({ "status": status }).sort({ _id: -1 }).limit(100).exec(function(err, docs) {
 
         if (err) {
             res.json(err)

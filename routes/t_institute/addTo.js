@@ -14,7 +14,23 @@ router.get('/', function(req, res, next) {
             res.json(err)
         } else {
 
-            res.render('t_institute/addTo', { data: docs });
+
+            switch (req.session.loginType) {
+                case "Institute":
+
+                    res.render('t_institute/addTo', { data: docs, layout: "ins_layout" });
+
+                    break;
+                case "Survayor":
+                    res.render('t_institute/addTo', { data: docs, layout: "sur_layout" });
+                    break;
+                case "Admin":
+                    res.render('t_institute/addTo', { data: docs, layout: "admin_layout" });
+                    break;
+                default:
+                    res.render('t_institute/addTo', { data: docs });
+
+            }
 
         }
 
@@ -66,10 +82,10 @@ router.post('/', function(req, res, next) {
 router.put('/api/:id', function(req, res, next) {
 
     var id = req.body.id;
-    
+
 
     console.log("id:" + id);
-   
+
 
 
     var instituteInfo = {

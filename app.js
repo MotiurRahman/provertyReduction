@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressLayouts = require('express-ejs-layouts');
+var session = require('express-session');
  
 
 var routes = require('./routes/index');
@@ -24,8 +25,27 @@ var edit_institute = require('./routes/t_institute/edit_institute');
 var list_surveyor = require('./routes/surveyor/list_surveyor');
 var edit_surveyor = require('./routes/surveyor/edit_surveyor');
 var deletion = require('./routes/deletion');
+var login = require('./routes/signin/login');
+var logout = require('./routes/signin/logout');
 
 var app = express();
+app.disable('x-powered-by');
+
+var sess = {
+    name: "session-cookie",
+    secret: 'motiur8034',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { maxAge: 6000000}
+}
+
+if (app.get('env') === 'production') {
+    app.set('trust proxy', 1) // trust first proxy 
+    sess.cookie.secure = true // serve secure cookies 
+}
+
+app.use(session(sess));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -59,6 +79,8 @@ app.use('/list_surveyor', list_surveyor);
 app.use('/edit_surveyor', edit_surveyor);
 app.use('/edit_institute', edit_institute);
 app.use('/deletion', deletion);
+app.use('/login', login);
+app.use('/logout', logout);
 
 
 

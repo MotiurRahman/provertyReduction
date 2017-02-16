@@ -6,7 +6,24 @@ var surveyor = require('./../libs/surveyorSchema');
 var institute = require('./../libs/t_institute');
 
 router.get('/', function(req, res, next) {
-    res.render('deletion');
+   
+
+    switch (req.session.loginType) {
+        case "Institute":
+
+            res.render('deletion', { layout: "ins_layout" });
+
+            break;
+        case "Survayor":
+            res.render('deletion', { layout: "sur_layout" });
+            break;
+        case "Admin":
+            res.render('deletion', { layout: "admin_layout" });
+            break;
+        default:
+            res.render('deletion');
+
+    }
 });
 
 

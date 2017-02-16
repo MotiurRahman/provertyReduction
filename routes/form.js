@@ -6,7 +6,23 @@ var status = require('./../libs/social_status');
 
 router.get('/', function(req, res, next) {
 
-    res.render('form');
+  
+    switch (req.session.loginType) {
+        case "Institute":
+
+            res.render('form', { layout: "ins_layout" });
+
+            break;
+        case "Survayor":
+            res.render('form', { layout: "sur_layout" });
+            break;
+        case "Admin":
+            res.render('form', { layout: "admin_layout" });
+            break;
+        default:
+            res.render('form');
+
+    }
 
 });
 

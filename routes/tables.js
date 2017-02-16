@@ -22,7 +22,22 @@ router.get('/', function(req, res, next) {
             console.log("extremelyPoor:" + rich_poor.extremelyPoor.length);
 
 
-            res.render('tables', { data: docs, social_Status: socialStatus, rich_poor: rich_poor });
+            switch (req.session.loginType) {
+                case "Institute":
+
+                    res.render('tables', { data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "ins_layout" });
+
+                    break;
+                case "Survayor":
+                    res.render('tables', { data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "sur_layout" });
+                    break;
+                case "Admin":
+                    res.render('tables', { data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "admin_layout" });
+                    break;
+                default:
+                    res.render('tables', { data: docs, social_Status: socialStatus, rich_poor: rich_poor });
+
+            }
         }
 
     });

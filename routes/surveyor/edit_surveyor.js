@@ -8,7 +8,23 @@ var surveyor = require('../../libs/surveyorSchema');
 
 router.get('/', function(req, res, next) {
 
-    res.render('surveyor/edit_surveyor');
+
+    switch (req.session.loginType) {
+        case "Institute":
+
+            res.render('surveyor/edit_surveyor', { layout: "ins_layout" });
+
+            break;
+        case "Survayor":
+            res.render('surveyor/edit_surveyor', { layout: "sur_layout" });
+            break;
+        case "Admin":
+            res.render('surveyor/edit_surveyor', { layout: "admin_layout" });
+            break;
+        default:
+            res.render('surveyor/edit_surveyor');
+
+    }
 });
 
 
@@ -51,7 +67,7 @@ router.post('/', function(req, res, next) {
     console.log("phone:" + phone);
     console.log("gender:" + gender);
     console.log("religion:" + religion);
-   
+
     console.log("nid:" + nid);
     console.log("dateOfBirth:" + dateOfBirth);
     console.log("residence:" + residence);
@@ -71,10 +87,10 @@ router.post('/', function(req, res, next) {
     console.log("lastDegree:" + lastDegree);
     console.log("subject:" + subject);
 
-    
+
     console.log("occupation:" + occupation);
 
-   
+
 
 
     var surveyorinfo = {
@@ -85,9 +101,9 @@ router.post('/', function(req, res, next) {
         gender: gender,
         nid: nid,
         religion: religion,
-        
+
         dateOfBirth: dateOfBirth,
-        residence:residence,
+        residence: residence,
         bloadGroup: bloadGroup,
         localAgent: localAgent,
         agent_phone: agent_phone,
@@ -103,7 +119,7 @@ router.post('/', function(req, res, next) {
 
 
         occupation: occupation,
-    
+
 
     };
 
