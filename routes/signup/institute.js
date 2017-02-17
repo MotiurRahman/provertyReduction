@@ -12,11 +12,11 @@ router.get('/', function(req, res, next) {
     switch (req.session.loginType) {
         case "Institute":
 
-            res.render('signup/institute', { layout: "ins_layout" });
+            res.render('signup/institute', {institute_userName: req.session.userName, layout: "ins_layout" });
 
             break;
         case "Survayor":
-            res.render('signup/institute', { layout: "sur_layout"  });
+            res.render('signup/institute', {surveyor_userName: req.session.userName, layout: "sur_layout"  });
             break;
         case "Admin":
             res.render('signup/institute', { layout: "admin_layout"  });

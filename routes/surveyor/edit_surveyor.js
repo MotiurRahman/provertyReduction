@@ -10,19 +10,15 @@ router.get('/', function(req, res, next) {
 
 
     switch (req.session.loginType) {
-        case "Institute":
-
-            res.render('surveyor/edit_surveyor', { layout: "ins_layout" });
-
-            break;
+       
         case "Survayor":
-            res.render('surveyor/edit_surveyor', { layout: "sur_layout" });
+            res.render('surveyor/edit_surveyor', {surveyor_userName: req.session.userName, layout: "sur_layout" });
             break;
         case "Admin":
             res.render('surveyor/edit_surveyor', { layout: "admin_layout" });
             break;
         default:
-            res.render('surveyor/edit_surveyor');
+            next();
 
     }
 });

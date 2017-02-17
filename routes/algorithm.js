@@ -8,11 +8,11 @@ router.get('/', function(req, res, next) {
     switch (req.session.loginType) {
         case "Institute":
 
-            res.render('algorithm', { layout: "ins_layout" });
+            res.render('algorithm', {institute_userName: req.session.userName, layout: "ins_layout" });
 
             break;
         case "Survayor":
-            res.render('algorithm', { layout: "sur_layout" });
+            res.render('algorithm', {surveyor_userName: req.session.userName, layout: "sur_layout" });
             break;
         case "Admin":
             res.render('algorithm', { layout: "admin_layout" });

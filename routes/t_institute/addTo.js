@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-var customer = require('../../libs/customerSchema');
+var peoples = require('../../libs/peoplesSchema');
 
 
 
 
 router.get('/', function(req, res, next) {
 
-    customer.find({ "institute": "bktc" }).exec(function(err, docs) {
+    peoples.find({ "institute": "bktc" }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -18,17 +18,15 @@ router.get('/', function(req, res, next) {
             switch (req.session.loginType) {
                 case "Institute":
 
-                    res.render('t_institute/addTo', { data: docs, layout: "ins_layout" });
+                    res.render('t_institute/addTo', {institute_userName: req.session.userName, data: docs, layout: "ins_layout" });
 
                     break;
-                case "Survayor":
-                    res.render('t_institute/addTo', { data: docs, layout: "sur_layout" });
-                    break;
+               
                 case "Admin":
                     res.render('t_institute/addTo', { data: docs, layout: "admin_layout" });
                     break;
                 default:
-                    res.render('t_institute/addTo', { data: docs });
+                   next();
 
             }
 

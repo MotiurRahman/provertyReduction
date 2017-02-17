@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var peoples = require('./../libs/customerSchema');
+var peoples = require('./../libs/peoplesSchema');
 var surveyor = require('./../libs/surveyorSchema');
 var institute = require('./../libs/t_institute');
 
@@ -9,19 +9,12 @@ router.get('/', function(req, res, next) {
    
 
     switch (req.session.loginType) {
-        case "Institute":
-
-            res.render('deletion', { layout: "ins_layout" });
-
-            break;
-        case "Survayor":
-            res.render('deletion', { layout: "sur_layout" });
-            break;
+       
         case "Admin":
             res.render('deletion', { layout: "admin_layout" });
             break;
         default:
-            res.render('deletion');
+           next();
 
     }
 });

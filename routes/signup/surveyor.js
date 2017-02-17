@@ -10,11 +10,11 @@ router.get('/', function(req, res, next) {
     switch (req.session.loginType) {
         case "Institute":
 
-            res.render('signup/surveyor', { layout: "ins_layout" });
+            res.render('signup/surveyor', {institute_userName: req.session.userName, layout: "ins_layout" });
 
             break;
         case "Survayor":
-            res.render('signup/surveyor', { layout: "sur_layout"  });
+            res.render('signup/surveyor', {surveyor_userName: req.session.userName, layout: "sur_layout"  });
             break;
         case "Admin":
             res.render('signup/surveyor', { layout: "admin_layout"  });
@@ -138,7 +138,7 @@ router.post('/', function(req, res, next) {
         });
 
     } else {
-        res.json("password Does not matrch");
+        res.json("password Does not match");
     }
 
 });

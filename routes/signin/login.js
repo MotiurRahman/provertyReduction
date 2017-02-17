@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-var customer = require('../../libs/customerSchema');
+var peoples = require('../../libs/peoplesSchema');
 var status = require('../../libs/social_status');
+var institute = require("../../libs/t_institute");
+var surveyor = require("../../libs/surveyorSchema");
 
 router.get('/', function(req, res, next) {
 
@@ -21,10 +23,11 @@ router.post('/', function(req, res, next) {
     console.log("userName:" + userName);
     console.log("password:" + password);
 
-    req.session.loginType = loginType
+    req.session.loginType = loginType;
+
     console.log("session:" + req.session.loginType);
 
-    customer.find().sort({ _id: -1 }).limit(100).exec(function(err, docs) {
+    peoples.find().sort({ _id: -1 }).limit(100).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -34,11 +37,54 @@ router.post('/', function(req, res, next) {
             switch (req.session.loginType) {
                 case "Institute":
 
-                    res.render('index', { data: docs, social_Status: socialStatus, layout: "ins_layout" });
+
+
+                    institute.find({ $and: [{ userName: userName }, { password: password }] }).exec(function(err, personData) {
+
+                        if (err) {
+                            res.json("password Does not match");
+                        } else {
+
+                            // res.json(personData);
+                            console.log("personData:" + personData.length);
+
+                            if (personData.length > 0) {
+                                req.session.userName = personData[0].userName;
+                                res.render('index', { data: docs, institute_userName: req.session.userName, social_Status: socialStatus, layout: "ins_layout" });
+
+                            } else {
+                                res.json("password Does not match");
+
+                            }
+
+                        }
+
+                    });
+
 
                     break;
                 case "Survayor":
-                    res.render('index', { data: docs, social_Status: socialStatus, layout: "sur_layout" });
+
+
+                    surveyor.find({ $and: [{ userName: userName }, { password: password }] }).exec(function(err, surveyor_Data) {
+
+                        if (err) {
+                            res.json("password Does not match");
+                        } else {
+
+                            if (surveyor_Data.length > 0) {
+                                 req.session.userName = surveyor_Data[0].userName;
+                                res.render('index', { data: docs, surveyor_userName: req.session.userName, social_Status: socialStatus, layout: "sur_layout" });
+
+                            } else {
+                                res.json("password Does not match");
+
+                            }
+
+                        }
+
+                    });
+
                     break;
                 case "Admin":
                     res.render('index', { data: docs, social_Status: socialStatus, layout: "admin_layout" });

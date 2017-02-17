@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-var customer = require('./../libs/customerSchema');
+var peoples = require('./../libs/peoplesSchema');
 var status = require('./../libs/social_status');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
 
-    customer.find().sort({ _id: -1 }).limit(100).exec(function(err, docs) {
+    peoples.find().sort({ _id: -1 }).limit(100).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -21,11 +21,11 @@ router.get('/', function(req, res, next) {
             switch (req.session.loginType) {
                 case "Institute":
 
-                    res.render('index', { data: docs, social_Status: socialStatus, layout: "ins_layout" });
+                    res.render('index', {institute_userName: req.session.userName, data: docs, social_Status: socialStatus, layout: "ins_layout" });
 
                     break;
                 case "Survayor":
-                    res.render('index', { data: docs, social_Status: socialStatus, layout: "sur_layout" });
+                    res.render('index', {surveyor_userName: req.session.userName, data: docs, social_Status: socialStatus, layout: "sur_layout" });
                     break;
                 case "Admin":
                     res.render('index', { data: docs, social_Status: socialStatus, layout: "admin_layout" });
@@ -50,7 +50,7 @@ router.get('/api/:status', function(req, res, next) {
 
     console.log("status:" + status);
 
-    customer.find({ "status": status }).sort({ _id: -1 }).limit(100).exec(function(err, docs) {
+    peoples.find({ "status": status }).sort({ _id: -1 }).limit(100).exec(function(err, docs) {
 
         if (err) {
             res.json(err)

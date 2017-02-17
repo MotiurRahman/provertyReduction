@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-var customer = require('./../libs/customerSchema');
+var peoples = require('./../libs/peoplesSchema');
 var status_data = require('./../libs/social_status');
 
 
 router.get('/', function(req, res, next) {
 
-    customer.find({ $or: [{ status: "poor" }, { status: "extremelyPoor" }] }).exec(function(err, docs) {
+    peoples.find({ $or: [{ status: "poor" }, { status: "extremelyPoor" }] }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -35,11 +35,11 @@ router.get('/', function(req, res, next) {
              switch (req.session.loginType) {
                 case "Institute":
 
-                    res.render('poorCharts', { data: docs, resonOfPoor: resonOfPoor, totalNum: total, layout: "ins_layout" });
+                    res.render('poorCharts', {institute_userName: req.session.userName, data: docs, resonOfPoor: resonOfPoor, totalNum: total, layout: "ins_layout" });
 
                     break;
                 case "Survayor":
-                    res.render('poorCharts', { data: docs, resonOfPoor: resonOfPoor, totalNum: total, layout: "sur_layout" });
+                    res.render('poorCharts', {surveyor_userName: req.session.userName, data: docs, resonOfPoor: resonOfPoor, totalNum: total, layout: "sur_layout" });
                     break;
                 case "Admin":
                     res.render('poorCharts', { data: docs, resonOfPoor: resonOfPoor, totalNum: total, layout: "admin_layout" });
@@ -68,7 +68,7 @@ router.get('/api/:status/:post_code', function(req, res, next) {
     console.log("post_code:" + post_code);
 
     if (status == "both") {
-        customer.find({ $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": post_code }).sort({ _id: -1 }).exec(function(err, docs) {
+        peoples.find({ $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": post_code }).sort({ _id: -1 }).exec(function(err, docs) {
 
             if (err) {
                 res.json(err)
@@ -90,7 +90,7 @@ router.get('/api/:status/:post_code', function(req, res, next) {
 
 
 
-        customer.find({ "status": status, "postCode": post_code }).sort({ _id: -1 }).exec(function(err, docs) {
+        peoples.find({ "status": status, "postCode": post_code }).sort({ _id: -1 }).exec(function(err, docs) {
 
             if (err) {
                 res.json(err)

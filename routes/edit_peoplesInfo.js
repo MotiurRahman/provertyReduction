@@ -1,33 +1,30 @@
 var express = require('express');
 var router = express.Router();
-
-var customer = require("./../libs/customerSchema");
+var peoples = require('./../libs/peoplesSchema');
 var status = require('./../libs/social_status');
 
 router.get('/', function(req, res, next) {
 
-  
     switch (req.session.loginType) {
-        case "Institute":
-
-            res.render('form', { layout: "ins_layout" });
-
-            break;
+        
         case "Survayor":
-            res.render('form', { layout: "sur_layout" });
+            res.render('edit_peoplesInfo', {surveyor_userName: req.session.userName, layout: "sur_layout" });
             break;
         case "Admin":
-            res.render('form', { layout: "admin_layout" });
+            res.render('edit_peoplesInfo', { layout: "admin_layout" });
             break;
         default:
-            res.render('form');
+           
+           next();
 
     }
-
 });
 
 
 router.post('/', function(req, res, next) {
+
+
+    var id = req.body.id;
 
     var name = req.body.name;
     var father_name = req.body.father_name;
@@ -60,18 +57,17 @@ router.post('/', function(req, res, next) {
     var monthlyIncom = req.body.monthlyIncom;
     var occupation = req.body.occupation;
 
+    var statusValue = status.check_status(monthlyIncom);
+
     var saving = req.body.saving;
     var t_a_trainig = req.body.t_a_trainig;
     var working_scope = req.body.working_scope;
-   var know_t_a_trainig = req.body.know_t_a_trainig;
-   var any_c_land = req.body.any_c_land;
-   var natural_reson = req.body.natural_reson;
-   var drugAddiction = req.body.drugAddiction;
+    var know_t_a_trainig = req.body.know_t_a_trainig;
+    var any_c_land = req.body.any_c_land;
+    var natural_reson = req.body.natural_reson;
+    var drugAddiction = req.body.drugAddiction;
 
-
-
-    var statusValue = status.check_status(monthlyIncom);
-
+    console.log("id:" + id);
     console.log("name:" + name);
     console.log("father_name:" + father_name);
     console.log("email:" + email);
@@ -86,7 +82,7 @@ router.post('/', function(req, res, next) {
     console.log("bloadGroup:" + bloadGroup);
     console.log("localAgent:" + localAgent);
     console.log("agent_phone:" + agent_phone);
-    
+
 
     console.log("division:" + division);
     console.log("district:" + district);
@@ -101,7 +97,6 @@ router.post('/', function(req, res, next) {
 
     console.log("monthlyIncom:" + monthlyIncom);
     console.log("occupation:" + occupation);
-    console.log("status:" + statusValue);
 
     console.log("saving:" + saving);
     console.log("t_a_trainig:" + t_a_trainig);
@@ -111,9 +106,10 @@ router.post('/', function(req, res, next) {
     console.log("natural_reson:" + natural_reson);
     console.log("drugAddiction:" + drugAddiction);
 
+
     var customerinfo = {
         name: name,
-        father_name:father_name,
+        father_name: father_name,
         email: email,
         phone: phone,
         gender: gender,
@@ -122,10 +118,10 @@ router.post('/', function(req, res, next) {
         marital_Status: marital_Status,
         child_number: child_number,
         dateOfBirth: dateOfBirth,
-        residence:residence,
+        residence: residence,
         bloadGroup: bloadGroup,
-        localAgent:localAgent,
-        agent_phone:agent_phone,
+        localAgent: localAgent,
+        agent_phone: agent_phone,
 
         division: division,
         district: district,
@@ -139,71 +135,56 @@ router.post('/', function(req, res, next) {
 
         occupation: occupation,
         monthlyIncom: monthlyIncom,
-        status:statusValue,
+        status: statusValue,
 
         saving: saving,
         t_a_trainig: t_a_trainig,
-        working_scope:working_scope,
+        working_scope: working_scope,
         know_t_a_trainig: know_t_a_trainig,
         any_c_land: any_c_land,
-        natural_reson:natural_reson,
-        drugAddiction:drugAddiction
+        natural_reson: natural_reson,
+        drugAddiction: drugAddiction
 
 
     };
 
-    var new_customer = new customer(customerinfo);
+    var conditions = { "_id": id },
+        update = { $set: customerinfo };
 
 
 
-    new_customer.save(function(err) {
+    peoples.update(conditions, update, callback);
 
+    function callback(err, updatdata) {
         if (err) {
-            res.json(err)
-                // mongoose.connection.close();
+            res.json("Data is not valid");
+            // mongoose.connection.close();
         } else {
-            res.redirect("/")
 
+            res.redirect('/')
         }
-
-
-    });
+    };
 
 });
 
 
-router.get('/api/:month', function(req, res, next) {
-
-    var month = req.params.month;
-    customer.find({ "month": month }).exec(function(err, monthlyUses) {
-
-        if (err) {
-            res.json(err)
-        } else {
-            console.log('monthlyUses:');
-            res.json(monthlyUses)
-        }
-
-    });
-
-});
 
 
-router.delete('/api/:id', function(req, res, next) {
+router.get('/api/data/:id', function(req, res, next) {
 
-    var id = req.params.id;
-    console.log("id:" + id)
-    customer.find({ "_id": id }).remove(function(err, deleted) {
+    peoples.find({ "_id": req.params.id }).exec(function(err, result) {
 
         if (err) {
             res.json(err)
         } else {
 
-            res.json(deleted);
+            console.log("hello man how are u");
+
+            res.json(result);
+
         }
 
     });
-
 });
 
 

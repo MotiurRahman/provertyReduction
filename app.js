@@ -6,14 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressLayouts = require('express-ejs-layouts');
 var session = require('express-session');
- 
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var charts = require('./routes/charts');
 var poorCharts = require('./routes/poorCharts');
-var form = require('./routes/form');
-var edit = require('./routes/edit');
+var peoples_form = require('./routes/peoples_form');
+var edit_peoplesInfo = require('./routes/edit_peoplesInfo');
 var tables = require('./routes/tables');
 var algorithm = require('./routes/algorithm');
 var solution = require('./routes/solution');
@@ -36,7 +36,7 @@ var sess = {
     secret: 'motiur8034',
     resave: false,
     saveUninitialized: true,
-    cookie: { maxAge: 6000000}
+    cookie: { maxAge: 6000000 }
 }
 
 if (app.get('env') === 'production') {
@@ -58,7 +58,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
- 
+
 app.use(expressLayouts);
 
 
@@ -66,8 +66,8 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/charts', charts);
 app.use('/poorCharts', poorCharts);
-app.use('/form', form);
-app.use('/edit', edit);
+app.use('/peoples_form', peoples_form);
+app.use('/edit_peoplesInfo', edit_peoplesInfo);
 app.use('/tables', tables);
 app.use('/algorithm', algorithm);
 app.use('/solution', solution);
@@ -86,9 +86,9 @@ app.use('/logout', logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handlers
@@ -96,23 +96,83 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+      
+
+        switch (req.session.loginType) {
+            case "Institute":
+
+                res.render('error', {
+                    message: err.message,
+                    error: err,
+                    institute_userName: req.session.userName,
+                    layout: "ins_layout"
+                });
+
+                break;
+            case "Survayor":
+                res.render('error', {
+                    message: err.message,
+                    error: err,
+                    surveyor_userName: req.session.userName,
+                    layout: "sur_layout"
+                });
+                break;
+            case "Admin":
+                res.render('error', {
+                    message: err.message,
+                    error: err,
+                    layout: "admin_layout"
+                });
+                break;
+            default:
+                res.render('error', {
+                    message: err.message,
+                    error: err
+                });
+
+        }
     });
-  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+    res.status(err.status || 500);
+
+
+    switch (req.session.loginType) {
+        case "Institute":
+
+            res.render('error', {
+                message: err.message,
+                error: {},
+                layout: "ins_layout"
+            });
+
+            break;
+        case "Survayor":
+            res.render('error', {
+                message: err.message,
+                error: {},
+                layout: "sur_layout"
+            });
+            break;
+        case "Admin":
+            res.render('error', {
+                message: err.message,
+                error: {},
+                layout: "admin_layout"
+            });
+            break;
+        default:
+            res.render('error', {
+                message: err.message,
+                error: {}
+            });
+
+    }
 });
 
 
