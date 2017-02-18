@@ -7,6 +7,9 @@ var bodyParser = require('body-parser');
 var expressLayouts = require('express-ejs-layouts');
 var session = require('express-session');
 
+var app = express();
+app.disable('x-powered-by');
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -22,14 +25,16 @@ var institute = require('./routes/signup/institute');
 var addTo = require('./routes/t_institute/addTo');
 var list_institute = require('./routes/t_institute/list_institute');
 var edit_institute = require('./routes/t_institute/edit_institute');
+var edit_my_institute = require('./routes/t_institute/edit_my_institute');
 var list_surveyor = require('./routes/surveyor/list_surveyor');
 var edit_surveyor = require('./routes/surveyor/edit_surveyor');
 var deletion = require('./routes/deletion');
 var login = require('./routes/signin/login');
 var logout = require('./routes/signin/logout');
+var APIs = require('./routes/allAPI');
 
-var app = express();
-app.disable('x-powered-by');
+
+
 
 var sess = {
     name: "session-cookie",
@@ -78,9 +83,11 @@ app.use('/list_institute', list_institute);
 app.use('/list_surveyor', list_surveyor);
 app.use('/edit_surveyor', edit_surveyor);
 app.use('/edit_institute', edit_institute);
+app.use('/edit_my_institute', edit_my_institute);
 app.use('/deletion', deletion);
 app.use('/login', login);
 app.use('/logout', logout);
+app.use('/APIs', APIs);
 
 
 

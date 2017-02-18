@@ -49,7 +49,12 @@ router.post('/', function(req, res, next) {
                             console.log("personData:" + personData.length);
 
                             if (personData.length > 0) {
+                                req.session.ins_id = personData[0]._id;
+                                console.log("ins_id:"+req.session.ins_id);
+                                
                                 req.session.userName = personData[0].userName;
+                                req.session.short_name = personData[0].short_name;
+                                req.session.data = personData;
                                 res.render('index', { data: docs, institute_userName: req.session.userName, social_Status: socialStatus, layout: "ins_layout" });
 
                             } else {

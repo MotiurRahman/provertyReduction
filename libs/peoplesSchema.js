@@ -42,7 +42,8 @@ var peopleSchema = new db.Schema({
     natural_reson:String,
 
     dept:String,
-    institute: String
+    institute: String,
+    ins_id:String
 });
 
 peopleSchema.plugin(mongoosePaginate);

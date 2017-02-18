@@ -8,7 +8,7 @@ var peoples = require('../../libs/peoplesSchema');
 
 router.get('/', function(req, res, next) {
 
-    peoples.find({ "institute": "bktc" }).exec(function(err, docs) {
+    peoples.find({ "ins_id": req.session.ins_id }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -41,7 +41,7 @@ router.post('/', function(req, res, next) {
 
     var id = req.body.id;
     var dept = req.body.dept;
-    var institute = "bktc";
+    var institute = req.session.short_name;
 
 
     console.log("id:" + id);
@@ -51,7 +51,8 @@ router.post('/', function(req, res, next) {
 
     var instituteInfo = {
         dept: dept,
-        institute: institute
+        institute: institute,
+        ins_id:req.session.ins_id
     }
 
     var conditions = { "_id": id },
@@ -59,7 +60,7 @@ router.post('/', function(req, res, next) {
 
 
 
-    customer.update(conditions, update, callback);
+    peoples.update(conditions, update, callback);
 
     function callback(err, updatdata) {
         if (err) {
@@ -88,7 +89,8 @@ router.put('/api/:id', function(req, res, next) {
 
     var instituteInfo = {
         dept: "",
-        institute: ""
+        institute: "",
+        ins_id:""
     }
 
     var conditions = { "_id": id },
@@ -96,7 +98,7 @@ router.put('/api/:id', function(req, res, next) {
 
 
 
-    customer.update(conditions, update, callback);
+    peoples.update(conditions, update, callback);
 
     function callback(err, updatdata) {
         if (err) {

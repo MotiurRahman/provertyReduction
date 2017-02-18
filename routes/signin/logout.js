@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
 
-req.session.loginType = "all";
+     req.session.destroy();
     res.redirect('/login');
 
 });

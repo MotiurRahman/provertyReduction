@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Edit:
-        <small>Edit My Institute</small>
+        <small>Edit to My Institute</small>
       </h1>
       <div class="col-md-6 col-md-offset-3" style="text-align: center;">
         <div id="showResult" role="alert"></div>
@@ -21,32 +21,24 @@
 
     <form class="form-horizontal" role="form" method="post">
 
-    <div class="form-group">
-       <label for="name">ID:</label>
-
-       <input type="text" class="form-control" id="id" name="id" placeholder="Enter your name" required>
-       
-     </div>
-     <button type="button" class="btn btn-default" id="search">Search</button>
-
       <div class="form-group">
         <h6 class="column-title"><i class="fa fa-user fa-2x blue"> Institute Information</i></h6>
         <label for="name">Name:*</label>
-        <input type="text" class="form-control" id="name" name="name"  placeholder="Enter your Institute name" required>
+        <input type="text" class="form-control" id="name" name="name" value="<%=data[0].name%>"  placeholder="Enter your Institute name" required>
         <span class="red"></span>
       </div>
 
       <div class="form-group">
         
         <label for="short_name">Institute short Name:*</label>
-        <input type="text" class="form-control" id="short_name" name="short_name" placeholder="Enter your Institute short name like BKTC" required>
+        <input type="text" class="form-control" id="short_name" name="short_name" value="<%=data[0].short_name%>" placeholder="Enter your Institute short name like BKTC" required>
         <span class="red"></span>
       </div>
 
       <div class="form-group">
         <label  for="email">Contact Email:</label>
 
-        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+        <input type="email" class="form-control" id="email" name="email" value="<%=data[0].email%>" placeholder="Enter Email" required>
 
       </div>
 
@@ -54,14 +46,20 @@
       <div class="form-group">
         <label  for="phone">Contact Phone:</label>
 
-        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter contact number" required>
+        <input type="tel" class="form-control" id="phone" name="phone" value="<%=data[0].phone%>"  placeholder="Enter contact number" required>
 
       </div>
 
       <div class="form-group">
         <label  for="webAddress">Web Address:</label>
 
-        <input type="text" class="form-control" id="webAddress" name="webAddress" placeholder="Enter Your web Address">
+        <input type="text" class="form-control" id="webAddress" name="webAddress" value="<%=data[0].webAddress%>"  placeholder="Enter Your web Address">
+
+      </div>
+       <div class="form-group">
+        <label  for="userName">User Name:*</label>
+
+        <input type="text" class="form-control" id="userName" name="userName" value="<%=data[0].userName%>" placeholder="Enter your user name" required>
 
       </div>
 
@@ -75,25 +73,25 @@
        <div class="form-group">
         <label  for="division">Division:*</label>
 
-        <input type="text" class="form-control" id="division" name="division" placeholder="Enter division name" required>
+        <input type="text" class="form-control" id="division" name="division" value="<%=data[0].division%>"  placeholder="Enter division name" required>
 
       </div>
       <div class="form-group">
         <label for="district">District:*</label>
 
-        <input type="text" class="form-control" id="district" name="district" placeholder="Enter district Name">
+        <input type="text" class="form-control" id="district" name="district" value="<%=data[0].district%>"  placeholder="Enter district Name">
 
       </div>
       <div class="form-group">
         <label for="ps">P.S:*</label>
 
-        <input type="text" class="form-control" id="ps" name="ps" placeholder="Enter ps Address" required>
+        <input type="text" class="form-control" id="ps" name="ps" value="<%=data[0].ps%>"  placeholder="Enter ps Address" required>
 
       </div>
       <div class="form-group">
         <label  for="postCode">Post Code:*</label>
 
-        <input type="number" class="form-control" id="postCode" name="postCode" placeholder="Enter post code" required>
+        <input type="number" class="form-control" id="postCode" name="postCode" value="<%=data[0].postCode%>"  placeholder="Enter post code" required>
 
       </div>
 
@@ -104,7 +102,7 @@
 
         <label for="training_name">List of Training Name</label>
         <p>Example <br>1. Automobiles<br> 2. Electronics</p>
-       <textarea rows="8" cols="60" id="training_name" name="training_name">
+       <textarea rows="8" cols="60" id="training_name" name="training_name"> <%=data[0].training_name%>
         
         </textarea>
 
@@ -148,51 +146,5 @@
     $('#update').attr('disabled','disabled');
   }
 });
-
-
- $("#search").click(function(event) {
-   var id  = $("#id").val();
-
-   $.ajax({
-     url: '/edit_institute/api/institute/'+id,
-     type: 'get',
-     dataType: 'json',
-     //data: {param1: 'value1'},
-     headers: {
-      'Content-Type': 'application/json;charset=utf-8'
-    }
-
-  })
-   .done(function(result) {
-
-     $("#name").val(result[0].name);
-     $("#email").val(result[0].email);
-     $("#phone").val(result[0].phone);
-     $("#short_name").val(result[0].short_name);
-     $("#webAddress").val(result[0].webAddress);
-      $("#training_name").val(result[0].training_name);
-
-     $("#division").val(result[0].division);
-     $("#district").val(result[0].district);
-
-
-     $("#ps").val(result[0].ps);
-     $("#postCode").val(result[0].postCode);
- 
-
-
-
-
-})
-   .fail(function() {
-     console.log("error");
-   })
-   .always(function() {
-     console.log("complete");
-   });
-   
- });
-
-
 
 </script>
