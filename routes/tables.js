@@ -25,17 +25,17 @@ router.get('/', function(req, res, next) {
             switch (req.session.loginType) {
                 case "Institute":
 
-                    res.render('tables', {institute_userName: req.session.userName, data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "ins_layout" });
+                    res.render('tables', { institute_userName: req.session.userName, data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "ins_layout" });
 
                     break;
                 case "Survayor":
-                    res.render('tables', {surveyor_userName: req.session.userName, data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "sur_layout" });
+                    res.render('tables', { surveyor_userName: req.session.userName, data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "sur_layout" });
                     break;
                 case "Admin":
                     res.render('tables', { data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "admin_layout" });
                     break;
                 default:
-                    res.render('tables', { data: docs, social_Status: socialStatus, rich_poor: rich_poor });
+                    next();
 
             }
         }
@@ -56,7 +56,7 @@ router.get('/api/:status/:post_code', function(req, res, next) {
 
     console.log("post_code:" + post_code);
 
-    customer.find({ "status": status, "postCode": post_code }).sort({ _id: -1 }).exec(function(err, docs) {
+    peoples.find({ "status": status, "postCode": post_code }).sort({ _id: -1 }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)

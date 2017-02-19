@@ -7,7 +7,7 @@ var status_data = require('./../libs/social_status');
 
 router.get('/', function(req, res, next) {
 
-    peoples.find({ $or: [{ status: "poor" }, { status: "extremelyPoor" }] }).exec(function(err, docs) {
+    peoples.find({ $or: [{ status: "Poor" }, { status: "Extremely Poor" }] }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)

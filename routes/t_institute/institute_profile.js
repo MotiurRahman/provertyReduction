@@ -15,13 +15,13 @@ console.log("loginType:"+req.session.loginType);
             console.log("id:" + req.session.ins_id);
 
 
-            institute.find({ "_id": req.session.ins_id }).exec(function(err, personData) {
+            institute.find({ "_id": req.session.ins_id }).exec(function(err, instituteData) {
 
                 if (err) {
                     res.json("DataBase error");
                 } else {
 
-                    res.render('t_institute/institute_profile', { data: personData, institute_userName: req.session.userName, layout: "ins_layout" });
+                    res.render('t_institute/institute_profile', { data: instituteData, institute_userName: req.session.userName, layout: "ins_layout" });
 
                 }
 

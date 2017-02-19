@@ -78,6 +78,7 @@ router.post('/', function(req, res, next) {
                         } else {
 
                             if (surveyor_Data.length > 0) {
+                                req.session.sur_id = surveyor_Data[0]._id;
                                  req.session.userName = surveyor_Data[0].userName;
                                 res.render('index', { data: docs, surveyor_userName: req.session.userName, social_Status: socialStatus, layout: "sur_layout" });
 

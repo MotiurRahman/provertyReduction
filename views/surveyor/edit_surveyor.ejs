@@ -8,7 +8,7 @@
   <!-- Page Heading/Breadcrumbs -->
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Edid:
+      <h1 class="page-header">Edit:
         <small>Edit surveyor Profile</small>
       </h1>
       <div class="col-md-6 col-md-offset-3" style="text-align: center;">
@@ -16,226 +16,228 @@
       </div>
     </div>
   </div>
-  <div class="col-xs-6">
 
 
-    <form class="form-horizontal" role="form" method="post">
+
+  <form class="form-horizontal" role="form" method="post">
+   <div class="col-xs-6" style="padding-right: 50px">
 
     <div class="form-group">
-       <label for="name">ID:</label>
+     <label for="name">ID:</label>
 
-       <input type="text" class="form-control" id="id" name="id" placeholder="Enter your name" required>
-       
-     </div>
-     <button type="button" class="btn btn-default" id="search">Search</button>
+     <input type="text" class="form-control" id="id" name="id" placeholder="Enter your name" required>
 
-
-      <div class="form-group">
-        <h6 class="column-title"><i class="fa fa-user fa-2x blue"> Personal Information</i></h6>
-        <label for="name">Name:*</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
-        <span class="red"></span>
-      </div>
-
-      <div class="form-group">
-
-        <label for="name">Father Name or Guardian:*</label>
-        <input type="text" class="form-control" id="father_name" name="father_name" placeholder="Enter your father name" required>
-        <span class="red"></span>
-      </div>
-
-      <div class="form-group">
-        <label  for="email">Contact Email:</label>
-
-        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
-
-      </div>
+   </div>
+   <button type="button" class="btn btn-default" id="search">Search</button>
 
 
-      <div class="form-group">
-        <label  for="phone">Contact Phone:</label>
+   <div class="form-group">
+    <h6 class="column-title"><i class="fa fa-user fa-2x blue"> Personal Information</i></h6>
+    <label for="name">Name:*</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+    <span class="red"></span>
+  </div>
 
-        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter contact number">
+  <div class="form-group">
 
-      </div>
+    <label for="name">Father Name or Guardian:*</label>
+    <input type="text" class="form-control" id="father_name" name="father_name" placeholder="Enter your father name" required>
+    <span class="red"></span>
+  </div>
 
-     <div class="form-group">
-      <label>Gender: *</label>
-      <label class="radio-inline">
-        <input type="radio" name="gender" value="Male" id="m_gender" >Male
-      </label>
-      <label class="radio-inline">
-        <input type="radio" name="gender" value="Female" id="f_gender" >Female
-      </label>
-      <span class="red"></span>     
+  <div class="form-group">
+    <label  for="email">Contact Email:</label>
+
+    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
+
+  </div>
+
+
+  <div class="form-group">
+    <label  for="phone">Contact Phone:</label>
+
+    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter contact number">
+
+  </div>
+
+  <div class="form-group">
+    <label>Gender: *</label>
+    <label class="radio-inline">
+      <input type="radio" name="gender" value="Male" id="m_gender" >Male
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="gender" value="Female" id="f_gender" >Female
+    </label>
+    <span class="red"></span>     
+  </div> 
+
+
+  <div class="form-group">
+    <label  for="nid">NID:</label>
+
+    <input type="number" class="form-control" id="nid" name="nid" placeholder="Enter your NID number">
+
+  </div>
+
+  <div class="form-group">
+    <label for="religion">Religion *</label>
+    <select name="religion" class="form-control" id="religion">
+      <option value="Islam" selected="selected">Islam</option>
+      <option value="Hinduism">Hinduism</option>
+      <option value="Christanity">Christanity</option>
+      <option value="Buddhist">Buddhist</option>
+      <option value="Others">Others</option>
+      <option value="">Select Religion</option>
+    </select>               
+    <span class="red"></span>            
+  </div>
+
+
+
+
+  <div class="form-group">
+    <label for="bloadGroup">Your Blood Group * </label>
+    <div id="blood_group_container">
+      <select name="bloadGroup" class="form-control" id="bloadGroup">
+        <option value="">Blood Group</option>
+        <option value="A+" selected="selected">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+      </select>           </div>
+      <span class="red"></span>
     </div> 
 
+    <div class="form-group">
+      <label  for="dateOfBirth">Date of Birth*:</label>
 
-      <div class="form-group">
-        <label  for="nid">NID:</label>
+      <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
 
-        <input type="number" class="form-control" id="nid" name="nid" placeholder="Enter your NID number">
+    </div>
 
-      </div>
+    <div class="form-group">
+      <label  for="dateOfBirth">Type of Residence*:</label>
 
-      <div class="form-group">
-        <label for="religion">Religion *</label>
-        <select name="religion" class="form-control" id="religion">
-          <option value="Islam" selected="selected">Islam</option>
-          <option value="Hinduism">Hinduism</option>
-          <option value="Christanity">Christanity</option>
-          <option value="Buddhist">Buddhist</option>
-          <option value="Others">Others</option>
-          <option value="">Select Religion</option>
-        </select>               
-        <span class="red"></span>            
-      </div>
-
-     
-      
-
-      <div class="form-group">
-        <label for="bloadGroup">Your Blood Group * </label>
-        <div id="blood_group_container">
-          <select name="bloadGroup" class="form-control" id="bloadGroup">
-            <option value="">Blood Group</option>
-            <option value="A+" selected="selected">A+</option>
-            <option value="A-">A-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-          </select>           </div>
-          <span class="red"></span>
-        </div> 
-
-        <div class="form-group">
-          <label  for="dateOfBirth">Date of Birth*:</label>
-
-          <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" required>
-
-        </div>
-
-      <div class="form-group">
-        <label  for="dateOfBirth">Type of Residence*:</label>
-
-        <div id="residence_container">
+      <div id="residence_container">
         <select name="residence" class="form-control" id="residence" required>
           <option value="">Select Residence</option>
           <option value="Urban">Urban</option>
           <option value="Rural">Rural</option>  
         </select>  
-        </div>
       </div>
-
-         <div class="form-group">
-          <label  for="dateOfBirth">Chairman or Local Elite person:</label>
-
-          <input type="text" class="form-control" id="localAgent" name="localAgent" placeholder="Enter the Chairman or Local elite person name" >
-
-        </div>
-
-        <div class="form-group">
-          <label  for="dateOfBirth">Phone Number:</label>
-
-          <input type="tel" class="form-control" id="agent_phone" name="agent_phone" placeholder="Enter the Phone Number of the Chairman or Local elite person name">
-
-        </div>
-
-
-      </div>
-
-      <div class="col-xs-6">
-
-       <h6 class="column-title"><i class="fa fa-home fa-2x blue"> Address</i></h6>
-
-       <div class="form-group">
-        <label  for="division">Division:*</label>
-
-        <input type="text" class="form-control" id="division" name="division" placeholder="Enter division name" required>
-
-      </div>
-      <div class="form-group">
-        <label for="district">District:*</label>
-
-        <input type="text" class="form-control" id="district" name="district" placeholder="Enter district Name">
-
-      </div>
-      <div class="form-group">
-        <label for="ps">P.S:*</label>
-
-        <input type="text" class="form-control" id="ps" name="ps" placeholder="Enter ps Address" required>
-
-      </div>
-      <div class="form-group">
-        <label  for="postCode">Post Code:*</label>
-
-        <input type="number" class="form-control" id="postCode" name="postCode" placeholder="Enter post code" required>
-
-      </div>
-
-
-      <div class="form-group">
-        <label for="area">Village/Mohalla:*</label>
-
-        <input type="text" class="form-control" id="area" name="area" placeholder="Enter your vill Address" required>
-
-      </div>
-
-      <br>
-      
-
-      <h6 class="column-title"><i class="fa fa-institution fa-2x blue"> Academic Information</i></h6>
-      <div class="form-group">
-
-        <label for="lastDegree">Last Obtained Degree</label>
-        <input type="tex" class="form-control" id="lastDegree" name="lastDegree" placeholder="Last Obtained Degree" >
-      </div>
-
-
-      <div class="form-group">
-        <label for="subject">Subject </label>
-        <input type="text" id="subject" name="subject" class="form-control" placeholder="Enter your Subject Name" />
-        <span class="red"></span>
-      </div> 
-
-      <div class="form-group">
-          <label for="occupation">Occupation:*</label>
-
-          <input type="tex" class="form-control" id="occupation" name="occupation" placeholder="Enter your Occupation" required>
-
-        </div>
-
     </div>
-
-
 
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-       <div class="form-group">
-        <label>
-          <input type="checkbox" id="check"> I would like to update my profile!
-        </label>
-      </div>
+      <label  for="dateOfBirth">Chairman or Local Elite person:</label>
 
-      <button type="submit" id="update" class="btn btn-primary btn-lg btn-block">Update</button>
+      <input type="text" class="form-control" id="localAgent" name="localAgent" placeholder="Enter the Chairman or Local elite person name" >
 
     </div>
+
+    <div class="form-group">
+      <label  for="dateOfBirth">Phone Number:</label>
+
+      <input type="tel" class="form-control" id="agent_phone" name="agent_phone" placeholder="Enter the Phone Number of the Chairman or Local elite person name">
+
+    </div>
+
+
   </div>
+
+  <div class="col-xs-6" style="padding-left: 50px">
+
+
+
+   <div class="form-group">
+     <h6 class="column-title"><i class="fa fa-home fa-2x blue"> Address</i></h6>
+     <label  for="division">Division:*</label>
+
+     <input type="text" class="form-control" id="division" name="division" placeholder="Enter division name" required>
+
+   </div>
+   <div class="form-group">
+    <label for="district">District:*</label>
+
+    <input type="text" class="form-control" id="district" name="district" placeholder="Enter district Name">
+
+  </div>
+  <div class="form-group">
+    <label for="ps">P.S:*</label>
+
+    <input type="text" class="form-control" id="ps" name="ps" placeholder="Enter ps Address" required>
+
+  </div>
+  <div class="form-group">
+    <label  for="postCode">Post Code:*</label>
+
+    <input type="number" class="form-control" id="postCode" name="postCode" placeholder="Enter post code" required>
+
+  </div>
+
+
+  <div class="form-group">
+    <label for="area">Village/Mohalla:*</label>
+
+    <input type="text" class="form-control" id="area" name="area" placeholder="Enter your vill Address" required>
+
+  </div>
+
+  <br>
+
+
+
+  <div class="form-group">
+    <h6 class="column-title"><i class="fa fa-institution fa-2x blue"> Academic Information</i></h6>
+    <label for="lastDegree">Last Obtained Degree</label>
+    <input type="tex" class="form-control" id="lastDegree" name="lastDegree" placeholder="Last Obtained Degree" >
+  </div>
+
+
+  <div class="form-group">
+    <label for="subject">Subject </label>
+    <input type="text" id="subject" name="subject" class="form-control" placeholder="Enter your Subject Name" />
+    <span class="red"></span>
+  </div> 
+
+  <div class="form-group">
+    <label for="occupation">Occupation:*</label>
+
+    <input type="tex" class="form-control" id="occupation" name="occupation" placeholder="Enter your Occupation" required>
+
+  </div>
+
+</div>
+
+
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+   <div class="form-group">
+    <label>
+      <input type="checkbox" id="check"> I would like to update my profile!
+    </label>
+  </div>
+
+  <button type="submit" id="update" class="btn btn-primary btn-lg btn-block">Update</button>
+
+</div>
+</div>
+
 </form>
-
 </div>
 
 </div>
 
-</div>
+
 
 
 
 
 <script type="text/javascript"> 
+
  $('#update').attr('disabled','disabled');
  
  $("#check").change( function(){
@@ -278,30 +280,30 @@
    }
 
 
- $("#dateOfBirth").val(result[0].dateOfBirth);
- $("#localAgent").val(result[0].localAgent);
- $("#agent_phone").val(result[0].agent_phone);
- $("#division").val(result[0].division);
- $("#district").val(result[0].district);
+   $("#dateOfBirth").val(result[0].dateOfBirth);
+   $("#localAgent").val(result[0].localAgent);
+   $("#agent_phone").val(result[0].agent_phone);
+   $("#division").val(result[0].division);
+   $("#district").val(result[0].district);
 
 
- $("#ps").val(result[0].ps);
- $("#postCode").val(result[0].postCode);
- $("#area").val(result[0].area);
+   $("#ps").val(result[0].ps);
+   $("#postCode").val(result[0].postCode);
+   $("#area").val(result[0].area);
 
- $("#lastDegree").val(result[0].lastDegree);
- $("#subject").val(result[0].subject);
- $("#occupation").val(result[0].occupation);
- 
- $("#religion").val(result[0].religion).change();
- $("#bloadGroup").val(result[0].bloadGroup).change();
- $("#residence").val(result[0].residence).change();
+   $("#lastDegree").val(result[0].lastDegree);
+   $("#subject").val(result[0].subject);
+   $("#occupation").val(result[0].occupation);
 
-
+   $("#religion").val(result[0].religion).change();
+   $("#bloadGroup").val(result[0].bloadGroup).change();
+   $("#residence").val(result[0].residence).change();
 
 
 
-})
+
+
+ })
    .fail(function() {
      console.log("error");
    })

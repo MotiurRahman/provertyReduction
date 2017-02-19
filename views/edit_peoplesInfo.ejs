@@ -22,11 +22,11 @@
   
 
 
-  <div class="col-xs-6">
-
-    <form class="form-horizontal" role="form" method="post">
   
 
+  <form class="form-horizontal" role="form" method="post">
+    
+    <div class="col-xs-6" style="padding-right: 50px">
      <div class="form-group">
        <label for="name">ID:</label>
 
@@ -141,15 +141,15 @@
 
       </div>
 
-       <div class="form-group">
+      <div class="form-group">
         <label  for="dateOfBirth">Type of Residence*:</label>
 
         <div id="residence_container">
-        <select name="residence" class="form-control" id="residence">
-          <option value="">Select Residence</option>
-          <option value="Urban">Urban</option>
-          <option value="Rural">Rural</option>  
-        </select>  
+          <select name="residence" class="form-control" id="residence">
+            <option value="">Select Residence</option>
+            <option value="Urban">Urban</option>
+            <option value="Rural">Rural</option>  
+          </select>  
         </div>
 
       </div>
@@ -168,14 +168,14 @@
 
       </div>
 
-
     </div>
 
-    <div class="col-xs-6">
+    <div class="col-xs-6" style="padding-left: 50px">
 
-     <h6 class="column-title"><i class="fa fa-home fa-2x blue"> Address</i></h6>
+     
 
      <div class="form-group">
+     <h6 class="column-title"><i class="fa fa-home fa-2x blue"> Address</i></h6>
       <label  for="division">Division:*</label>
 
       <input type="text" class="form-control" id="division" name="division" placeholder="Enter division name" required>
@@ -211,8 +211,9 @@
     <br>
 
 
-    <h6 class="column-title"><i class="fa fa-institution fa-2x blue"> Academic Information</i></h6>
+    
     <div class="form-group">
+      <h6 class="column-title"><i class="fa fa-institution fa-2x blue"> Academic Information</i></h6>
 
       <label for="lastDegree">Last Obtained Degree</label>
       <input type="tex" class="form-control" id="lastDegree" name="lastDegree" placeholder="Last Obtained Degree" >
@@ -228,126 +229,127 @@
     <br>
     <br>
 
-    <h6 class="column-title"><i class="fa fa-plus fa-2x blue"> Additional Information</i></h6>
-
-    <div class="form-group">
-      <label for="Occupation">Occupation:*</label>
-
-      <input type="tex" class="form-control" id="occupation" name="occupation" placeholder="Enter your Occupation" required>
-
-    </div>
-    <div class="form-group">
-      <label for="monthlyIncom">Monthly Income AVG:*</label>
-
-      <input type="number" class="form-control" id="monthlyIncom" name="monthlyIncom" placeholder="Enter your monthly income" required>
-
-    </div>
-
-
-    <div class="form-group">
-      <label  for="profile">Profile pic:</label>
-      <input type="file" class="form-control" id="profile" name="profile" placeholder="Enter your profile pic">
-
-
-    </div> 
-
-
-      <h6 class="column-title"><i class="fa fa-plus fa-2x blue"> Effective for Poor People</i></h6> 
-
-      <div class="form-group">
-        <label>Savings: *</label>
-        <label class="radio-inline">
-          <input type="radio" name="saving" value="YES" id="yes_savings">Yes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="saving" value="NO" id="no_savings">NO
-        </label>
-        <span class="red"></span>     
-      </div>    
-   
-    <div class="form-group">
-        <label>Any Tec. or Agr. Training? *</label>
-        <label class="radio-inline">
-          <input type="radio" name="t_a_trainig" value="YES" id="yes_t_a_trainig">Yes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="t_a_trainig" value="NO" id="no_t_a_trainig">No
-        </label>
-        <span class="red"></span>     
-      </div>
-
-      <div class="form-group">
-        <label>Any Working Scope in the neighborhood? *</label>
-        <label class="radio-inline">
-          <input type="radio" name="working_scope" value="YES" id="yes_working_scope">Yes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="working_scope" value="NO" id="no_working_scope">No
-        </label>
-        <span class="red"></span>     
-      </div> 
-
-       <div class="form-group">
-        <label>Do you know about Tec or Agr training? *</label>
-        <label class="radio-inline">
-          <input type="radio" name="know_t_a_trainig" value="YES" id="yes_know_t_a_trainig">Yes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="know_t_a_trainig" value="NO" id="no_know_t_a_trainig">No
-        </label>
-        <span class="red"></span>     
-      </div>
-
-       <div class="form-group">
-        <label>Any personal land for cultivation? *</label>
-        <label class="radio-inline">
-          <input type="radio" name="any_c_land" value="YES" id="yes_any_c_land">Yes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="any_c_land" value="NO" id="no_any_c_land">No
-        </label>
-        <span class="red"></span>     
-      </div>    
-
-       <div class="form-group">
-        <label>Drug Addiction? *</label>
-        <label class="radio-inline">
-          <input type="radio" name="drugAddiction" id="yes_drugAddiction" value="YES" >Yes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="drugAddiction" id="no_drugAddiction" value="NO" >No
-        </label>
-        <span class="red"></span>     
-      </div>     
-
-
-      <div class="form-group">
-       <label for="natural_reson">Any Other Reason *</label>
-        <select name="natural_reson" class="form-control" id="natural_reson">
-          <option value="Flood">Flood</option>
-          <option value="River Erosion">River Erosion</option>
-          <option value="Cyclone">Cyclone</option>
-          <option value="Natural Disaster">Natural Disaster</option>
-          <option value="Others">Others</option>
-          <option value="non">None of them</option>
-          
-        </select>               
-        <span class="red"></span>       
-      </div>    
     
 
+    <div class="form-group">
+     <h6 class="column-title"><i class="fa fa-plus fa-2x blue"> Additional Information</i></h6>
+     <label for="Occupation">Occupation:*</label>
+
+     <input type="tex" class="form-control" id="occupation" name="occupation" placeholder="Enter your Occupation" required>
+
+   </div>
+   <div class="form-group">
+    <label for="monthlyIncom">Monthly Income AVG:*</label>
+
+    <input type="number" class="form-control" id="monthlyIncom" name="monthlyIncom" placeholder="Enter your monthly income" required>
 
   </div>
-
 
 
   <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
+    <label  for="profile">Profile pic:</label>
+    <input type="file" class="form-control" id="profile" name="profile" placeholder="Enter your profile pic">
 
-      <button type="submit" id="insert" class="btn btn-primary btn-lg btn-block">Update</button>
 
-    </div>
+  </div> 
+
+
+  <h6 class="column-title"><i class="fa fa-plus fa-2x blue"> Effective for Poor People</i></h6> 
+
+  <div class="form-group">
+    <label>Savings: *</label>
+    <label class="radio-inline">
+      <input type="radio" name="saving" value="YES" id="yes_savings">Yes
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="saving" value="NO" id="no_savings">NO
+    </label>
+    <span class="red"></span>     
+  </div>    
+  
+  <div class="form-group">
+    <label>Any Tec. or Agr. Training? *</label>
+    <label class="radio-inline">
+      <input type="radio" name="t_a_trainig" value="YES" id="yes_t_a_trainig">Yes
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="t_a_trainig" value="NO" id="no_t_a_trainig">No
+    </label>
+    <span class="red"></span>     
   </div>
+
+  <div class="form-group">
+    <label>Any Working Scope in the neighborhood? *</label>
+    <label class="radio-inline">
+      <input type="radio" name="working_scope" value="YES" id="yes_working_scope">Yes
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="working_scope" value="NO" id="no_working_scope">No
+    </label>
+    <span class="red"></span>     
+  </div> 
+
+  <div class="form-group">
+    <label>Do you know about Tec or Agr training? *</label>
+    <label class="radio-inline">
+      <input type="radio" name="know_t_a_trainig" value="YES" id="yes_know_t_a_trainig">Yes
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="know_t_a_trainig" value="NO" id="no_know_t_a_trainig">No
+    </label>
+    <span class="red"></span>     
+  </div>
+
+  <div class="form-group">
+    <label>Any personal land for cultivation? *</label>
+    <label class="radio-inline">
+      <input type="radio" name="any_c_land" value="YES" id="yes_any_c_land">Yes
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="any_c_land" value="NO" id="no_any_c_land">No
+    </label>
+    <span class="red"></span>     
+  </div>    
+
+  <div class="form-group">
+    <label>Drug Addiction? *</label>
+    <label class="radio-inline">
+      <input type="radio" name="drugAddiction" id="yes_drugAddiction" value="YES" >Yes
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="drugAddiction" id="no_drugAddiction" value="NO" >No
+    </label>
+    <span class="red"></span>     
+  </div>     
+
+
+  <div class="form-group">
+   <label for="natural_reson">Any Other Reason *</label>
+   <select name="natural_reson" class="form-control" id="natural_reson">
+    <option value="Flood">Flood</option>
+    <option value="River Erosion">River Erosion</option>
+    <option value="Cyclone">Cyclone</option>
+    <option value="Natural Disaster">Natural Disaster</option>
+    <option value="Others">Others</option>
+    <option value="non">None of them</option>
+    
+  </select>               
+  <span class="red"></span>       
+</div>    
+
+
+
+</div>
+
+
+
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+
+    <button type="submit" id="insert" class="btn btn-primary btn-lg btn-block">Update</button>
+
+  </div>
+</div>
 </form>
 
 </div>
@@ -428,7 +430,7 @@
  $("#bloadGroup").val(result[0].bloadGroup).change();
  $("#residence").val(result[0].residence).change();
 
-switch(result[0].saving) {
+ switch(result[0].saving) {
   case "YES": 
   $("#yes_savings").prop("checked", true);
   break;
@@ -449,7 +451,7 @@ switch(result[0].t_a_trainig) {
 
 switch(result[0].working_scope) {
   case "YES": 
-   $("#yes_working_scope").prop("checked", true);
+  $("#yes_working_scope").prop("checked", true);
   break;
   case "NO":
   $("#no_working_scope").prop("checked", true);
@@ -459,11 +461,11 @@ switch(result[0].working_scope) {
 
 switch(result[0].know_t_a_trainig) {
   case "YES": 
-   $("#yes_know_t_a_trainig").prop("checked", true);
+  $("#yes_know_t_a_trainig").prop("checked", true);
   break;
   case "NO":
- $("#no_know_t_a_trainig").prop("checked", true);
- break;
+  $("#no_know_t_a_trainig").prop("checked", true);
+  break;
 }
 
 
@@ -472,8 +474,8 @@ switch(result[0].any_c_land) {
   $("#yes_any_c_land").prop("checked", true);
   break;
   case "NO":
-   $("#no_any_c_land").prop("checked", true);
-   break;
+  $("#no_any_c_land").prop("checked", true);
+  break;
 }
 
 switch(result[0].drugAddiction) {
@@ -481,8 +483,8 @@ switch(result[0].drugAddiction) {
   $("#yes_drugAddiction").prop("checked", true);
   break;
   case "NO":
-   $("#no_drugAddiction").prop("checked", true);
-   break;
+  $("#no_drugAddiction").prop("checked", true);
+  break;
 }
 
 
