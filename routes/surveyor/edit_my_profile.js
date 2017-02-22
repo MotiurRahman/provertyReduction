@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
 
     switch (req.session.loginType) {
-        case "Survayor":
+        case "Surveyor":
 
             console.log("id:" + req.session.sur_id);
 
@@ -43,62 +43,103 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
-    var id_valu = req.session.data;
-    var id = id_valu[0]._id;
+    var id = req.session.sur_id;
 
     var name = req.body.name;
-    var short_name = req.body.short_name;
+    var father_name = req.body.father_name;
     var email = req.body.email;
     var phone = req.body.phone;
-    var training_name = req.body.training_name;
-    var webAddress = req.body.webAddress;
+    var gender = req.body.gender;
+    var nid = req.body.nid;
+    var religion = req.body.religion;
+    var dateOfBirth = req.body.dateOfBirth;
+    var residence = req.body.residence;
+    var bloadGroup = req.body.bloadGroup;
+    var localAgent = req.body.localAgent;
+    var agent_phone = req.body.agent_phone;
+
+
 
     var division = req.body.division;
     var district = req.body.district;
     var ps = req.body.ps;
     var postCode = req.body.postCode;
+    var area = req.body.area;
+
+
+
+    var lastDegree = req.body.lastDegree;
+    var subject = req.body.subject;
+    var occupation = req.body.occupation;
     var userName = req.body.userName;
 
     console.log("id:" + id);
     console.log("name:" + name);
-    console.log("short_name:" + short_name);
+    console.log("father_name:" + father_name);
     console.log("email:" + email);
     console.log("phone:" + phone);
-    console.log("training_name:" + training_name);
-    console.log("webAddress:" + webAddress);
+    console.log("gender:" + gender);
+    console.log("religion:" + religion);
+
+    console.log("nid:" + nid);
+    console.log("dateOfBirth:" + dateOfBirth);
+    console.log("residence:" + residence);
+    console.log("bloadGroup:" + bloadGroup);
+    console.log("localAgent:" + localAgent);
+    console.log("agent_phone:" + agent_phone);
+
 
     console.log("division:" + division);
     console.log("district:" + district);
     console.log("ps:" + ps);
     console.log("postCode:" + postCode);
+    console.log("area:" + area);
+
+
+
+    console.log("lastDegree:" + lastDegree);
+    console.log("subject:" + subject);
+
+
+    console.log("occupation:" + occupation);
     console.log("userName:" + userName);
 
 
 
-    var instituteinfo = {
+
+    var surveyorinfo = {
         name: name,
-        short_name: short_name,
+        father_name: father_name,
         email: email,
         phone: phone,
-        training_name: training_name,
-        webAddress: webAddress,
-        userName: userName,
+        gender: gender,
+        nid: nid,
+        religion: religion,
+
+        dateOfBirth: dateOfBirth,
+        residence: residence,
+        bloadGroup: bloadGroup,
+        localAgent: localAgent,
+        agent_phone: agent_phone,
 
         division: division,
         district: district,
         ps: ps,
         postCode: postCode,
+        area: area,
+
+        lastDegree: lastDegree,
+        subject: subject,
 
 
+        occupation: occupation,
+        userName:userName
 
 
     };
 
     var conditions = { "_id": id },
-        update = { $set: instituteinfo };
-
-
-
+        update = { $set: surveyorinfo };
 
 
 
@@ -110,60 +151,7 @@ router.post('/', function(req, res, next) {
             // mongoose.connection.close();
         } else {
 
-
-
-            // Find Peoles data according to the institute ID
-
-            peoples.find({ "ins_id": id }).exec(function(err, docs) {
-
-                if (err) {
-                    res.json(err)
-                } else {
-
-
-                    peoples_info = {
-                        institute: short_name
-                    }
-
-                    var ids = [];
-
-                    for (var i = 0; i < docs.length; i++) {
-                        ids.push(docs[i]._id);
-                    }
-
-                    var peoples_conditions = { "_id": { "$in": ids } },
-                        peoples_update = { $set: peoples_info },
-                        multi = { multi: true };
-
-
-
-                    // Update the short_name of peoples data according to the institute ID
-
-
-                    peoples.update(peoples_conditions, peoples_update, multi, callback);
-
-                    function callback(err, updatdata) {
-                        if (err) {
-                            res.json("Data is not valid");
-                            // mongoose.connection.close();
-                        } else {
-
-
-                            res.redirect("/");
-
-
-
-                        }
-                    };
-
-
-
-                }
-
-            });
-
-
-
+            res.redirect('/')
         }
     };
 
@@ -171,10 +159,7 @@ router.post('/', function(req, res, next) {
 });
 
 
-
 router.get('/api/surveyor/:id', function(req, res, next) {
-
-    console.log("ID:"+req.params.id);
 
     surveyor.find({ "_id": req.params.id }).exec(function(err, result) {
 
@@ -190,6 +175,7 @@ router.get('/api/surveyor/:id', function(req, res, next) {
 
     });
 });
+
 
 
 module.exports = router;

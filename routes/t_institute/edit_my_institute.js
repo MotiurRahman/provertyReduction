@@ -57,6 +57,7 @@ router.post('/', function(req, res, next) {
     var ps = req.body.ps;
     var postCode = req.body.postCode;
     var userName = req.body.userName;
+    var ins_type = req.body.ins_type;
 
     console.log("id:" + id);
     console.log("name:" + name);
@@ -71,6 +72,7 @@ router.post('/', function(req, res, next) {
     console.log("ps:" + ps);
     console.log("postCode:" + postCode);
     console.log("userName:" + userName);
+     console.log("ins_type:" + ins_type);
 
 
 
@@ -87,6 +89,7 @@ router.post('/', function(req, res, next) {
         district: district,
         ps: ps,
         postCode: postCode,
+        ins_type: ins_type,
 
 
 
@@ -170,5 +173,20 @@ router.post('/', function(req, res, next) {
 });
 
 
+router.get('/api/institute', function(req, res, next) {
 
+    institute.find({ "_id": req.session.ins_id }).exec(function(err, result) {
+
+        if (err) {
+            res.json(err)
+        } else {
+
+            console.log("Institute Data");
+
+            res.json(result);
+
+        }
+
+    });
+});
 module.exports = router;

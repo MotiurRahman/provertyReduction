@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   
     switch (req.session.loginType) {
         
-        case "Survayor":
+        case "Surveyor":
             res.render('peoples_form', {surveyor_userName: req.session.userName, layout: "sur_layout" });
             break;
         case "Admin":

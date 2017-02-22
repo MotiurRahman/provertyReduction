@@ -19,7 +19,7 @@
   
 
 
-    <form class="form-horizontal" role="form" method="post">
+  <form class="form-horizontal" role="form" method="post">
 
     <div class="col-xs-6" style="padding-right: 50px">
 
@@ -31,7 +31,7 @@
       </div>
 
       <div class="form-group">
-        
+
         <label for="short_name">Institute short Name:*</label>
         <input type="text" class="form-control" id="short_name" name="short_name" value="<%=data[0].short_name%>" placeholder="Enter your Institute short name like BKTC" required>
         <span class="red"></span>
@@ -58,7 +58,7 @@
         <input type="text" class="form-control" id="webAddress" name="webAddress" value="<%=data[0].webAddress%>"  placeholder="Enter Your web Address">
 
       </div>
-       <div class="form-group">
+      <div class="form-group">
         <label  for="userName">User Name:*</label>
 
         <input type="text" class="form-control" id="userName" name="userName" value="<%=data[0].userName%>" placeholder="Enter your user name" required>
@@ -66,82 +66,94 @@
       </div>
 
 
-      </div>
+    </div>
 
-      <div class="col-xs-6" style="padding-left: 50px">
+    <div class="col-xs-6" style="padding-left: 50px">
 
-      
-       <div class="form-group">
-        <h6 class="column-title"><i class="fa fa-home fa-2x blue"> Address</i></h6>
 
-        <label  for="division">Division:*</label>
+     <div class="form-group">
+      <h6 class="column-title"><i class="fa fa-home fa-2x blue"> Address</i></h6>
 
-        <input type="text" class="form-control" id="division" name="division" value="<%=data[0].division%>"  placeholder="Enter division name" required>
+      <label  for="division">Division:*</label>
 
-      </div>
-      <div class="form-group">
-        <label for="district">District:*</label>
+      <input type="text" class="form-control" id="division" name="division" value="<%=data[0].division%>"  placeholder="Enter division name" required>
 
-        <input type="text" class="form-control" id="district" name="district" value="<%=data[0].district%>"  placeholder="Enter district Name">
+    </div>
+    <div class="form-group">
+      <label for="district">District:*</label>
 
-      </div>
-      <div class="form-group">
-        <label for="ps">P.S:*</label>
+      <input type="text" class="form-control" id="district" name="district" value="<%=data[0].district%>"  placeholder="Enter district Name">
 
-        <input type="text" class="form-control" id="ps" name="ps" value="<%=data[0].ps%>"  placeholder="Enter ps Address" required>
+    </div>
+    <div class="form-group">
+      <label for="ps">P.S:*</label>
 
-      </div>
-      <div class="form-group">
-        <label  for="postCode">Post Code:*</label>
+      <input type="text" class="form-control" id="ps" name="ps" value="<%=data[0].ps%>"  placeholder="Enter ps Address" required>
 
-        <input type="number" class="form-control" id="postCode" name="postCode" value="<%=data[0].postCode%>"  placeholder="Enter post code" required>
+    </div>
+    <div class="form-group">
+      <label  for="postCode">Post Code:*</label>
 
-      </div>
-
-        <br>
-
-      <div class="form-group">
-      <h6 class="column-title"><i class="fa fa-graduation-cap fa-2x blue"> Academic Information</i></h6>
-
-        <label for="training_name">List of Training Name</label>
-        <p>Example <br>1. Automobiles<br> 2. Electronics</p>
-       <textarea rows="8" cols="60" id="training_name" name="training_name"> <%=data[0].training_name%>
-        
-        </textarea>
-
-      </div>
+      <input type="number" class="form-control" id="postCode" name="postCode" value="<%=data[0].postCode%>"  placeholder="Enter post code" required>
 
     </div>
 
+    <br>
+
+    <div class="form-group">
+      <label for="ins_type">Institute Type *</label>
+      <select name="ins_type" class="form-control" id="ins_type">
+        <option value="">Select Institute Type</option>
+        <option value="Technical">Technical</option>
+        <option value="Agricultural">Agricultural</option>
+        <option value="Medical">Medical</option>
+        <option value="Information Center">Information Center</option>
+        <option value="NGO">NGO</option>
+
+      </select>               
+      <span class="red"></span>            
+    </div>
 
 
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-       <div class="form-group">
-        <label>
-          <input type="checkbox" id="check"> Yes, I would like to Update My Profile!
-        </label>
-      </div>
+      <h6 class="column-title"><i class="fa fa-graduation-cap fa-2x blue"> Academic Information</i></h6>
 
-      <button type="submit" id="update" class="btn btn-primary btn-lg btn-block">Update</button>
+      <label for="training_name">List of Training Name</label>
+      <p>Example <br>1. Automobiles<br> 2. Electronics</p>
+      <textarea rows="8" cols="60" id="training_name" name="training_name"> <%=data[0].training_name%>
+
+      </textarea>
 
     </div>
+
   </div>
+
+
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+     <div class="form-group">
+      <label>
+        <input type="checkbox" id="check"> Yes, I would like to Update My Profile!
+      </label>
+    </div>
+
+    <button type="submit" id="update" class="btn btn-primary btn-lg btn-block">Update</button>
+
+  </div>
+</div>
 </form>
 
 </div>
 </div>
 
 
-
-
-
-
 <script type="text/javascript"> 
+
  $('#update').attr('disabled','disabled');
  
 
- $("#check").change( function(){
+ $('#check').change( function(){
    if( $(this).is(':checked') ) {
      $('#update').removeAttr('disabled');
    }else{
@@ -149,4 +161,23 @@
   }
 });
 
+
+ $.ajax({
+  url: "/edit_my_institute/api/institute",
+  type: 'GET',
+  dataType: 'json'
+})
+ .done(function(result) {
+  
+   $("#ins_type").val(result[0].ins_type).change();
+ })
+ .fail(function() {
+  console.log("error");
+})
+ .always(function() {
+  console.log("complete");
+});
+
 </script>
+
+

@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
                     res.render('charts', {institute_userName: req.session.userName, data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "ins_layout" });
 
                     break;
-                case "Survayor":
+                case "Surveyor":
                     res.render('charts', {surveyor_userName: req.session.userName, data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "sur_layout" });
                     break;
                 case "Admin":

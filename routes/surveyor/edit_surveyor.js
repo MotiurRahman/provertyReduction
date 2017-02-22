@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
 
     switch (req.session.loginType) {
        
-        case "Survayor":
+        case "Surveyor":
             res.render('surveyor/edit_surveyor', {surveyor_userName: req.session.userName, layout: "sur_layout" });
             break;
         case "Admin":

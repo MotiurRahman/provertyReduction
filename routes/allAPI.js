@@ -9,7 +9,7 @@ var surveyor = require("./../libs/surveyorSchema");
 
 router.get('/', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({}).exec(function(err, docs) {
+    institute.find({$or: [{ ac_status: "Request" }, { ac_status: "Inactive" }]}).exec(function(err, docs) {
 
         if (err) {
             res.json(err)

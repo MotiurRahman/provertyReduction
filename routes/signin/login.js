@@ -39,7 +39,7 @@ router.post('/', function(req, res, next) {
 
 
 
-                    institute.find({ $and: [{ userName: userName }, { password: password }] }).exec(function(err, personData) {
+                    institute.find({ $and: [{ userName: userName }, { password: password },{ac_status:"Active"}] }).exec(function(err, personData) {
 
                         if (err) {
                             res.json("password Does not match");
@@ -68,7 +68,7 @@ router.post('/', function(req, res, next) {
 
 
                     break;
-                case "Survayor":
+                case "Surveyor":
 
 
                     surveyor.find({ $and: [{ userName: userName }, { password: password }] }).exec(function(err, surveyor_Data) {

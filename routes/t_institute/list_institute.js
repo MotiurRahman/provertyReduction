@@ -8,7 +8,7 @@ var institute = require('../../libs/t_institute');
 
 router.get('/', function(req, res, next) {
 
-    institute.find().exec(function(err, docs) {
+    institute.find({ac_status:"Active"}).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
             res.render('t_institute/list_institute', {institute_userName: req.session.userName, data: docs, layout: "ins_layout" });
 
             break;
-        case "Survayor":
+        case "Surveyor":
             res.render('t_institute/list_institute', {surveyor_userName: req.session.userName, data: docs, layout: "sur_layout" });
             break;
         case "Admin":

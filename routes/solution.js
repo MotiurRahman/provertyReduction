@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
             res.render('solution', {institute_userName: req.session.userName, layout: "ins_layout" });
 
             break;
-        case "Survayor":
+        case "Surveyor":
             res.render('solution', {surveyor_userName: req.session.userName, layout: "sur_layout" });
             break;
         case "Admin":

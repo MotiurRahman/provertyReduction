@@ -18,6 +18,8 @@ var instituteSchema = new db.Schema({
  
     userName:String,
     password: String,
+    ins_type:String,
+    ac_status: String,
    
 });
 

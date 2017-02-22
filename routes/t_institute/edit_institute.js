@@ -40,6 +40,8 @@ router.post('/', function(req, res, next) {
     var district = req.body.district;
     var ps = req.body.ps;
     var postCode = req.body.postCode;
+    var ins_type = req.body.ins_type;
+    var ac_status = req.body.ac_status;
 
     console.log("id:" + id);
     console.log("name:" + name);
@@ -53,6 +55,9 @@ router.post('/', function(req, res, next) {
     console.log("district:" + district);
     console.log("ps:" + ps);
     console.log("postCode:" + postCode);
+    console.log("ins_type:" + ins_type);
+    console.log("ac_status:" + ac_status);
+   
 
 
 
@@ -68,9 +73,8 @@ router.post('/', function(req, res, next) {
         district: district,
         ps: ps,
         postCode: postCode,
-
-
-
+        ins_type: ins_type,
+        ac_status: ac_status
 
     };
 

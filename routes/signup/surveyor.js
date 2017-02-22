@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
             res.render('signup/surveyor', {institute_userName: req.session.userName, layout: "ins_layout" });
 
             break;
-        case "Survayor":
+        case "Surveyor":
             res.render('signup/surveyor', {surveyor_userName: req.session.userName, layout: "sur_layout"  });
             break;
         case "Admin":

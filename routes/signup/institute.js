@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
             res.render('signup/institute', {institute_userName: req.session.userName, layout: "ins_layout" });
 
             break;
-        case "Survayor":
+        case "Surveyor":
             res.render('signup/institute', {surveyor_userName: req.session.userName, layout: "sur_layout"  });
             break;
         case "Admin":
@@ -45,6 +45,7 @@ router.post('/', function(req, res, next) {
     var district = req.body.district;
     var ps = req.body.ps;
     var postCode = req.body.postCode;
+    var ins_type = req.body.ins_type;
 
     console.log("name:" + name);
     console.log("short_name:" + short_name);
@@ -58,6 +59,8 @@ router.post('/', function(req, res, next) {
     console.log("district:" + district);
     console.log("ps:" + ps);
     console.log("postCode:" + postCode);
+    console.log("ins_type:" + ins_type);
+    var ac_status = "Request";
 
 
 
@@ -75,6 +78,8 @@ router.post('/', function(req, res, next) {
         district: district,
         ps: ps,
         postCode: postCode,
+        ins_type: ins_type,
+        ac_status: ac_status
 
 
 

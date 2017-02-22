@@ -67,6 +67,32 @@
 
       </div>
 
+       <div class="form-group">
+      <label for="ins_type">Institute Type *</label>
+      <select name="ins_type" class="form-control" id="ins_type" required>
+        <option value="">Select Institute Type</option>
+        <option value="Technical">Technical</option>
+        <option value="Agricultural">Agricultural</option>
+        <option value="Medical">Medical</option>
+        <option value="Information Center">Information Center</option>
+        <option value="NGO">NGO</option>
+     
+      </select>               
+      <span class="red"></span>            
+    </div>
+
+
+      <div class="form-group">
+      <label for="ac_status">Acount Status:</label>
+      <select name="ac_status" class="form-control" id="ac_status" required>
+        <option value="">Select Status</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>  
+        <option value="Request">Request</option>   
+      </select>               
+      <span class="red"></span>            
+    </div>
+
 
       </div>
 
@@ -102,6 +128,22 @@
 
         <br>
 
+        <h6 class="column-title"><i class="glyphicon glyphicon-log-in fa-2x blue"> Login Info</i></h6>
+
+       <div class="form-group">
+        <label  for="userName">User Name:*</label>
+
+        <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter your user name" required>
+
+      </div>
+      <div class="form-group">
+        <label for="password">Password:*</label>
+
+
+        <input type="text" class="form-control" id="password" name="password" placeholder="Enter your password">
+
+      </div>
+
       <div class="form-group">
       <h6 class="column-title"><i class="fa fa-graduation-cap fa-2x blue"> Academic Information</i></h6>
 
@@ -121,7 +163,7 @@
       <div class="col-sm-offset-2 col-sm-10">
        <div class="form-group">
         <label>
-          <input type="checkbox" id="check"> Yes, I would like to Update My Profile!
+          <input type="checkbox" id="check"> Yes, I would like to Update Institute Account!
         </label>
       </div>
 
@@ -178,9 +220,15 @@
      $("#division").val(result[0].division);
      $("#district").val(result[0].district);
 
+     $("#userName").val(result[0].userName);
+     $("#password").val(result[0].password);
+
 
      $("#ps").val(result[0].ps);
      $("#postCode").val(result[0].postCode);
+     $("#ac_status").val(result[0].ac_status).change();
+     $("#ins_type").val(result[0].ins_type).change();
+
  
 
 

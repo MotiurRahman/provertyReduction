@@ -30,10 +30,12 @@ var edit_my_institute = require('./routes/t_institute/edit_my_institute');
 var list_surveyor = require('./routes/surveyor/list_surveyor');
 var edit_surveyor = require('./routes/surveyor/edit_surveyor');
 var edit_my_profile= require('./routes/surveyor/edit_my_profile');
+var surveyor_profile= require('./routes/surveyor/surveyor_profile');
 var deletion = require('./routes/deletion');
 var login = require('./routes/signin/login');
 var logout = require('./routes/signin/logout');
 var APIs = require('./routes/allAPI');
+var activation = require('./routes/activation');
 
 
 
@@ -84,6 +86,7 @@ app.use('/addTo', addTo);
 app.use('/list_institute', list_institute);
 app.use('/list_surveyor', list_surveyor);
 app.use('/edit_surveyor', edit_surveyor);
+app.use('/surveyor_profile', surveyor_profile);
 app.use('/edit_my_profile', edit_my_profile);
 app.use('/edit_institute', edit_institute);
 app.use('/edit_my_institute', edit_my_institute);
@@ -92,6 +95,7 @@ app.use('/deletion', deletion);
 app.use('/login', login);
 app.use('/logout', logout);
 app.use('/APIs', APIs);
+app.use('/activation', activation);
 
 
 

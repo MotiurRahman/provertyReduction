@@ -208,6 +208,13 @@
 
       </div>
 
+      <div class="form-group">
+        <label  for="userName">User Name:*</label>
+
+        <input type="text" class="form-control" id="userName" name="userName" value="<%=data[0].userName%>"placeholder="Enter your user name" required>
+
+      </div>
+
     </div>
 
 
@@ -250,6 +257,7 @@
     dataType: 'json'
   })
   .done(function(result) {
+   
     if(result[0].gender=="Female")
     {
       $("#f_gender").prop("checked", true);

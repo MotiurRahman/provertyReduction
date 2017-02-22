@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
             res.render('algorithm', {institute_userName: req.session.userName, layout: "ins_layout" });
 
             break;
-        case "Survayor":
+        case "Surveyor":
             res.render('algorithm', {surveyor_userName: req.session.userName, layout: "sur_layout" });
             break;
         case "Admin":

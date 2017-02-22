@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
                     res.render('index', {institute_userName: req.session.userName, data: docs, social_Status: socialStatus, layout: "ins_layout" });
 
                     break;
-                case "Survayor":
+                case "Surveyor":
                     res.render('index', {surveyor_userName: req.session.userName, data: docs, social_Status: socialStatus, layout: "sur_layout" });
                     break;
                 case "Admin":
