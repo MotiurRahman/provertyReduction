@@ -1,0 +1,110 @@
+<%- contentFor('body') %>
+
+<div id="page-wrapper">
+	<div class="container-fluid">
+		<h2>Recomended people to your Area</h2>
+		<div class="row">
+
+			<div class="ccol-xs-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="fa fa-money fa-fw"></i> You can pay more attention to them!</h3>
+						<form class="form-inline">
+							<div class="form-group">
+								
+							</div>
+							
+							<div class="form-group" id="totalPopu">
+							<h5>Total Population: <%=data.length%></h5>
+							</div>
+						</form>
+
+						
+					</div>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover table-striped" id="poorTable">
+								<thead>
+									<tr>
+										<th>id</th>
+										<th>Name</th>
+										<th>Father_Name/Guardian</th>
+										<th>Address</th>
+										<th>Might be the reason</th>
+										<th>Connected With</th>
+
+
+									</tr>
+								</thead>
+								<tbody id="poorBody">
+
+									<% for(var i=0; i<data.length; i++) { %>
+
+
+									<tr>
+										<td><%=i%>:<%=data[i].id%></td>
+										<td><%=data[i].name%><br>Status:<%=data[i].status%></td>
+										<td><%=data[i].father_name%></td>
+										<td>Div:<%=data[i].division%><br>
+
+											Dist:<%=data[i].district%>,
+											P.S:<%=data[i].ps%>,<br>
+											Post Code:<%=data[i].postCode%>,
+											vill:<%=data[i].area%><br>
+											Phone: <%=data[i].phone%>
+
+										</td>
+										<td>
+
+											<b>Education:</b> <%=data[i].lastDegree%><br>
+											<% if(data[i].saving=="NO"){%>
+											<b>Savings:</b> <%=data[i].saving%><br>
+											<%}%>
+
+											<% if(data[i].t_a_trainig=="NO"){%>
+											<b>T_A_trainig:</b> <%=data[i].t_a_trainig%><br>
+											<%}%>
+
+											<% if(data[i].working_scope=="NO"){%>
+											<b>Working Scope:</b> <%=data[i].working_scope%><br>
+											<%}%>
+
+											<% if(data[i].know_t_a_trainig=="NO"){%>
+											<b>know_T_A_Trainig:</b> <%=data[i].know_t_a_trainig%><br>
+											<%}%>
+
+											<% if(data[i].any_c_land=="NO"){%>
+											<b>Any_C_Land:</b> <%=data[i].any_c_land%><br>
+											<%}%>
+
+											<% if(data[i].drugAddiction=="YES"){%>
+											<b>Drug Addiction:</b> <%=data[i].drugAddiction%><br>
+											<%}%>
+
+											<b>Natural Reson:</b> <%=data[i].natural_reson%>
+										</td>
+
+										<td>Ins:<%=data[i].institute%><br>Dept:<%=data[i].dept%></td>
+
+										
+									</tr>
+
+									<%} %>
+
+
+
+
+								</tbody>
+							</table>
+						</div>
+						<div class="text-right">
+							<a href="#">Go to next Page <i class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+

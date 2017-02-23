@@ -8,7 +8,7 @@ var surveyor = require('../../libs/surveyorSchema');
 
 router.get('/', function(req, res, next) {
 
-    surveyor.find().exec(function(err, docs) {
+    surveyor.find({ac_status:"Active"}).exec(function(err, docs) {
 
         if (err) {
             res.json(err)

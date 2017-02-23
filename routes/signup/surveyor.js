@@ -58,6 +58,7 @@ router.post('/', function(req, res, next) {
     var userName = req.body.userName;
     var password = req.body.password;
     var re_password = req.body.re_password;
+     
 
 
     console.log("name:" + name);
@@ -89,6 +90,7 @@ router.post('/', function(req, res, next) {
     console.log("userName:" + userName);
     console.log("password:" + password);
     console.log("re_password:" + re_password);
+    var ac_status = "Request";
 
 
     var surveyorinfo = {
@@ -117,6 +119,7 @@ router.post('/', function(req, res, next) {
         occupation: occupation,
         userName: userName,
         password: password,
+        ac_status: ac_status
 
     };
 

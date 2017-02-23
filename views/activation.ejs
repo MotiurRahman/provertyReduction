@@ -11,10 +11,10 @@
 						<h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Activate the varified institute or surveyor!</h3>
 						<form class="form-inline">
 							<div class="form-group">
-							<button type="button" class="btn btn-default" id="activation">List of Institute</button>
+								<button type="button" class="btn btn-default" id="institute">List of Institute</button>
 							</div>
 							<div class="form-group">
-						  <button type="button" class="btn btn-default" id="ins_sur">List of Serveyor</button>
+								<button type="button" class="btn btn-default" id="surveyor">List of Serveyor</button>
 							</div>
 							
 							
@@ -36,16 +36,16 @@
 
 									</tr>
 								</thead>
-								<tbody id="poorBody">
+								<tbody id="tableBody">
 
 									<% for(var i=0; i<data.length; i++) { %>
 
 
 									<tr>
-										<td><%=i%>:<%=data[i].id%></td>
+										<td><%=i%>:<%=data[i]._id%></td>
 										<td><%=data[i].name%><br>Phone:<%=data[i].phone%><br>
-										userName:<%=data[i].userName%><br>
-										Pass:<%=data[i].password%>
+											userName:<%=data[i].userName%><br>
+											Pass:<%=data[i].password%>
 
 
 										</td>
@@ -86,86 +86,44 @@
 </div>
 
 <script type="text/javascript">
-	$("#search_poor").click(function(event) {
-		$("#poorBody").empty();
-		$("#totalPopu").empty();
-		var post_code = $("#post_code").val();
-		var status = $("#status").val();
-
+	$("#surveyor").click(function(event) {
+		$("#tableBody").empty();
+		
 		$.ajax({
-			url: '/tables/api/'+status+'/'+post_code,
+			url: '/activation/api/surveyor',
 			type: 'GET',
 			dataType: 'json',
 
 		})
 		.done(function(result) {
 
-			var total =$("<h5>Total Population:"+result.length+"</h5>");
-			$("#totalPopu").append(total);
-
-
+			
 			for (var i = 0; i < result.length; i++) {
-				
 				var table_row = $("<tr></tr>");
-				var table_id = $("<td>"+i+":"+result[i]._id+"</td>");
-				var table_name = $("<td>"+result[i].name+"</td>");
-				var table_father = $("<td>"+result[i].father_name+"</td>");
+				
+				var id = $("<td>"+i+":"+result[i]._id+"</td>");
+				var name = $("<td>"+result[i].name+"<br> Phone:"+result[i].phone +"<br>UserName:"+result[i].userName+"<br> password:"+result[i].password+ "</td>");
+				
 
 
-				var table_address = $("<td>Divi:"+result[i].division +"<br> Dist:"+result[i].district +"<br>P.S:"+result[i].ps+"<br> Post Code:"+result[i].postCode +"<br> vill:"+result[i].area+"<br>Phone:"+result[i].phone+"</td>");
-
-				var tableData = $("<td></td>");
-
-				tableData.append('<b>Education:</b>'+result[i].lastDegree+"<br>");
-
-				if(result[i].saving=="NO")
-				{
-					tableData.append('<b>Savings:</b>'+result[i].saving+"<br>");
-
-				}
-
-				if(result[i].t_a_trainig=="NO")
-				{
-					tableData.append('<b>T_A_Trainig:</b>'+result[i].t_a_trainig+"<br>");
-				}
-
-				if(result[i].working_scope=="NO")
-				{
-					tableData.append('<b>Aorking Scope:</b>'+result[i].working_scope+"<br>");
-				}
-
-				if(result[i].know_t_a_trainig=="NO")
-				{
-					tableData.append('<b>Know_T_A_Trainig:</b>'+result[i].know_t_a_trainig+"<br>");
-				}
-
-				if(result[i].any_c_land=="NO")
-				{
-					tableData.append('<b>Any_C_Land:</b>'+result[i].any_c_land+"<br>");
-				}
-
-				if(result[i].drugAddiction=="YES")
-				{
-					tableData.append('<b>Drug Addiction:</b>'+result[i].drugAddiction+"<br>");
-				}
-
-				tableData.append('<b>Natural Reson:</b>'+result[i].natural_reson);
-				var table_connectedWith = $("<td>Ins:"+result[i].institute+"<br> Dept:"+result[i].dept+"</td>");
+				var address = $("<td>Divi:"+result[i].division +"<br> Dist:"+result[i].district +"<br>P.S:"+result[i].ps+"<br> Post Code:"+result[i].postCode+"<br>Email:"+result[i].email+"</td>");
 
 
 
-				table_row.append(table_id);
-				table_row.append(table_name);
+				var ac_status = $("<td>Status:"+result[i].ac_status+"</td>");
 
-				table_row.append(table_father);
-				table_row.append(table_address);
-				table_row.append(tableData);
-				table_row.append(table_connectedWith);
+				table_row.append(id);
+				table_row.append(name);
 
-
-
-				$("#poorBody").append(table_row);
+				table_row.append(address);
+				table_row.append(ac_status);
+				$("#tableBody").append(table_row);
+				
 			}
+
+
+
+			
 
 
 		})
@@ -184,5 +142,53 @@
 
 <script type="text/javascript">
 	
+	$("#institute").click(function(event) {
+		$("#tableBody").empty();
+		
+		$.ajax({
+			url: '/activation/api/institute',
+			type: 'GET',
+			dataType: 'json',
 
+		})
+		.done(function(result) {
+
+			
+			for (var i = 0; i < result.length; i++) {
+				var table_row = $("<tr></tr>");
+				
+				var id = $("<td>"+i+":"+result[i]._id+"</td>");
+				var name = $("<td>"+result[i].name+"<br> Phone:"+result[i].phone +"<br>UserName:"+result[i].userName+"<br> password:"+result[i].password+ "</td>");
+				
+
+
+				var address = $("<td>Divi:"+result[i].division +"<br> Dist:"+result[i].district +"<br>P.S:"+result[i].ps+"<br> Post Code:"+result[i].postCode+"<br>Email:"+result[i].email+"</td>");
+
+
+
+				var ac_status = $("<td>Status:"+result[i].ac_status+"</td>");
+
+				table_row.append(id);
+				table_row.append(name);
+
+				table_row.append(address);
+				table_row.append(ac_status);
+				$("#tableBody").append(table_row);
+				
+			}
+
+
+
+			
+
+
+		})
+		.fail(function() {
+			console.log("error");
+		})
+		.always(function() {
+			console.log("complete");
+		});
+
+	});
 </script>

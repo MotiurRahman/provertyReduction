@@ -55,6 +55,7 @@ router.post('/', function(req, res, next) {
     var lastDegree = req.body.lastDegree;
     var subject = req.body.subject;
     var occupation = req.body.occupation;
+    var ac_status = req.body.ac_status;
 
     console.log("id:" + id);
     console.log("name:" + name);
@@ -85,6 +86,8 @@ router.post('/', function(req, res, next) {
 
 
     console.log("occupation:" + occupation);
+    console.log("ac_status:" + ac_status);
+
 
 
 
@@ -112,9 +115,9 @@ router.post('/', function(req, res, next) {
 
         lastDegree: lastDegree,
         subject: subject,
-
-
         occupation: occupation,
+        
+        ac_status: ac_status,
 
 
     };

@@ -27,6 +27,7 @@ var list_institute = require('./routes/t_institute/list_institute');
 var edit_institute = require('./routes/t_institute/edit_institute');
 var institute_profile = require('./routes/t_institute/institute_profile');
 var edit_my_institute = require('./routes/t_institute/edit_my_institute');
+var recomendation = require('./routes/t_institute/recomendation');
 var list_surveyor = require('./routes/surveyor/list_surveyor');
 var edit_surveyor = require('./routes/surveyor/edit_surveyor');
 var edit_my_profile= require('./routes/surveyor/edit_my_profile');
@@ -96,6 +97,7 @@ app.use('/login', login);
 app.use('/logout', logout);
 app.use('/APIs', APIs);
 app.use('/activation', activation);
+app.use('/recomendation', recomendation);
 
 
 

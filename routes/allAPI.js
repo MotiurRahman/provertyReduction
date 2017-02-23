@@ -4,12 +4,22 @@ var router = express.Router();
 var peoples = require('./../libs/peoplesSchema');
 var institute = require("./../libs/t_institute");
 var surveyor = require("./../libs/surveyorSchema");
+var suggest = require('./../libs/recomend');
 
 
 
 router.get('/', function(req, res, next) {
     console.log("peoples API")
-    institute.find({$or: [{ ac_status: "Request" }, { ac_status: "Inactive" }]}).exec(function(err, docs) {
+    var suggestion = suggest.recomendData("Technical", "6341");
+
+    res.json(suggestion);
+
+});
+
+
+router.get('/tec', function(req, res, next) {
+    console.log("peoples API")
+    peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }], "postCode": "6341" }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -21,6 +31,69 @@ router.get('/', function(req, res, next) {
 
     });
 
+});
+
+router.get('/agr', function(req, res, next) {
+    console.log("peoples API")
+    peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }], "postCode": req.session.postCode }).exec(function(err, docs) {
+
+        if (err) {
+            res.json(err)
+        } else {
+
+
+            res.json(docs);
+        }
+
+    });
+
+});
+
+router.get('/Info', function(req, res, next) {
+    console.log("peoples API")
+    peoples.find({ know_t_a_trainig: "NO", "postCode": "6341" }).exec(function(err, docs) {
+
+        if (err) {
+            res.json(err)
+        } else {
+
+
+            res.json(docs);
+        }
+
+    });
+
+});
+
+router.get('/ngo', function(req, res, next) {
+    console.log("peoples API")
+    peoples.find({ saving: "NO", "postCode": req.session.postCode }).exec(function(err, docs) {
+
+        if (err) {
+            res.json(err)
+        } else {
+
+
+            res.json(docs);
+        }
+
+    });
+
+});
+
+router.get('/medical', function(req, res, next) {
+    console.log("peoples API")
+    peoples.find({ drugAddiction: "YES", "postCode": req.session.postCode }).exec(function(err, docs) {
+
+        if (err) {
+            res.json(err)
+        } else {
+
+
+            res.json(docs);
+        }
+
+    });
 });
 
 

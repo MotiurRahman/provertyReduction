@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 var institute = require("./../libs/t_institute");
+var surveyor = require('./../libs/surveyorSchema');
+
 
 
 router.get('/', function(req, res, next) {
@@ -29,25 +31,42 @@ router.get('/', function(req, res, next) {
 
 });
 
+//surveyor request and inactive account
+
+router.get('/api/surveyor', function(req, res, next) {
+
+   surveyor.find({$or: [{ ac_status: "Request" }, { ac_status: "Inactive" }]}).exec(function(err, docs) {
+
+        if (err) {
+            res.json(err)
+        } else {
+       console.log("surveyor inactive data");
+ 
+            res.json(docs);
+
+            }
+      
+
+    });
 
 
-router.get('/api/:status/:post_code', function(req, res, next) {
+});
 
-    var status = req.params.status;
-    var post_code = req.params.post_code;
 
-    console.log("status:" + status);
+//institute request and inactive account
 
-    console.log("post_code:" + post_code);
+router.get('/api/institute', function(req, res, next) {
 
-    peoples.find({ "status": status, "postCode": post_code }).sort({ _id: -1 }).exec(function(err, docs) {
+   institute.find({$or: [{ ac_status: "Request" }, { ac_status: "Inactive" }]}).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
         } else {
 
-            res.json(docs);
+            console.log("institute inactive data");
 
+ 
+           res.json(docs);
         }
 
     });

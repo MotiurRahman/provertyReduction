@@ -42,7 +42,7 @@ router.post('/', function(req, res, next) {
                     institute.find({ $and: [{ userName: userName }, { password: password },{ac_status:"Active"}] }).exec(function(err, personData) {
 
                         if (err) {
-                            res.json("password Does not match");
+                            res.json("Database Error");
                         } else {
 
                             // res.json(personData);
@@ -51,6 +51,8 @@ router.post('/', function(req, res, next) {
                             if (personData.length > 0) {
                                 req.session.ins_id = personData[0]._id;
                                 console.log("ins_id:"+req.session.ins_id);
+                                req.session.ins_type = personData[0].ins_type;
+                                req.session.postCode  = personData[0].postCode;
                                 
                                 req.session.userName = personData[0].userName;
                                 req.session.short_name = personData[0].short_name;
@@ -58,8 +60,8 @@ router.post('/', function(req, res, next) {
                                 res.render('index', { data: docs, institute_userName: req.session.userName, social_Status: socialStatus, layout: "ins_layout" });
 
                             } else {
-                                res.json("password Does not match");
-
+                                 res.json("Your Account is not active");
+                                 req.session.destroy();
                             }
 
                         }
@@ -71,11 +73,14 @@ router.post('/', function(req, res, next) {
                 case "Surveyor":
 
 
-                    surveyor.find({ $and: [{ userName: userName }, { password: password }] }).exec(function(err, surveyor_Data) {
+                    surveyor.find({ $and: [{ userName: userName }, { password: password },{ac_status:"Active"}] }).exec(function(err, surveyor_Data) {
 
                         if (err) {
                             res.json("password Does not match");
                         } else {
+
+                            console.log("personData:" + surveyor_Data.length);
+
 
                             if (surveyor_Data.length > 0) {
                                 req.session.sur_id = surveyor_Data[0]._id;
@@ -83,7 +88,8 @@ router.post('/', function(req, res, next) {
                                 res.render('index', { data: docs, surveyor_userName: req.session.userName, social_Status: socialStatus, layout: "sur_layout" });
 
                             } else {
-                                res.json("password Does not match");
+                                res.json("Your Account is not active");
+                                req.session.destroy();
 
                             }
 
