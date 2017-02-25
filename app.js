@@ -30,8 +30,8 @@ var edit_my_institute = require('./routes/t_institute/edit_my_institute');
 var recomendation = require('./routes/t_institute/recomendation');
 var list_surveyor = require('./routes/surveyor/list_surveyor');
 var edit_surveyor = require('./routes/surveyor/edit_surveyor');
-var edit_my_profile= require('./routes/surveyor/edit_my_profile');
-var surveyor_profile= require('./routes/surveyor/surveyor_profile');
+var edit_my_profile = require('./routes/surveyor/edit_my_profile');
+var surveyor_profile = require('./routes/surveyor/surveyor_profile');
 var deletion = require('./routes/deletion');
 var login = require('./routes/signin/login');
 var logout = require('./routes/signin/logout');
@@ -103,94 +103,22 @@ app.use('/recomendation', recomendation);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
+    var err = new Error('404 Page Not Found');
     err.status = 404;
     next(err);
 });
 
 // error handlers
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-      
-
-        switch (req.session.loginType) {
-            case "Institute":
-
-                res.render('error', {
-                    message: err.message,
-                    error: err,
-                    institute_userName: req.session.userName,
-                    layout: "ins_layout"
-                });
-
-                break;
-            case "Survayor":
-                res.render('error', {
-                    message: err.message,
-                    error: err,
-                    surveyor_userName: req.session.userName,
-                    layout: "sur_layout"
-                });
-                break;
-            case "Admin":
-                res.render('error', {
-                    message: err.message,
-                    error: err,
-                    layout: "admin_layout"
-                });
-                break;
-            default:
-                res.render('error', {
-                    message: err.message,
-                    error: err
-                });
-
-        }
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-
-
-    switch (req.session.loginType) {
-        case "Institute":
-
-            res.render('error', {
-                message: err.message,
-                error: {},
-                layout: "ins_layout"
-            });
-
-            break;
-        case "Survayor":
-            res.render('error', {
-                message: err.message,
-                error: {},
-                layout: "sur_layout"
-            });
-            break;
-        case "Admin":
-            res.render('error', {
-                message: err.message,
-                error: {},
-                layout: "admin_layout"
-            });
-            break;
-        default:
-            res.render('error', {
-                message: err.message,
-                error: {}
-            });
-
+app.use(function errorHandler(err, req, res, next) {
+    if (res.headersSent) {
+        return next(err)
     }
+    res.status(500)
+    res.render('error', { error: err })
 });
+
+
 
 
 module.exports = app;

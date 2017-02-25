@@ -1,28 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var validator = require("validator");
+var nodemailer = require('nodemailer');
 
 var surveyor = require("../../libs/surveyorSchema");
 
 
 router.get('/', function(req, res, next) {
-   
 
-    switch (req.session.loginType) {
-        case "Institute":
-
-            res.render('signup/surveyor', {institute_userName: req.session.userName, layout: "ins_layout" });
-
-            break;
-        case "Surveyor":
-            res.render('signup/surveyor', {surveyor_userName: req.session.userName, layout: "sur_layout"  });
-            break;
-        case "Admin":
-            res.render('signup/surveyor', { layout: "admin_layout"  });
-            break;
-        default:
-            res.render('signup/surveyor' );
-
-    }
+    res.render('signup/surveyor');
 });
 
 
@@ -58,7 +44,7 @@ router.post('/', function(req, res, next) {
     var userName = req.body.userName;
     var password = req.body.password;
     var re_password = req.body.re_password;
-     
+
 
 
     console.log("name:" + name);
@@ -91,6 +77,7 @@ router.post('/', function(req, res, next) {
     console.log("password:" + password);
     console.log("re_password:" + re_password);
     var ac_status = "Request";
+    var msgBody = "<b>Hello " + name + "</b> <br> Thanks for your request. We will approve your account within 3 working days.";
 
 
     var surveyorinfo = {
@@ -126,23 +113,62 @@ router.post('/', function(req, res, next) {
     var new_surveyor = new surveyor(surveyorinfo);
 
 
+    var transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        auth: {
+            user: 'motiur.mbstu@gmail.com', // Your email id
+            pass: 'cvifcxpetookuwts' // Your password
+        }
+    });
+
+
+    var mailOptions = {
+        from: 'motiur.mbstu@gmail.com', // sender address
+        to: email, // list of receivers
+        subject: "Account Releated Information", // Subject line
+        // text: message //, // plaintext body
+        html: msgBody // You can choose to send an HTML body instead
+    };
+
     if (password == re_password) {
-        new_surveyor.save(function(err) {
 
-            if (err) {
-                res.json(err)
-                    // mongoose.connection.close();
-            } else {
-                res.redirect("/")
+        if (validator.isEmail(email)) {
 
+            function userCheck() {
+
+                new_surveyor.save(function(err) {
+
+                    if (err) {
+                        res.json(err)
+                            // mongoose.connection.close();
+                    } else {
+                        next("Your account will be activated within 3 working days");
+
+                    }
+
+
+                });
             }
 
+            surveyor.find({ userName: userName }).exec(function(err, docs) {
+                if (!docs.length) {
 
-        });
+                    userCheck();
+                } else {
+                    next("User Name already exist");
 
+                }
+            });
+
+
+        } else {
+            next("Email is not valid");
+        }
     } else {
-        res.json("password Does not match");
+        next("Password Does Not Match");
     }
+
 
 });
 

@@ -1,30 +1,14 @@
 var express = require('express');
 var router = express.Router();
+var nodemailer = require('nodemailer');
+var validator = require("validator");
 
 var institute = require("../../libs/t_institute");
 
 
 router.get('/', function(req, res, next) {
-    
 
-    console.log("session:"+req.session.loginType);
-
-    switch (req.session.loginType) {
-        case "Institute":
-
-            res.render('signup/institute', {institute_userName: req.session.userName, layout: "ins_layout" });
-
-            break;
-        case "Surveyor":
-            res.render('signup/institute', {surveyor_userName: req.session.userName, layout: "sur_layout"  });
-            break;
-        case "Admin":
-            res.render('signup/institute', { layout: "admin_layout"  });
-            break;
-        default:
-            res.render('signup/institute' );
-
-    }
+    res.render('signup/institute');
 });
 
 
@@ -62,6 +46,8 @@ router.post('/', function(req, res, next) {
     console.log("ins_type:" + ins_type);
     var ac_status = "Request";
 
+    //var message  = "Hello "+short_name+"/n"+"Thanks for your request. We will approve your account within 3 working days."
+    var msgBody = "<b>Hello " + short_name + "</b> <br> Thanks for your request. We will approve your account within 3 working days.";
 
 
     var instituteinfo = {
@@ -87,24 +73,62 @@ router.post('/', function(req, res, next) {
 
     var new_institute = new institute(instituteinfo);
 
+    var transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        auth: {
+            user: 'motiur.mbstu@gmail.com', // Your email id
+            pass: 'cvifcxpetookuwts' // Your password
+        }
+    });
+
+
+    var mailOptions = {
+        from: 'motiur.mbstu@gmail.com', // sender address
+        to: email, // list of receivers
+        subject: "Account Releated Information", // Subject line
+        // text: message //, // plaintext body
+        html: msgBody // You can choose to send an HTML body instead
+    };
+
     if (password == re_password) {
-        new_institute.save(function(err) {
 
-            if (err) {
-                res.json(err)
-                    // mongoose.connection.close();
-            } else {
-                res.redirect("/")
+        if (validator.isEmail(email)) {
+            transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                    console.log(error);
+                    console.log("Please try again");
+                } else {
 
-            }
-
-
-        });
+                    console.log("Message has been send successfully");
 
 
+                    new_institute.save(function(err) {
+
+                        if (err) {
+                            next(err)
+                                // mongoose.connection.close();
+                        } else {
+                            next("Your account will be activated within 3 working days");
+
+                        }
+
+
+                    });
+
+
+
+                };
+            });
+
+
+        } else {
+            next("Email is not valid");
+        }
     } else {
-        res.json("password Does not matrch");
+        next("Password Does Not Matrch");
     }
+
 
 
 });

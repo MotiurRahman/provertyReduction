@@ -6,16 +6,16 @@ var status = require('./../libs/social_status');
 router.get('/', function(req, res, next) {
 
     switch (req.session.loginType) {
-        
+
         case "Surveyor":
-            res.render('edit_peoplesInfo', {surveyor_userName: req.session.userName, layout: "sur_layout" });
+            res.render('edit_peoplesInfo', { surveyor_userName: req.session.userName, layout: "sur_layout" });
             break;
         case "Admin":
             res.render('edit_peoplesInfo', { layout: "admin_layout" });
             break;
         default:
-           
-           next();
+
+            next();
 
     }
 });
@@ -57,7 +57,15 @@ router.post('/', function(req, res, next) {
     var monthlyIncom = req.body.monthlyIncom;
     var occupation = req.body.occupation;
 
-    var statusValue = status.check_status(monthlyIncom);
+   
+    if (residence == "Rural") {
+        var statusValue = status.check_status(monthlyIncom);
+
+    } else {
+        var statusValue = status.check_status_urban(monthlyIncom);
+
+    }
+
 
     var saving = req.body.saving;
     var t_a_trainig = req.body.t_a_trainig;

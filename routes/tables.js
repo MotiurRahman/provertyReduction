@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var peoples = require('./../libs/peoplesSchema');
-var status = require('./../libs/social_status');
+
 
 
 router.get('/', function(req, res, next) {
@@ -13,26 +13,19 @@ router.get('/', function(req, res, next) {
             res.json(err)
         } else {
 
-            var socialStatus = status.social_status(docs);
-            var rich_poor = status.rich_poor(docs);
-
-
-            console.log("richman:" + rich_poor.richMan.length);
-
-            console.log("extremelyPoor:" + rich_poor.extremelyPoor.length);
-
+          
 
             switch (req.session.loginType) {
                 case "Institute":
 
-                    res.render('tables', { institute_userName: req.session.userName, data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "ins_layout" });
+                    res.render('tables', { institute_userName: req.session.userName, data: docs, layout: "ins_layout" });
 
                     break;
                 case "Surveyor":
-                    res.render('tables', { surveyor_userName: req.session.userName, data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "sur_layout" });
+                    res.render('tables', { surveyor_userName: req.session.userName, data: docs, layout: "sur_layout" });
                     break;
                 case "Admin":
-                    res.render('tables', { data: docs, social_Status: socialStatus, rich_poor: rich_poor, layout: "admin_layout" });
+                    res.render('tables', { data: docs, layout: "admin_layout" });
                     break;
                 default:
                     next();

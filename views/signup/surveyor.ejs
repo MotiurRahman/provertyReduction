@@ -273,6 +273,25 @@
   }
 });
 
+ $("#insert").click(function(event) {
+  $.ajax({
+    url: '/surveyor_signup',
+    type: 'POST',
+    dataType: 'json',
+    data: {param1: 'value1'},
+  })
+  .done(function() {
+    console.log("success");
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("complete");
+  });
+  
+ });
+
 
 
 </script>

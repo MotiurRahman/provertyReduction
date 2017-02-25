@@ -145,6 +145,19 @@
 
     </div>
 
+     <div class="form-group">
+      <h6 class="column-title"><i class="fa fa-envelope fa-2x blue"> Send Notification Email</i></h6>
+
+         <label>
+          <input type="checkbox" id="notification_check" name="notification_check"> Yes, I would like to send mail to the Institute!
+        </label>
+       
+       <textarea rows="6" cols="60" class="form-control" id="notification_mail" name="notification_mail" style="resize:none" required></textarea>
+
+      </div>
+
+
+
 
   </div>
 
@@ -276,6 +289,21 @@
     $('#update').attr('disabled','disabled');
   }
 });
+
+
+
+ $('#notification_mail').attr('disabled','disabled');
+ 
+
+ $("#notification_check").change( function(){
+   if( $(this).is(':checked') ) {
+     $('#notification_mail').removeAttr('disabled');
+   }else{
+    $('#notification_mail').attr('disabled','disabled');
+  }
+});
+
+ 
 
  $("#search").click(function(event) {
    var id  = $("#id").val();

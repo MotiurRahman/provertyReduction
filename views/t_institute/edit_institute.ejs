@@ -93,6 +93,18 @@
       <span class="red"></span>            
     </div>
 
+     <div class="form-group">
+      <h6 class="column-title"><i class="fa fa-envelope fa-2x blue"> Send Notification Email</i></h6>
+
+         <label>
+          <input type="checkbox" id="notification_check" name="notification_check"> Yes, I would like to send mail to the Institute!
+        </label>
+       
+       <textarea rows="6" cols="60" class="form-control" id="notification_mail" name="notification_mail" style="resize:none" required></textarea>
+
+      </div>
+
+
 
       </div>
 
@@ -149,7 +161,8 @@
 
         <label for="training_name">List of Training Name</label>
         <p>Example <br>1. Automobiles<br> 2. Electronics</p>
-       <textarea rows="8" cols="60" id="training_name" name="training_name">
+      
+        <textarea rows="8" cols="60" class="form-control" id="training_name" name="training_name" style="resize:none" required></textarea>
         
         </textarea>
 
@@ -162,7 +175,7 @@
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
        <div class="form-group">
-        <label>
+        <label >
           <input type="checkbox" id="check"> Yes, I would like to Update Institute Account!
         </label>
       </div>
@@ -195,6 +208,20 @@
 });
 
 
+
+
+ $('#notification_mail').attr('disabled','disabled');
+ 
+
+ $("#notification_check").change( function(){
+   if( $(this).is(':checked') ) {
+     $('#notification_mail').removeAttr('disabled');
+   }else{
+    $('#notification_mail').attr('disabled','disabled');
+  }
+});
+
+
  $("#search").click(function(event) {
    var id  = $("#id").val();
 
@@ -215,7 +242,7 @@
      $("#phone").val(result[0].phone);
      $("#short_name").val(result[0].short_name);
      $("#webAddress").val(result[0].webAddress);
-      $("#training_name").val(result[0].training_name);
+    $("#training_name").val(result[0].training_name);
 
      $("#division").val(result[0].division);
      $("#district").val(result[0].district);

@@ -5,33 +5,28 @@ exports.social_status = function(docs) {
     var lowerMiddleClass = 0;
     var poor = 0;
     var extremelyPoor = 0;
-
+    console.log("Length:"+docs.length);
     for (var i = 0; i < docs.length; i++) {
-
-        if (docs[i].monthlyIncom >= 30000) {
-            if (docs[i].monthlyIncom >= 60000) {
+        switch (docs[i].status) {
+            case "Rich Man":
                 richMan++;
-
-            } else {
+                break;
+            case "Middle Class":
                 middleClass++;
-            }
-
-        } else {
-            if (docs[i].monthlyIncom <= 30000 && docs[i].monthlyIncom >= 10000) {
+                break;
+            case "Lower Middle Class":
                 lowerMiddleClass++;
-            } else {
-                if (docs[i].monthlyIncom <= 5000) {
-                    extremelyPoor++
-                } else {
-                    poor++
-                }
-            }
+                break;
+            case "Poor":
+                poor++;
+                break;
+            case "Extremely Poor":
+                extremelyPoor++;
+                break;
         }
-
-
-
-
     }
+console.log("Poor:"+poor);
+
 
     var data = {
         richMan: richMan,
@@ -79,105 +74,129 @@ exports.check_status = function(income) {
 }
 
 
+exports.check_status_urban = function(income) {
+
+    var status = "";
 
 
-
-
-
-
-
-exports.rich_poor = function(docs) {
-
-    var richMan = [];
-    // var middleClass = [];
-    // var lowerMiddleClass = [];
-    // var poor = [];
-    var extremelyPoor = [];
-
-
-    for (var i = 0; i < docs.length; i++) {
-
-        if (docs[i].monthlyIncom >= 30000) {
-            if (docs[i].monthlyIncom >= 60000) {
-
-                var richman = {
-                    id: docs[i]._id,
-                    name: docs[i].name,
-                    email: docs[i].email,
-                    phone: docs[i].phone,
-                    localAgent: docs[i].localAgent,
-                    agent_phone: docs[i].agent_phone,
-                    status: "Rich Man",
-                    address: {
-                        division: docs[i].division,
-                        district: docs[i].district,
-                        ps: docs[i].ps,
-                        postCode: docs[i].postCode,
-                        area: docs[i].area
-                    }
-
-                }
-                richMan.push(richman);
-
-
-            } else {
-                //middleClass++;
-            }
+    if (income >= 50000) {
+        if (income >= 90000) {
+            status = "Rich Man";
 
         } else {
-            if (docs[i].monthlyIncom <= 30000 && docs[i].monthlyIncom >= 10000) {
-                //lowerMiddleClass++;
+            status = "Middle Class";
+        }
+
+    } else {
+        if (income <= 50000 && income >= 20000) {
+            status = "Lower Middle Class";
+        } else {
+            if (income <= 10000) {
+                status = "Extremely Poor";
             } else {
-                if (docs[i].monthlyIncom <= 5000) {
-                    var soPoor = {
-                        id: docs[i]._id,
-                        name: docs[i].name,
-                        father_name: docs[i].father_name,
-                        localAgent: docs[i].localAgent,
-                        agent_phone: docs[i].agent_phone,
-                        phone: docs[i].phone,
-                        status: "extremelyPoor",
-                        lastDegree:docs[i].lastDegree,
-                        reason: {
-                            saving: docs[i].saving,
-                            t_a_trainig: docs[i].t_a_trainig,
-                            working_scope: docs[i].working_scope,
-                            know_t_a_trainig: docs[i].know_t_a_trainig,
-                            any_c_land: docs[i].any_c_land,
-                            drugAddiction: docs[i].drugAddiction,
-                            natural_reson: docs[i].natural_reson
-                        },
-                        address: {
-                            division: docs[i].division,
-                            district: docs[i].district,
-                            ps: docs[i].ps,
-                            postCode: docs[i].postCode,
-                            area: docs[i].area
-                        }
-
-                    }
-
-                    extremelyPoor.push(soPoor);
-                } else {
-                    //poor++
-                }
+                status = "Poor";
             }
         }
     }
 
 
-
-    var data = {
-        richMan: richMan,
-
-        extremelyPoor: extremelyPoor
-    }
-
-
-    return data;
-
+    return status;
 
 }
+
+
+// exports.rich_poor = function(docs) {
+
+//     var richMan = [];
+//     // var middleClass = [];
+//     // var lowerMiddleClass = [];
+//     // var poor = [];
+//     var extremelyPoor = [];
+
+
+//     for (var i = 0; i < docs.length; i++) {
+
+//         if (docs[i].monthlyIncom >= 30000) {
+//             if (docs[i].monthlyIncom >= 60000) {
+
+//                 var richman = {
+//                     id: docs[i]._id,
+//                     name: docs[i].name,
+//                     email: docs[i].email,
+//                     phone: docs[i].phone,
+//                     localAgent: docs[i].localAgent,
+//                     agent_phone: docs[i].agent_phone,
+//                     status: "Rich Man",
+//                     address: {
+//                         division: docs[i].division,
+//                         district: docs[i].district,
+//                         ps: docs[i].ps,
+//                         postCode: docs[i].postCode,
+//                         area: docs[i].area
+//                     }
+
+//                 }
+//                 richMan.push(richman);
+
+
+//             } else {
+//                 //middleClass++;
+//             }
+
+//         } else {
+//             if (docs[i].monthlyIncom <= 30000 && docs[i].monthlyIncom >= 10000) {
+//                 //lowerMiddleClass++;
+//             } else {
+//                 if (docs[i].monthlyIncom <= 5000) {
+//                     var soPoor = {
+//                         id: docs[i]._id,
+//                         name: docs[i].name,
+//                         father_name: docs[i].father_name,
+//                         localAgent: docs[i].localAgent,
+//                         agent_phone: docs[i].agent_phone,
+//                         phone: docs[i].phone,
+//                         status: "extremelyPoor",
+//                         lastDegree: docs[i].lastDegree,
+//                         reason: {
+//                             saving: docs[i].saving,
+//                             t_a_trainig: docs[i].t_a_trainig,
+//                             working_scope: docs[i].working_scope,
+//                             know_t_a_trainig: docs[i].know_t_a_trainig,
+//                             any_c_land: docs[i].any_c_land,
+//                             drugAddiction: docs[i].drugAddiction,
+//                             natural_reson: docs[i].natural_reson
+//                         },
+//                         address: {
+//                             division: docs[i].division,
+//                             district: docs[i].district,
+//                             ps: docs[i].ps,
+//                             postCode: docs[i].postCode,
+//                             area: docs[i].area
+//                         }
+
+//                     }
+
+//                     extremelyPoor.push(soPoor);
+//                 } else {
+//                     //poor++
+//                 }
+//             }
+//         }
+//     }
+
+
+
+//     var data = {
+//         richMan: richMan,
+
+//         extremelyPoor: extremelyPoor
+//     }
+
+
+//     return data;
+
+
+// }
 
 exports.resonOfPoor = function(result) {
     var yes_savings = 0;

@@ -27,11 +27,6 @@ router.get('/', function(req, res, next) {
             console.log("no_working_scope:" + resonOfPoor.no_working_scope);
 
 
-
-
-            
-
-
              switch (req.session.loginType) {
                 case "Institute":
 

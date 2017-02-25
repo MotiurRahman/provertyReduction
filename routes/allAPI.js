@@ -9,10 +9,15 @@ var suggest = require('./../libs/recomend');
 
 
 router.get('/', function(req, res, next) {
-    console.log("peoples API")
-    var suggestion = suggest.recomendData("Technical", "6341");
+    surveyor.find({ userName: "rana" }).exec(function(err, docs) {
+        if (!docs.length) {
 
-    res.json(suggestion);
+            res.json("this is available");
+        } else {
+            res.json("alreasy exist");
+
+        }
+    });
 
 });
 
@@ -202,11 +207,11 @@ router.get('/all_ins', function(req, res, next) {
 
 
 
-router.get('/institute', function(req, res, next) {
+router.get('/peoples', function(req, res, next) {
 
     console.log("institute API")
 
-    institute.find({}).exec(function(err, docs) {
+    peoples.find({}).exec(function(err, docs) {
 
         if (err) {
             res.json(err)

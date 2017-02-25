@@ -87,8 +87,9 @@
 
     <div class="form-group">
       <label for="religion">Religion *</label>
-      <select name="religion" class="form-control" id="religion">
-        <option value="Islam" selected="selected">Islam</option>
+      <select name="religion" class="form-control" id="religion" required>
+        <option value="">Select Religion</option>
+        <option value="Islam">Islam</option>
         <option value="Hinduism">Hinduism</option>
         <option value="Christanity">Christanity</option>
         <option value="Buddhist">Buddhist</option>
@@ -122,7 +123,7 @@
       <div id="blood_group_container">
         <select name="bloadGroup" class="form-control" id="bloadGroup">
           <option value="">Blood Group</option>
-          <option value="A+" selected="selected">A+</option>
+          <option value="A+">A+</option>
           <option value="A-">A-</option>
           <option value="B+">B+</option>
           <option value="B-">B-</option>
@@ -165,6 +166,24 @@
         <label  for="dateOfBirth">Phone Number:</label>
 
         <input type="tel" class="form-control" id="agent_phone" name="agent_phone" placeholder="Enter the Phone Number of the Chairman or Local elite person name">
+
+      </div>
+      <div class="form-group">
+        <label  for="dept">Name of Training Dept:</label>
+
+        <input type="text" class="form-control" id="dept" name="dept"readonly>
+
+      </div>
+      <div class="form-group">
+        <label  for="institute">Name of Institute:</label>
+
+        <input type="text" class="form-control" id="institute" name="institute" readonly>
+
+      </div>
+      <div class="form-group">
+        <label  for="ins_id">Institute ID:</label>
+
+        <input type="text" class="form-control" id="ins_id" name="ins_id" readonly>
 
       </div>
 
@@ -326,6 +345,7 @@
   <div class="form-group">
    <label for="natural_reson">Any Other Reason *</label>
    <select name="natural_reson" class="form-control" id="natural_reson">
+    <option value="">Select Natural Reason</option>
     <option value="Flood">Flood</option>
     <option value="River Erosion">River Erosion</option>
     <option value="Cyclone">Cyclone</option>
@@ -414,6 +434,13 @@
  $("#dateOfBirth").val(result[0].dateOfBirth);
  $("#localAgent").val(result[0].localAgent);
  $("#agent_phone").val(result[0].agent_phone);
+
+ $("#dept").val(result[0].dept);
+ $("#institute").val(result[0].institute);
+ $("#ins_id").val(result[0].ins_id);
+
+
+
  $("#division").val(result[0].division);
  $("#district").val(result[0].district);
 

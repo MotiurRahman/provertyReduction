@@ -64,9 +64,16 @@ router.post('/', function(req, res, next) {
    var natural_reson = req.body.natural_reson;
    var drugAddiction = req.body.drugAddiction;
 
+if(residence == "Rural")
+{
+     var statusValue = status.check_status(monthlyIncom);
 
+}else{
+     var statusValue = status.check_status_urban(monthlyIncom);
 
-    var statusValue = status.check_status(monthlyIncom);
+}
+
+   
 
     console.log("name:" + name);
     console.log("father_name:" + father_name);

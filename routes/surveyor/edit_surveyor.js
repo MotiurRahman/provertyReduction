@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+var nodemailer = require('nodemailer');
+var validator = require("validator");
 
 var surveyor = require('../../libs/surveyorSchema');
 
@@ -10,10 +12,7 @@ router.get('/', function(req, res, next) {
 
 
     switch (req.session.loginType) {
-       
-        case "Surveyor":
-            res.render('surveyor/edit_surveyor', {surveyor_userName: req.session.userName, layout: "sur_layout" });
-            break;
+
         case "Admin":
             res.render('surveyor/edit_surveyor', { layout: "admin_layout" });
             break;
@@ -56,6 +55,9 @@ router.post('/', function(req, res, next) {
     var subject = req.body.subject;
     var occupation = req.body.occupation;
     var ac_status = req.body.ac_status;
+    var notification_check = req.body.notification_check;
+    var notification_mail = req.body.notification_mail;
+
 
     console.log("id:" + id);
     console.log("name:" + name);
@@ -87,6 +89,7 @@ router.post('/', function(req, res, next) {
 
     console.log("occupation:" + occupation);
     console.log("ac_status:" + ac_status);
+    console.log("notification_check:" + notification_check);
 
 
 
@@ -116,7 +119,7 @@ router.post('/', function(req, res, next) {
         lastDegree: lastDegree,
         subject: subject,
         occupation: occupation,
-        
+
         ac_status: ac_status,
 
 
@@ -126,18 +129,81 @@ router.post('/', function(req, res, next) {
         update = { $set: surveyorinfo };
 
 
+    if (notification_check == "on") {
+        console.log("notification_mail:" + notification_mail);
 
-    surveyor.update(conditions, update, callback);
 
-    function callback(err, updatdata) {
-        if (err) {
-            res.json("Data is not valid");
-            // mongoose.connection.close();
+        var transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 465,
+            auth: {
+                user: 'motiur.mbstu@gmail.com', // Your email id
+                pass: 'cvifcxpetookuwts' // Your password
+            }
+        });
+
+
+        var mailOptions = {
+            from: 'motiur.mbstu@gmail.com', // sender address
+            to: email, // list of receivers
+            subject: "Account Releated Information", // Subject line
+            text: notification_mail //, // plaintext body
+                // html: '<b>Hello world ✔</b>' // You can choose to send an HTML body instead
+        };
+
+        if (validator.isEmail(email)) {
+            transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                    console.log(error);
+                    console.log("Please try again");
+                } else {
+
+                    console.log("Message has been send successfully");
+
+                    surveyor.update(conditions, update, callback);
+
+                    function callback(err, updatdata) {
+                        if (err) {
+                            res.json("Data is not valid");
+                            // mongoose.connection.close();
+                        } else {
+
+                            res.redirect('/')
+                        }
+                    };
+                };
+            });
+
+
         } else {
-
-            res.redirect('/')
+            res.json("Email is not valid");
         }
-    };
+    } else {
+
+
+        if (validator.isEmail(email)) {
+            surveyor.update(conditions, update, callback);
+
+            function callback(err, updatdata) {
+                if (err) {
+                    res.json("Data is not valid");
+                    // mongoose.connection.close();
+                } else {
+
+                    res.redirect('/')
+                }
+            };
+
+        } else {
+            res.json("Email is not valid");
+        }
+    }
+
+
+
+
+
+
 
 });
 
