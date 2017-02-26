@@ -120,6 +120,8 @@
     </div>
 
       <h6 class="column-title"><i class="glyphicon glyphicon-log-in fa-2x blue"> Login Info</i></h6>
+       <div ><p id="resultInfo" ></p></div>
+
 
        <div class="form-group">
         <label  for="userName">User Name:*</label>
@@ -140,6 +142,18 @@
         <input type="password" class="form-control" id="re_password" name="re_password" placeholder="Enter your password again" required>
 
       </div>
+
+       <div class="form-group">
+
+       <button type="button" class="btn btn-primary" id="serverCheck"><i class="fa fa-spinner fa-spin"></i> Uses Name and Pass Checking</button>
+     </div>
+
+     <div class="form-group">
+
+      <button type="button" id="checkUser" class="btn btn-primary">Check User Name & Pass</button>
+
+    </div>
+
 
     </div>
 
@@ -191,3 +205,62 @@
 
 
 </script>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+     $("#serverCheck").hide();
+
+   $("#checkUser").click(function() {
+
+    if($("#userName").val() == ""){
+      $("#userName").focus();
+    } else if($("#password").val() == ""){
+      $("#password").focus();
+    } else if ($("#re_password").val() == "") {
+      $("#re_password").focus();
+    } else if ($("#password").val() == $("#re_password").val()) {
+
+     $("#serverCheck").show();
+     $("#checkUser").hide();
+     $.ajax({
+      url: 'institute_signup/userNamecheck/'+$("#userName").val(),
+      type: 'GET',
+      dataType: 'json',
+
+    })
+     .done(function(result) {
+
+      $("#serverCheck").hide();
+      $("#checkUser").show();
+     
+
+      if (result == "User Name is OK") {
+
+        $("#resultInfo").removeClass("alert alert-danger").addClass("alert alert-success").text(result);
+      } else {
+
+        $("#resultInfo").removeClass("alert alert-success").addClass("alert alert-danger").text(result);
+
+
+      }
+
+
+    })
+     .fail(function() {
+      $("#resultInfo").removeClass("alert alert-success").addClass("alert alert-danger").text(result);
+    })
+     .always(function() {
+      console.log("complete");
+    });
+
+
+   } else {
+ 
+ $("#resultInfo").removeClass("alert alert-success").addClass("alert alert-danger").text("Password does not match");
+
+}
+});
+ });
+
+</script>>

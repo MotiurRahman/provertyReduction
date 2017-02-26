@@ -156,7 +156,7 @@ router.post('/', function(req, res, next) {
 
                     userCheck();
                 } else {
-                    next("User Name already exist");
+                    next("User Name Already Exist");
 
                 }
             });
@@ -171,5 +171,22 @@ router.post('/', function(req, res, next) {
 
 
 });
+
+router.get('/userNamecheck/:userName', function(req, res, next) {
+
+
+    surveyor.find({ userName: req.params.userName }).exec(function(err, docs) {
+        if (!docs.length) {
+
+            res.json("User Name is OK");
+        } else {
+            res.json("User Name Already Exist");
+
+        }
+    });
+
+
+});
+
 
 module.exports = router;

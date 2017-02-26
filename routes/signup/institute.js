@@ -94,31 +94,34 @@ router.post('/', function(req, res, next) {
     if (password == re_password) {
 
         if (validator.isEmail(email)) {
-            transporter.sendMail(mailOptions, function(error, info) {
-                if (error) {
-                    console.log(error);
-                    console.log("Please try again");
+
+            function userCheck() {
+
+                new_institute.save(function(err) {
+
+                    if (err) {
+                        res.json(err)
+                            // mongoose.connection.close();
+                    } else {
+                        next("Your account will be activated within 3 working days");
+
+                    }
+
+
+                });
+            }
+
+            institute.find({ userName: userName }).exec(function(err, docs) {
+                if (docs.length > 0) {
+
+                    next("User Name Already Exist");
+
+
                 } else {
-
-                    console.log("Message has been send successfully");
-
-
-                    new_institute.save(function(err) {
-
-                        if (err) {
-                            next(err)
-                                // mongoose.connection.close();
-                        } else {
-                            next("Your account will be activated within 3 working days");
-
-                        }
+                    userCheck();
 
 
-                    });
-
-
-
-                };
+                }
             });
 
 
@@ -126,9 +129,25 @@ router.post('/', function(req, res, next) {
             next("Email is not valid");
         }
     } else {
-        next("Password Does Not Matrch");
+        next("Password Does Not Match");
     }
 
+
+});
+
+
+router.get('/userNamecheck/:userName', function(req, res, next) {
+
+
+    institute.find({ userName: req.params.userName }).exec(function(err, docs) {
+        if (!docs.length) {
+
+            res.json("User Name is OK");
+        } else {
+            res.json("User Name Already Exist");
+
+        }
+    });
 
 
 });

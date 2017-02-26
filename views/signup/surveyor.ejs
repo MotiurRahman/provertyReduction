@@ -24,8 +24,8 @@
       <div class="form-group">
         <h6 class="column-title"><i class="fa fa-user fa-2x blue"> Personal Information</i></h6>
         <label for="name">Name:*</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
-        <span class="red"></span>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required data-validation-required-message="Please enter your name.">
+        <p class="help-block text-danger"></p>
       </div>
 
       <div class="form-group">
@@ -82,7 +82,7 @@
         <span class="red"></span>            
       </div>
 
-     
+
       
 
       <div class="form-group">
@@ -109,19 +109,19 @@
 
         </div>
 
-      <div class="form-group">
-        <label  for="dateOfBirth">Type of Residence*:</label>
+        <div class="form-group">
+          <label  for="dateOfBirth">Type of Residence*:</label>
 
-        <div id="residence_container">
-        <select name="residence" class="form-control" id="residence" required>
-          <option value="">Select Residence</option>
-          <option value="Urban">Urban</option>
-          <option value="Rural">Rural</option>  
-        </select>  
+          <div id="residence_container">
+            <select name="residence" class="form-control" id="residence" required>
+              <option value="">Select Residence</option>
+              <option value="Urban">Urban</option>
+              <option value="Rural">Rural</option>  
+            </select>  
+          </div>
         </div>
-      </div>
 
-         <div class="form-group">
+        <div class="form-group">
           <label  for="dateOfBirth">Chairman or Local Elite person:</label>
 
           <input type="text" class="form-control" id="localAgent" name="localAgent" placeholder="Enter the Chairman or Local elite person name" >
@@ -193,18 +193,21 @@
       </div> 
 
       <div class="form-group">
-          <label for="occupation">Occupation:*</label>
+        <label for="occupation">Occupation:*</label>
 
-          <input type="tex" class="form-control" id="occupation" name="occupation" placeholder="Enter your Occupation" required>
+        <input type="tex" class="form-control" id="occupation" name="occupation" placeholder="Enter your Occupation" required>
 
-        </div>
+      </div>
 
 
       <br>
-     
-        <h6 class="column-title"><i class="glyphicon glyphicon-log-in fa-2x blue"> Login Info</i></h6>
 
-       <div class="form-group">
+      
+
+      <h6 class="column-title"><i class="glyphicon glyphicon-log-in fa-2x blue"> Login Info</i></h6>
+      <div ><p id="resultInfo" ></p></div>
+
+      <div class="form-group">
         <label  for="userName">User Name:*</label>
 
         <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter your user name" required>
@@ -221,27 +224,39 @@
         <label for="re_password">Confirm Password:*</label>
 
         <input type="password" class="form-control" id="re_password" name="re_password" placeholder="Enter your password again" required>
+        
 
       </div>
-       
 
+      <div class="form-group">
+
+       <button type="button" class="btn btn-primary" id="serverCheck"><i class="fa fa-spinner fa-spin"></i> Uses Name and Pass Checking</button>
+     </div>
+
+     <div class="form-group">
+
+      <button type="button" id="checkUser" class="btn btn-primary">Check User Name & Pass</button>
 
     </div>
 
 
 
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-       <div class="form-group">
-        <label>
-          <input type="checkbox" id="check"> I would like to help or I need help!
-        </label>
-      </div>
-
-      <button type="submit" id="insert" class="btn btn-primary btn-lg btn-block">Submit</button>
-
-    </div>
   </div>
+
+
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+     <div class="form-group">
+      <label>
+        <input type="checkbox" id="check"> I would like to help or I need help!
+      </label>
+    </div>
+
+    <button type="submit" id="insert" class="btn btn-primary btn-lg btn-block">Submit</button>
+
+  </div>
+</div>
 </form>
 
 </div>
@@ -254,18 +269,20 @@
 
 
 <script type="text/javascript"> 
- $('#insert').attr('disabled','disabled');
- $("#noMarrage").click(function(event) {
-  $("#childNumber").hide();
-});
+  "use strict";
 
- $("#yesMarrage").click(function(event) {
-  $("#childNumber").show();
-});
+  $('#insert').attr('disabled','disabled');
+  $("#noMarrage").click(function(event) {
+    $("#childNumber").hide();
+  });
 
- 
+  $("#yesMarrage").click(function(event) {
+    $("#childNumber").show();
+  });
 
- $("#check").change( function(){
+
+
+  $("#check").change( function(){
    if( $(this).is(':checked') ) {
      $('#insert').removeAttr('disabled');
    }else{
@@ -273,25 +290,68 @@
   }
 });
 
- $("#insert").click(function(event) {
-  $.ajax({
-    url: '/surveyor_signup',
-    type: 'POST',
-    dataType: 'json',
-    data: {param1: 'value1'},
-  })
-  .done(function() {
-    console.log("success");
-  })
-  .fail(function() {
-    console.log("error");
-  })
-  .always(function() {
-    console.log("complete");
-  });
-  
- });
-
 
 
 </script>
+
+
+
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+     $("#serverCheck").hide();
+
+   $("#checkUser").click(function() {
+
+    if($("#userName").val() == ""){
+      $("#userName").focus();
+    } else if($("#password").val() == ""){
+      $("#password").focus();
+    } else if ($("#re_password").val() == "") {
+      $("#re_password").focus();
+    } else if ($("#password").val() == $("#re_password").val()) {
+
+     $("#serverCheck").show();
+     $("#checkUser").hide();
+     $.ajax({
+      url: 'surveyor_signup/userNamecheck/'+$("#userName").val(),
+      type: 'GET',
+      dataType: 'json',
+
+    })
+     .done(function(result) {
+
+      $("#serverCheck").hide();
+      $("#checkUser").show();
+     
+
+      if (result == "User Name is OK") {
+
+        $("#resultInfo").removeClass("alert alert-danger").addClass("alert alert-success").text(result);
+      } else {
+
+        $("#resultInfo").removeClass("alert alert-success").addClass("alert alert-danger").text(result);
+
+
+      }
+
+
+    })
+     .fail(function() {
+      $("#resultInfo").removeClass("alert alert-success").addClass("alert alert-danger").text(result);
+    })
+     .always(function() {
+      console.log("complete");
+    });
+
+
+   } else {
+ 
+ $("#resultInfo").removeClass("alert alert-success").addClass("alert alert-danger").text("Password does not match");
+
+}
+});
+ });
+
+</script>>

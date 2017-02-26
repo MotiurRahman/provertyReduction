@@ -57,10 +57,11 @@ router.post('/', function(req, res, next) {
                                 req.session.userName = personData[0].userName;
                                 req.session.short_name = personData[0].short_name;
                                 req.session.data = personData;
-                                res.render('index', { data: docs, institute_userName: req.session.userName, social_Status: socialStatus, layout: "ins_layout" });
-
+                                
+                                res.redirect("/");
+                            
                             } else {
-                                 res.json("Your Account is not active");
+                                 next("Your Account is not active");
                                  req.session.destroy();
                             }
 
@@ -84,11 +85,11 @@ router.post('/', function(req, res, next) {
 
                             if (surveyor_Data.length > 0) {
                                 req.session.sur_id = surveyor_Data[0]._id;
-                                 req.session.userName = surveyor_Data[0].userName;
-                                res.render('index', { data: docs, surveyor_userName: req.session.userName, social_Status: socialStatus, layout: "sur_layout" });
+                                req.session.userName = surveyor_Data[0].userName;
+                                res.redirect("/");
 
                             } else {
-                                res.json("Your Account is not active");
+                                next("Your Account is not active");
                                 req.session.destroy();
 
                             }
@@ -99,10 +100,10 @@ router.post('/', function(req, res, next) {
 
                     break;
                 case "Admin":
-                    res.render('index', { data: docs, social_Status: socialStatus, layout: "admin_layout" });
+                     res.redirect("/");
                     break;
                 default:
-                    res.render('index', { data: docs, social_Status: socialStatus });
+                    res.redirect("/");
 
             }
 
