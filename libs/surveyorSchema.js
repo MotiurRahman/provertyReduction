@@ -27,7 +27,6 @@ var surveyorSchema = new db.Schema({
     subject:String,
     occupation:String,
 
-    userName:String,
     password: String,
     ac_status: String,
    

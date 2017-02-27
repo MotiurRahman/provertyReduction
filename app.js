@@ -37,6 +37,7 @@ var login = require('./routes/signin/login');
 var logout = require('./routes/signin/logout');
 var APIs = require('./routes/allAPI');
 var activation = require('./routes/activation');
+var passChange = require('./routes/setting/passChange');
 
 
 
@@ -98,15 +99,16 @@ app.use('/logout', logout);
 app.use('/APIs', APIs);
 app.use('/activation', activation);
 app.use('/recomendation', recomendation);
+app.use('/passChange', passChange);
 
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('404 Page Not Found');
-    err.status = 404;
-    next(err);
-});
+// app.use(function(req, res, next) {
+//     var err = new Error('404 Page Not Found');
+//     err.status = 404;
+//     next(err);
+// });
 
 // error handlers
 

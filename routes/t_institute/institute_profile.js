@@ -21,7 +21,7 @@ console.log("loginType:"+req.session.loginType);
                     res.json("DataBase error");
                 } else {
 
-                    res.render('t_institute/institute_profile', { data: instituteData, institute_userName: req.session.userName, layout: "ins_layout" });
+                    res.render('t_institute/institute_profile', { data: instituteData, institute_userName: req.session.short_name, layout: "ins_layout" });
 
                 }
 

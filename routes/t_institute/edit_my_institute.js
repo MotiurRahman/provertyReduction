@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
                     res.json("DataBase error");
                 } else {
 
-                    res.render('t_institute/edit_my_institute', { data: personData, institute_userName: req.session.userName, layout: "ins_layout" });
+                    res.render('t_institute/edit_my_institute', { data: personData, institute_userName: req.session.short_name, layout: "ins_layout" });
 
                 }
 
@@ -47,7 +47,6 @@ router.post('/', function(req, res, next) {
 
     var name = req.body.name;
     var short_name = req.body.short_name;
-    var email = req.body.email;
     var phone = req.body.phone;
     var training_name = req.body.training_name;
     var webAddress = req.body.webAddress;
@@ -56,13 +55,11 @@ router.post('/', function(req, res, next) {
     var district = req.body.district;
     var ps = req.body.ps;
     var postCode = req.body.postCode;
-    var userName = req.body.userName;
     var ins_type = req.body.ins_type;
 
     console.log("id:" + id);
     console.log("name:" + name);
     console.log("short_name:" + short_name);
-    console.log("email:" + email);
     console.log("phone:" + phone);
     console.log("training_name:" + training_name);
     console.log("webAddress:" + webAddress);
@@ -71,7 +68,7 @@ router.post('/', function(req, res, next) {
     console.log("district:" + district);
     console.log("ps:" + ps);
     console.log("postCode:" + postCode);
-    console.log("userName:" + userName);
+   
      console.log("ins_type:" + ins_type);
 
 
@@ -79,20 +76,14 @@ router.post('/', function(req, res, next) {
     var instituteinfo = {
         name: name,
         short_name: short_name,
-        email: email,
         phone: phone,
         training_name: training_name,
         webAddress: webAddress,
-        userName: userName,
-
         division: division,
         district: district,
         ps: ps,
         postCode: postCode,
         ins_type: ins_type,
-
-
-
 
     };
 

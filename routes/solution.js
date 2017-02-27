@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   switch (req.session.loginType) {
         case "Institute":
 
-            res.render('solution', {institute_userName: req.session.userName, layout: "ins_layout" });
+            res.render('solution', {institute_userName: req.session.short_name, layout: "ins_layout" });
 
             break;
         case "Surveyor":

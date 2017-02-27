@@ -41,7 +41,6 @@ router.post('/', function(req, res, next) {
     var subject = req.body.subject;
     var occupation = req.body.occupation;
 
-    var userName = req.body.userName;
     var password = req.body.password;
     var re_password = req.body.re_password;
 
@@ -73,7 +72,6 @@ router.post('/', function(req, res, next) {
     console.log("subject:" + subject);
     console.log("occupation:" + occupation);
 
-    console.log("userName:" + userName);
     console.log("password:" + password);
     console.log("re_password:" + re_password);
     var ac_status = "Request";
@@ -104,7 +102,6 @@ router.post('/', function(req, res, next) {
         lastDegree: lastDegree,
         subject: subject,
         occupation: occupation,
-        userName: userName,
         password: password,
         ac_status: ac_status
 
@@ -143,7 +140,7 @@ router.post('/', function(req, res, next) {
                         res.json(err)
                             // mongoose.connection.close();
                     } else {
-                        next("Your account will be activated within 3 working days");
+                        next("Your account will be activated within 3 working days.");
 
                     }
 
@@ -151,12 +148,12 @@ router.post('/', function(req, res, next) {
                 });
             }
 
-            surveyor.find({ userName: userName }).exec(function(err, docs) {
-                if (!docs.length) {
+            surveyor.find({ email: email }).exec(function(err, docs) {
+                if (docs.length > 0) {
 
-                    userCheck();
+                    next("Email Already Exist");
                 } else {
-                    next("User Name Already Exist");
+                    userCheck();
 
                 }
             });
@@ -172,16 +169,15 @@ router.post('/', function(req, res, next) {
 
 });
 
-router.get('/userNamecheck/:userName', function(req, res, next) {
+router.get('/userNamecheck/:email', function(req, res, next) {
 
+    surveyor.find({ email: req.params.email }).exec(function(err, docs) {
+        if (docs.length > 0) {
 
-    surveyor.find({ userName: req.params.userName }).exec(function(err, docs) {
-        if (!docs.length) {
-
-            res.json("User Name is OK");
+            res.json("Email Already Exist");
         } else {
-            res.json("User Name Already Exist");
 
+            res.json("User Email is OK");
         }
     });
 

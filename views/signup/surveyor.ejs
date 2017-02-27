@@ -36,14 +36,6 @@
       </div>
 
       <div class="form-group">
-        <label  for="email">Contact Email:</label>
-
-        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email">
-
-      </div>
-
-
-      <div class="form-group">
         <label  for="phone">Contact Phone:</label>
 
         <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter contact number">
@@ -208,9 +200,9 @@
       <div ><p id="resultInfo" ></p></div>
 
       <div class="form-group">
-        <label  for="userName">User Name:*</label>
+        <label  for="email">Login Email:*</label>
 
-        <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter your user name" required>
+        <input type="text" class="form-control" id="email" name="email" placeholder="Enter your login email" required>
 
       </div>
       <div class="form-group">
@@ -235,7 +227,7 @@
 
      <div class="form-group">
 
-      <button type="button" id="checkUser" class="btn btn-primary">Check User Name & Pass</button>
+      <button type="button" id="checkUser" class="btn btn-primary">Check,Email & Pass</button>
 
     </div>
 
@@ -249,7 +241,7 @@
     <div class="col-sm-offset-2 col-sm-10">
      <div class="form-group">
       <label>
-        <input type="checkbox" id="check"> I would like to help or I need help!
+        <input type="checkbox" id="check"> I would like to help the People!
       </label>
     </div>
 
@@ -304,8 +296,8 @@
 
    $("#checkUser").click(function() {
 
-    if($("#userName").val() == ""){
-      $("#userName").focus();
+    if($("#email").val() == ""){
+      $("#email").focus();
     } else if($("#password").val() == ""){
       $("#password").focus();
     } else if ($("#re_password").val() == "") {
@@ -315,7 +307,7 @@
      $("#serverCheck").show();
      $("#checkUser").hide();
      $.ajax({
-      url: 'surveyor_signup/userNamecheck/'+$("#userName").val(),
+      url: 'surveyor_signup/userNamecheck/'+$("#email").val(),
       type: 'GET',
       dataType: 'json',
 
@@ -326,7 +318,7 @@
       $("#checkUser").show();
      
 
-      if (result == "User Name is OK") {
+      if (result == "User Email is OK") {
 
         $("#resultInfo").removeClass("alert alert-danger").addClass("alert alert-success").text(result);
       } else {

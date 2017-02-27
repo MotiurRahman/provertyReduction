@@ -21,7 +21,6 @@ router.post('/', function(req, res, next) {
     var phone = req.body.phone;
     var training_name = req.body.training_name;
     var webAddress = req.body.webAddress;
-    var userName = req.body.userName;
     var password = req.body.password;
     var re_password = req.body.re_password;
 
@@ -36,7 +35,6 @@ router.post('/', function(req, res, next) {
     console.log("email:" + email);
     console.log("phone:" + phone);
     console.log("training_name:" + training_name);
-    console.log("userName:" + userName);
     console.log("password:" + password);
     console.log("re_password:" + re_password);
     console.log("division:" + division);
@@ -57,7 +55,6 @@ router.post('/', function(req, res, next) {
         phone: phone,
         training_name: training_name,
         webAddress: webAddress,
-        userName: userName,
         password: password,
 
         division: division,
@@ -103,7 +100,7 @@ router.post('/', function(req, res, next) {
                         res.json(err)
                             // mongoose.connection.close();
                     } else {
-                        next("Your account will be activated within 3 working days");
+                        next("Your account will be activated within 3 working days.");
 
                     }
 
@@ -111,15 +108,12 @@ router.post('/', function(req, res, next) {
                 });
             }
 
-            institute.find({ userName: userName }).exec(function(err, docs) {
+            institute.find({ email: email }).exec(function(err, docs) {
                 if (docs.length > 0) {
 
-                    next("User Name Already Exist");
-
-
+                    next("Email Already Exist");
                 } else {
                     userCheck();
-
 
                 }
             });
@@ -136,18 +130,19 @@ router.post('/', function(req, res, next) {
 });
 
 
-router.get('/userNamecheck/:userName', function(req, res, next) {
+router.get('/userNamecheck/:email', function(req, res, next) {
 
+    institute.find({ email: req.params.email }).exec(function(err, docs) {
+        if (docs.length > 0) {
+            res.json("Email Already Exist");
 
-    institute.find({ userName: req.params.userName }).exec(function(err, docs) {
-        if (!docs.length) {
-
-            res.json("User Name is OK");
         } else {
-            res.json("User Name Already Exist");
+
+            res.json("User Email is OK");
 
         }
     });
+
 
 
 });

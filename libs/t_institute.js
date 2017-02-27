@@ -15,8 +15,7 @@ var instituteSchema = new db.Schema({
     district: String,
     ps: String,
     postCode: Number,
- 
-    userName:String,
+
     password: String,
     ins_type:String,
     ac_status: String,

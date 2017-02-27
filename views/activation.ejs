@@ -44,7 +44,7 @@
 									<tr>
 										<td><%=i%>:<%=data[i]._id%></td>
 										<td><%=data[i].name%><br>Phone:<%=data[i].phone%><br>
-											userName:<%=data[i].userName%><br>
+											Email:<%=data[i].email%><br>
 											Pass:<%=data[i].password%>
 
 
@@ -56,7 +56,7 @@
 											P.S:<%=data[i].ps%>,<br>
 											Post Code:<%=data[i].postCode%><br>
 											
-											Email: <%=data[i].email%>
+											
 
 										</td>
 										
@@ -102,11 +102,11 @@
 				var table_row = $("<tr></tr>");
 				
 				var id = $("<td>"+i+":"+result[i]._id+"</td>");
-				var name = $("<td>"+result[i].name+"<br> Phone:"+result[i].phone +"<br>UserName:"+result[i].userName+"<br> password:"+result[i].password+ "</td>");
+				var name = $("<td>"+result[i].name+"<br> Phone:"+result[i].phone +"<br>Email:"+result[i].email+"<br> password:"+result[i].password+ "</td>");
 				
 
 
-				var address = $("<td>Divi:"+result[i].division +"<br> Dist:"+result[i].district +"<br>P.S:"+result[i].ps+"<br> Post Code:"+result[i].postCode+"<br>Email:"+result[i].email+"</td>");
+				var address = $("<td>Divi:"+result[i].division +"<br> Dist:"+result[i].district +"<br>P.S:"+result[i].ps+"<br> Post Code:"+result[i].postCode+"</td>");
 
 
 
@@ -158,11 +158,11 @@
 				var table_row = $("<tr></tr>");
 				
 				var id = $("<td>"+i+":"+result[i]._id+"</td>");
-				var name = $("<td>"+result[i].name+"<br> Phone:"+result[i].phone +"<br>UserName:"+result[i].userName+"<br> password:"+result[i].password+ "</td>");
+				var name = $("<td>"+result[i].name+"<br> Phone:"+result[i].phone +"<br>Email:"+result[i].email+"<br> password:"+result[i].password+ "</td>");
 				
 
 
-				var address = $("<td>Divi:"+result[i].division +"<br> Dist:"+result[i].district +"<br>P.S:"+result[i].ps+"<br> Post Code:"+result[i].postCode+"<br>Email:"+result[i].email+"</td>");
+				var address = $("<td>Divi:"+result[i].division +"<br> Dist:"+result[i].district +"<br>P.S:"+result[i].ps+"<br> Post Code:"+result[i].postCode+"</td>");
 
 
 

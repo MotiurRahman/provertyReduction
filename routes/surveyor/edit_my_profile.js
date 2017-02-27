@@ -47,7 +47,6 @@ router.post('/', function(req, res, next) {
 
     var name = req.body.name;
     var father_name = req.body.father_name;
-    var email = req.body.email;
     var phone = req.body.phone;
     var gender = req.body.gender;
     var nid = req.body.nid;
@@ -71,12 +70,11 @@ router.post('/', function(req, res, next) {
     var lastDegree = req.body.lastDegree;
     var subject = req.body.subject;
     var occupation = req.body.occupation;
-    var userName = req.body.userName;
+   
 
     console.log("id:" + id);
     console.log("name:" + name);
     console.log("father_name:" + father_name);
-    console.log("email:" + email);
     console.log("phone:" + phone);
     console.log("gender:" + gender);
     console.log("religion:" + religion);
@@ -102,15 +100,13 @@ router.post('/', function(req, res, next) {
 
 
     console.log("occupation:" + occupation);
-    console.log("userName:" + userName);
-
+    
 
 
 
     var surveyorinfo = {
         name: name,
         father_name: father_name,
-        email: email,
         phone: phone,
         gender: gender,
         nid: nid,
@@ -133,7 +129,7 @@ router.post('/', function(req, res, next) {
 
 
         occupation: occupation,
-        userName:userName
+      
 
 
     };

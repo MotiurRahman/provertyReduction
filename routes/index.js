@@ -16,16 +16,16 @@ router.get('/', function(req, res, next) {
 
             var socialStatus = status.social_status(docs);
 
-
+            
 
             switch (req.session.loginType) {
                 case "Institute":
 
-                    res.render('index', {institute_userName: req.session.userName, data: docs, social_Status: socialStatus, layout: "ins_layout" });
+                    res.render('index', { institute_userName: req.session.short_name, data: docs, social_Status: socialStatus, layout: "ins_layout" });
 
                     break;
                 case "Surveyor":
-                    res.render('index', {surveyor_userName: req.session.userName, data: docs, social_Status: socialStatus, layout: "sur_layout" });
+                    res.render('index', { surveyor_userName: req.session.userName, data: docs, social_Status: socialStatus, layout: "sur_layout" });
                     break;
                 case "Admin":
                     res.render('index', { data: docs, social_Status: socialStatus, layout: "admin_layout" });

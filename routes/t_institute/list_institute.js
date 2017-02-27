@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
             switch (req.session.loginType) {
         case "Institute":
 
-            res.render('t_institute/list_institute', {institute_userName: req.session.userName, data: docs, layout: "ins_layout" });
+            res.render('t_institute/list_institute', {institute_userName: req.session.short_name, data: docs, layout: "ins_layout" });
 
             break;
         case "Surveyor":

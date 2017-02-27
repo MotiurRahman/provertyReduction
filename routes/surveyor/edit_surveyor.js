@@ -30,7 +30,6 @@ router.post('/', function(req, res, next) {
 
     var name = req.body.name;
     var father_name = req.body.father_name;
-    var email = req.body.email;
     var phone = req.body.phone;
     var gender = req.body.gender;
     var nid = req.body.nid;
@@ -40,6 +39,7 @@ router.post('/', function(req, res, next) {
     var bloadGroup = req.body.bloadGroup;
     var localAgent = req.body.localAgent;
     var agent_phone = req.body.agent_phone;
+    var email = req.body.email;
 
 
 
@@ -62,10 +62,11 @@ router.post('/', function(req, res, next) {
     console.log("id:" + id);
     console.log("name:" + name);
     console.log("father_name:" + father_name);
-    console.log("email:" + email);
+  
     console.log("phone:" + phone);
     console.log("gender:" + gender);
     console.log("religion:" + religion);
+    console.log("email:" + email);
 
     console.log("nid:" + nid);
     console.log("dateOfBirth:" + dateOfBirth);
@@ -98,7 +99,6 @@ router.post('/', function(req, res, next) {
     var surveyorinfo = {
         name: name,
         father_name: father_name,
-        email: email,
         phone: phone,
         gender: gender,
         nid: nid,

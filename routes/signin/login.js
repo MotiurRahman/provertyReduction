@@ -16,11 +16,11 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
 
     var loginType = req.body.loginType;
-    var userName = req.body.userName;
+    var email = req.body.email;
     var password = req.body.password;
 
     console.log("loginType:" + loginType);
-    console.log("userName:" + userName);
+    console.log("email:" + email);
     console.log("password:" + password);
 
     req.session.loginType = loginType;
@@ -39,7 +39,7 @@ router.post('/', function(req, res, next) {
 
 
 
-                    institute.find({ $and: [{ userName: userName }, { password: password },{ac_status:"Active"}] }).exec(function(err, personData) {
+                    institute.find({ $and: [{ email: email }, { password: password },{ac_status:"Active"}] }).exec(function(err, personData) {
 
                         if (err) {
                             res.json("Database Error");
@@ -54,7 +54,6 @@ router.post('/', function(req, res, next) {
                                 req.session.ins_type = personData[0].ins_type;
                                 req.session.postCode  = personData[0].postCode;
                                 
-                                req.session.userName = personData[0].userName;
                                 req.session.short_name = personData[0].short_name;
                                 req.session.data = personData;
                                 
@@ -74,7 +73,7 @@ router.post('/', function(req, res, next) {
                 case "Surveyor":
 
 
-                    surveyor.find({ $and: [{ userName: userName }, { password: password },{ac_status:"Active"}] }).exec(function(err, surveyor_Data) {
+                    surveyor.find({ $and: [{ email: email }, { password: password },{ac_status:"Active"}] }).exec(function(err, surveyor_Data) {
 
                         if (err) {
                             res.json("password Does not match");
@@ -85,7 +84,8 @@ router.post('/', function(req, res, next) {
 
                             if (surveyor_Data.length > 0) {
                                 req.session.sur_id = surveyor_Data[0]._id;
-                                req.session.userName = surveyor_Data[0].userName;
+                                req.session.userName = surveyor_Data[0].name;
+                                console.log("UseName:"+req.session.userName);
                                 res.redirect("/");
 
                             } else {

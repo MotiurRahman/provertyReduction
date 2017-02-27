@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
                 } else {
                     console.log("RecomendatedPeople:" + docs.length);
 
-                    res.render('t_institute/recomendation', { institute_userName: req.session.userName, data: docs, layout: "ins_layout" });
+                    res.render('t_institute/recomendation', { institute_userName: req.session.short_name, data: docs, layout: "ins_layout" });
                 }
 
             });
@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
                 } else {
 
 
-                    res.render('t_institute/recomendation', { institute_userName: req.session.userName, data: docs, layout: "ins_layout" });
+                    res.render('t_institute/recomendation', { institute_userName: req.session.short_name, data: docs, layout: "ins_layout" });
                 }
 
             });
@@ -45,7 +45,7 @@ router.get('/', function(req, res, next) {
                 } else {
 
 
-                    res.render('t_institute/recomendation', { institute_userName: req.session.userName, data: docs, layout: "ins_layout" });
+                    res.render('t_institute/recomendation', { institute_userName: req.session.short_name, data: docs, layout: "ins_layout" });
                 }
 
             });
@@ -59,7 +59,7 @@ router.get('/', function(req, res, next) {
                 } else {
 
 
-                    res.render('t_institute/recomendation', { institute_userName: req.session.userName, data: docs, layout: "ins_layout" });
+                    res.render('t_institute/recomendation', { institute_userName: req.session.short_name, data: docs, layout: "ins_layout" });
                 }
 
             });
@@ -73,7 +73,7 @@ router.get('/', function(req, res, next) {
                 } else {
 
 
-                    res.render('t_institute/recomendation', { institute_userName: req.session.userName, data: docs, layout: "ins_layout" });
+                    res.render('t_institute/recomendation', { institute_userName: req.session.short_name, data: docs, layout: "ins_layout" });
                 }
 
             });

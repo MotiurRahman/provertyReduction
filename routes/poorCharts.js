@@ -30,7 +30,7 @@ router.get('/', function(req, res, next) {
              switch (req.session.loginType) {
                 case "Institute":
 
-                    res.render('poorCharts', {institute_userName: req.session.userName, data: docs, resonOfPoor: resonOfPoor, totalNum: total, layout: "ins_layout" });
+                    res.render('poorCharts', {institute_userName: req.session.short_name, data: docs, resonOfPoor: resonOfPoor, totalNum: total, layout: "ins_layout" });
 
                     break;
                 case "Surveyor":

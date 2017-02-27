@@ -71,7 +71,6 @@ router.post('/', function(req, res, next) {
     var instituteinfo = {
         name: name,
         short_name: short_name,
-        email: email,
         phone: phone,
         training_name: training_name,
         webAddress: webAddress,
