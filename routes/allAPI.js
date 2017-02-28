@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/tec', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }], "postCode": "6341" }).exec(function(err, docs) {
+    peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }], $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": "6341" }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -40,7 +40,7 @@ router.get('/tec', function(req, res, next) {
 
 router.get('/agr', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }], "postCode": req.session.postCode }).exec(function(err, docs) {
+    peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }], $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": req.session.postCode }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -56,7 +56,7 @@ router.get('/agr', function(req, res, next) {
 
 router.get('/Info', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({ know_t_a_trainig: "NO", "postCode": "6341" }).exec(function(err, docs) {
+    peoples.find({ $or: [{ status: "Poor" }, { status: "Extremely Poor" }], know_t_a_trainig: "NO", "postCode": "6341" }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -72,7 +72,7 @@ router.get('/Info', function(req, res, next) {
 
 router.get('/ngo', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({ saving: "NO", "postCode": req.session.postCode }).exec(function(err, docs) {
+    peoples.find({ $or: [{ status: "Poor" }, { status: "Extremely Poor" }], saving: "NO", "postCode": req.session.postCode }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -88,7 +88,7 @@ router.get('/ngo', function(req, res, next) {
 
 router.get('/medical', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({ drugAddiction: "YES", "postCode": req.session.postCode }).exec(function(err, docs) {
+    peoples.find({ $or: [{ status: "Poor" }, { status: "Extremely Poor" }], drugAddiction: "YES", "postCode": req.session.postCode }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -226,16 +226,53 @@ router.get('/peoples', function(req, res, next) {
 });
 
 
-router.get('/surveyor', function(req, res, next) {
+router.get('/pass', function(req, res, next) {
     console.log("surveyor API")
-    institute.find({}).exec(function(err, docs) {
+    institute.find({ $and: [{ _id: "58b448e462b3ac05db35667c" }, { password: "123" }] }).exec(function(err, docs) {
 
         if (err) {
-            res.json(err)
+            req.json(err)
         } else {
+            if (docs.length > 0) {
+
+                if (new_pass == re_new_pass) {
+
+                    var institutepass = {
+
+                        password: pass,
+
+                    }
+
+                    var conditions = { "_id": id },
+                        update = { $set: institutepass };
 
 
-            res.json(docs);
+
+                    institute.update(conditions, update, callback);
+
+                    function callback(err, updatdata) {
+                        if (err) {
+                            next("Data is not valid");
+                            // mongoose.connection.close();
+                        } else {
+
+                            next("Password updated");
+                        }
+                    };
+
+                } else {
+                    next("Password did not match");
+                }
+
+
+
+            } else {
+
+                next("Did not find Current Password");
+
+            }
+
+
         }
 
     });
