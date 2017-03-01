@@ -18,6 +18,7 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 
     <!-- Custom CSS -->
@@ -64,7 +65,7 @@
                 
                 <ul class="nav navbar-right top-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-list"></i> <b class="caret"></b></a>
                         <ul class="dropdown-menu message-dropdown">
 
                             <li class="message-preview">
@@ -81,7 +82,7 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-plus-circle"></i> <b class="caret"></b></a>
                         <ul class="dropdown-menu alert-dropdown">
                             <li>
                                 <a href="/institute_signup"> <b >Registration for Traning Center or Govt org</b></a>
@@ -106,50 +107,55 @@
                             <a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                         </li>
                         <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#chart"><i class="fa fa-fw fa-arrows-v"></i> Charts <i class="fa fa-fw fa-caret-down"></i></a>
-                           <ul id="chart" class="collapse">
-                            <li>
-                                <a href="/charts"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
-                            </li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#chart"><i class="fa fa-fw fa-arrows-v"></i> Charts <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="chart" class="collapse">
+                                <li>
+                                    <a href="/charts"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                                </li>
 
-                            <li>
-                                <a href="/poorCharts"><i class="fa fa-fw fa-bar-chart-o"></i> Poor Charts</a>
-                            </li>
-                        </ul>
-                    </li>
-                    
+                                <li>
+                                    <a href="/poorCharts"><i class="fa fa-fw fa-bar-chart-o"></i> Poor Charts</a>
+                                </li>
+                            </ul>
+                        </li>
 
 
-                <li>
-                    <a href="/algorithm"><i class="fa fa-cogs"></i> Algorithm </a>
-                </li>
-                <li>
-                    <a href="/solution"><i class="fa fa-cogs"></i> Solution </a>
-                </li>
 
-            </ul>
+                        <!-- <li>
+                            <a href="/algorithm"><i class="fa fa-cogs"></i> Algorithm </a>
+                        </li> -->
+                        <li>
+                            <a href="#"><i class="fa fa-bullhorn"></i> Notice </a>
+                        </li>
+
+
+                        <li>
+                            <a href="/solution"><i class="fa fa-info-circle"></i> Blog </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+            <%-body%>
+
         </div>
-        <!-- /.navbar-collapse -->
-    </nav>
-    <%-body%>
+        <!-- /#wrapper -->
 
-</div>
-<!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
 
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
+        <!-- Bootstrap Core JavaScript -->
 
-<!-- Bootstrap Core JavaScript -->
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="js/plugins/morris/raphael.min.js"></script>
-<script src="js/plugins/morris/morris.min.js"></script>
-<script src="js/plugins/morris/morris-data.js"></script>
+        <!-- Morris Charts JavaScript -->
+        <script src="js/plugins/morris/raphael.min.js"></script>
+        <script src="js/plugins/morris/morris.min.js"></script>
+        <script src="js/plugins/morris/morris-data.js"></script>
 
 
-</body>
+    </body>
 
-</html>
+    </html>

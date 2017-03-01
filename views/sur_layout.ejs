@@ -64,7 +64,7 @@
                 
                 <ul class="nav navbar-right top-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-list"></i> <b class="caret"></b></a>
                         <ul class="dropdown-menu message-dropdown">
 
                             <li class="message-preview">
@@ -106,66 +106,72 @@
                             <a href="/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                         </li>
                         <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#chart"><i class="fa fa-fw fa-arrows-v"></i> Charts <i class="fa fa-fw fa-caret-down"></i></a>
-                           <ul id="chart" class="collapse">
-                            <li>
-                                <a href="/charts"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
-                            </li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#chart"><i class="fa fa-fw fa-arrows-v"></i> Charts <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="chart" class="collapse">
+                                <li>
+                                    <a href="/charts"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                                </li>
 
-                            <li>
-                                <a href="/poorCharts"><i class="fa fa-fw fa-bar-chart-o"></i> Poor Charts</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/tables"><i class="fa fa-fw fa-table"></i> Tables</a>
-                    </li>
-
-                    <li>
-                    <a href="/peoples_form"><i class="fa fa-fw fa-edit"></i> Entry Forms</a>
-                </li>
-
-
-
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Edit Info <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                           <li>
-                            <a href="/edit_peoplesInfo"><i class="fa fa-fw fa-edit"></i> Edit PeoplesInfo</a>
+                                <li>
+                                    <a href="/poorCharts"><i class="fa fa-fw fa-bar-chart-o"></i> Poor Charts</a>
+                                </li>
+                            </ul>
                         </li>
-
-                       
                         <li>
-                            <a href="/edit_my_profile"><i class="fa fa-fw fa-edit"></i> Edit My Profile</a>
+                            <a href="/tables"><i class="fa fa-fw fa-table"></i> Tables</a>
                         </li>
 
-                    </ul>
+                        <li>
+                            <a href="/peoples_form"><i class="fa fa-fw fa-edit"></i> Entry Forms</a>
+                        </li>
 
+
+
+
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Edit Info <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="demo" class="collapse">
+                             <li>
+                                <a href="/edit_peoplesInfo"><i class="fa fa-fw fa-edit"></i> Edit PeoplesInfo</a>
+                            </li>
+
+
+                            <li>
+                                <a href="/edit_my_profile"><i class="fa fa-fw fa-edit"></i> Edit My Profile</a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+                    <li>
+                    <a href="/solution"><i class="fa fa-bullhorn"></i> Notice </a>
                 </li>
+                <li>
+                    <a href="/solution"><i class="fa fa-info-circle"></i> Blog </a>
+                </li>              
 
-                
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+        <%-body%>
 
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </nav>
-    <%-body%>
+    </div>
+    <!-- /#wrapper -->
 
-</div>
-<!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
 
-<!-- jQuery -->
-<script src="/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
 
-<!-- Bootstrap Core JavaScript -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="/js/plugins/morris/raphael.min.js"></script>
-<script src="/js/plugins/morris/morris.min.js"></script>
-<script src="/js/plugins/morris/morris-data.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="/js/plugins/morris/raphael.min.js"></script>
+    <script src="/js/plugins/morris/morris.min.js"></script>
+    <script src="/js/plugins/morris/morris-data.js"></script>
 
 
 </body>

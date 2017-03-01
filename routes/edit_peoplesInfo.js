@@ -165,7 +165,7 @@ router.post('/', function(req, res, next) {
 
     function callback(err, updatdata) {
         if (err) {
-            res.json("Data is not valid");
+            next("Data is not valid");
             // mongoose.connection.close();
         } else {
 
@@ -183,7 +183,7 @@ router.get('/api/data/:id', function(req, res, next) {
     peoples.find({ "_id": req.params.id }).exec(function(err, result) {
 
         if (err) {
-            res.json(err)
+            next(err)
         } else {
 
             console.log("hello man how are u");

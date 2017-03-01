@@ -117,7 +117,24 @@ app.use(function errorHandler(err, req, res, next) {
         return next(err)
     }
     res.status(500)
-    res.render('error', { error: err })
+    switch (req.session.loginType) {
+        case "Institute":
+
+            res.render('error', { error: err,institute_userName: req.session.short_name, layout: "ins_layout" });
+            // res.render('algorithm', {layout: "ins_layout" });
+
+            break;
+        case "Surveyor":
+            res.render('error', { error: err,surveyor_userName: req.session.userName, layout: "sur_layout" });
+            break;
+        case "Admin":
+            res.render('error', { error: err,layout: "admin_layout" });
+            break;
+        default:
+            res.render('error');
+
+    }
+    
 });
 
 

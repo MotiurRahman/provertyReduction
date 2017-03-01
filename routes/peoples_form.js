@@ -162,7 +162,7 @@ if(residence == "Rural")
     new_customer.save(function(err) {
 
         if (err) {
-            res.json(err)
+            next(err)
                 // mongoose.connection.close();
         } else {
             res.redirect("/")
@@ -181,7 +181,7 @@ router.get('/api/:month', function(req, res, next) {
     peoples.find({ "month": month }).exec(function(err, monthlyUses) {
 
         if (err) {
-            res.json(err)
+            next(err)
         } else {
             console.log('monthlyUses:');
             res.json(monthlyUses)
@@ -199,7 +199,7 @@ router.delete('/api/:id', function(req, res, next) {
     peoples.find({ "_id": id }).remove(function(err, deleted) {
 
         if (err) {
-            res.json(err)
+            next(err)
         } else {
 
             res.json(deleted);
