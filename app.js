@@ -58,6 +58,7 @@ if (app.get('env') === 'production') {
 app.use(session(sess));
 
 
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -120,21 +121,30 @@ app.use(function errorHandler(err, req, res, next) {
     switch (req.session.loginType) {
         case "Institute":
 
-            res.render('error', { error: err,institute_userName: req.session.short_name, layout: "ins_layout" });
+            res.render('error', { error: err, institute_userName: req.session.short_name, layout: "ins_layout" });
             // res.render('algorithm', {layout: "ins_layout" });
+
+
 
             break;
         case "Surveyor":
-            res.render('error', { error: err,surveyor_userName: req.session.userName, layout: "sur_layout" });
+            res.render('error', { error: err, surveyor_userName: req.session.userName, layout: "sur_layout" });
+
+
             break;
         case "Admin":
-            res.render('error', { error: err,layout: "admin_layout" });
+            res.render('error', { error: err, layout: "admin_layout" });
+
+            break;
+        case "failed":
+            res.render('error', { error: err });
             break;
         default:
-            res.render('error');
+            es.render('error', { error: err });
+
 
     }
-    
+
 });
 
 

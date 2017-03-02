@@ -30,7 +30,7 @@ router.post('/', function(req, res, next) {
     peoples.find().sort({ _id: -1 }).limit(100).exec(function(err, docs) {
 
         if (err) {
-            res.json(err)
+            next(err);
         } else {
 
             var socialStatus = status.social_status(docs);
@@ -42,7 +42,7 @@ router.post('/', function(req, res, next) {
                     institute.find({ $and: [{ email: email }, { password: password },{ac_status:"Active"}] }).exec(function(err, personData) {
 
                         if (err) {
-                            res.json("Database Error");
+                            next("Database Error");
                         } else {
 
                             // res.json(personData);
@@ -61,7 +61,8 @@ router.post('/', function(req, res, next) {
                             
                             } else {
                                  next("Your Account is not active");
-                                 req.session.destroy();
+                                 req.session.loginType = "failed"
+                                 
                             }
 
                         }
@@ -76,7 +77,7 @@ router.post('/', function(req, res, next) {
                     surveyor.find({ $and: [{ email: email }, { password: password },{ac_status:"Active"}] }).exec(function(err, surveyor_Data) {
 
                         if (err) {
-                            res.json("password Does not match");
+                            next("Database Error");
                         } else {
 
                             console.log("personData:" + surveyor_Data.length);
@@ -90,8 +91,9 @@ router.post('/', function(req, res, next) {
 
                             } else {
                                 next("Your Account is not active");
-                                req.session.destroy();
-
+                                 req.session.loginType = "failed";
+                                 
+                                
                             }
 
                         }
