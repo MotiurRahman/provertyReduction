@@ -24,8 +24,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/tec', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }], $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": "6341" }).exec(function(err, docs) {
-
+    //peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }], $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": "1216" }).exec(function(err, docs) {
+ peoples.find({$and:[{ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }]}, {$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {"postCode": "1216" }]}).exec(function(err, docs) {
         if (err) {
             res.json(err)
         } else {
@@ -40,8 +40,8 @@ router.get('/tec', function(req, res, next) {
 
 router.get('/agr', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }], $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": req.session.postCode }).exec(function(err, docs) {
-
+    //peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }], $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": req.session.postCode }).exec(function(err, docs) {
+  peoples.find({$and:[{ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }]}, {$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {"postCode": "1216" }]}).exec(function(err, docs) {
         if (err) {
             res.json(err)
         } else {
@@ -56,7 +56,7 @@ router.get('/agr', function(req, res, next) {
 
 router.get('/Info', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({ $or: [{ status: "Poor" }, { status: "Extremely Poor" }], know_t_a_trainig: "NO", "postCode": "6341" }).exec(function(err, docs) {
+    peoples.find({$and:[{$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {know_t_a_trainig: "NO"}, {"postCode": "1216" }]}).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -72,7 +72,7 @@ router.get('/Info', function(req, res, next) {
 
 router.get('/ngo', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({ $or: [{ status: "Poor" }, { status: "Extremely Poor" }], saving: "NO", "postCode": req.session.postCode }).exec(function(err, docs) {
+    peoples.find({$and:[{$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {saving: "NO"}, {"postCode": "1216" }]}).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -88,7 +88,7 @@ router.get('/ngo', function(req, res, next) {
 
 router.get('/medical', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({ $or: [{ status: "Poor" }, { status: "Extremely Poor" }], drugAddiction: "YES", "postCode": req.session.postCode }).exec(function(err, docs) {
+    peoples.find({$and:[{$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {drugAddiction: "YES"}, {"postCode": req.session.postCode }]}).exec(function(err, docs) {
 
         if (err) {
             res.json(err)

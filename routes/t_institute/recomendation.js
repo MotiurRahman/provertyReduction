@@ -11,10 +11,10 @@ router.get('/', function(req, res, next) {
     switch (req.session.ins_type) {
         case "Technical":
 
-            peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }], $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": req.session.postCode }).exec(function(err, docs) {
-
+            //peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }], $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": req.session.postCode }).exec(function(err, docs) {
+            peoples.find({$and:[{ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }]}, {$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {"postCode": req.session.postCode }]}).exec(function(err, docs) {
                 if (err) {
-                    console.log("database error");
+                    next("database error");
                 } else {
                     console.log("RecomendatedPeople:" + docs.length);
 
@@ -24,8 +24,8 @@ router.get('/', function(req, res, next) {
             });
             break;
         case "Agricultural":
-            peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }],$or: [{ status: "Poor" }, { status: "Extremely Poor" }],"postCode": req.session.postCode }).exec(function(err, docs) {
-
+            //peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }],$or: [{ status: "Poor" }, { status: "Extremely Poor" }],"postCode": req.session.postCode }).exec(function(err, docs) {
+            peoples.find({$and:[{ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }]}, {$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {"postCode": req.session.postCode }]}).exec(function(err, docs) {
                 if (err) {
                     console.log("database error");
                 } else {
@@ -38,8 +38,8 @@ router.get('/', function(req, res, next) {
             break;
 
         case "Medical":
-            peoples.find({$or: [{ status: "Poor" }, { status: "Extremely Poor" }], drugAddiction: "YES", "postCode": req.session.postCode }).exec(function(err, docs) {
-
+           // peoples.find({$or: [{ status: "Poor" }, { status: "Extremely Poor" }], drugAddiction: "YES", "postCode": req.session.postCode }).exec(function(err, docs) {
+           peoples.find({$and:[{$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {drugAddiction: "YES"}, {"postCode": req.session.postCode }]}).exec(function(err, docs) {
                 if (err) {
                     console.log("database error");
                 } else {
@@ -52,8 +52,8 @@ router.get('/', function(req, res, next) {
             break;
 
         case "Information Center":
-             peoples.find({$or: [{ status: "Poor" }, { status: "Extremely Poor" }], know_t_a_trainig: "NO", "postCode": req.session.postCode }).exec(function(err, docs) {
-
+            // peoples.find({$or: [{ status: "Poor" }, { status: "Extremely Poor" }], know_t_a_trainig: "NO", "postCode": req.session.postCode }).exec(function(err, docs) {
+            peoples.find({$and:[{$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {know_t_a_trainig: "NO"}, {"postCode": req.session.postCode }]}).exec(function(err, docs) {
                 if (err) {
                     console.log("database error");
                 } else {
@@ -66,8 +66,8 @@ router.get('/', function(req, res, next) {
             break;
 
         case "NGO":
-            peoples.find({$or: [{ status: "Poor" }, { status: "Extremely Poor" }], saving: "NO", "postCode": req.session.postCode }).exec(function(err, docs) {
-
+           // peoples.find({$or: [{ status: "Poor" }, { status: "Extremely Poor" }], saving: "NO", "postCode": req.session.postCode }).exec(function(err, docs) {
+            peoples.find({$and:[{$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {saving: "NO"}, {"postCode": req.session.postCode }]}).exec(function(err, docs) {
                 if (err) {
                     console.log("database error");
                 } else {

@@ -140,7 +140,7 @@ app.use(function errorHandler(err, req, res, next) {
             res.render('error', { error: err });
             break;
         default:
-            es.render('error', { error: err });
+            res.render('error', { error: err });
 
 
     }
