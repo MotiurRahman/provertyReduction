@@ -38,6 +38,7 @@ var logout = require('./routes/signin/logout');
 var APIs = require('./routes/allAPI');
 var activation = require('./routes/activation');
 var passChange = require('./routes/setting/passChange');
+var notice = require('./routes/notice');
 
 
 
@@ -101,6 +102,7 @@ app.use('/APIs', APIs);
 app.use('/activation', activation);
 app.use('/recomendation', recomendation);
 app.use('/passChange', passChange);
+app.use('/notice',notice);
 
 
 
