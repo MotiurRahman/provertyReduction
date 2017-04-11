@@ -102,7 +102,8 @@ router.post('/', function(req, res, next) {
 
                     break;
                 case "Admin":
-                     res.redirect("/");
+                    res.redirect("/");
+                     //res.render('index', {layout: "admin_layout" });
                     break;
                 default:
                     res.redirect("/");

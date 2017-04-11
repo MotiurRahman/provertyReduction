@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressLayouts = require('express-ejs-layouts');
-var session = require('express-session');
+var session = require('cookie-session');
 
 var app = express();
 app.disable('x-powered-by');
@@ -46,15 +46,15 @@ var notice = require('./routes/notice');
 var sess = {
     name: "session-cookie",
     secret: 'motiur8034',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 6000000 }
+    //resave: false,
+    //saveUninitialized: true,
+    maxAge: 6000000 
 }
 
-if (app.get('env') === 'production') {
-    app.set('trust proxy', 1) // trust first proxy 
-    sess.cookie.secure = true // serve secure cookies 
-}
+// if (app.get('env') === 'production') {
+//     app.set('trust proxy', 1) // trust first proxy 
+//     sess.cookie.secure = true // serve secure cookies 
+// }
 
 app.use(session(sess));
 
