@@ -125,19 +125,19 @@
 
         </div>
 
-      <div class="form-group">
-        <label  for="dateOfBirth">Type of Residence*:</label>
+        <div class="form-group">
+          <label  for="dateOfBirth">Type of Residence*:</label>
 
-        <div id="residence_container">
-        <select name="residence" class="form-control" id="residence">
-          <option value="">Select Residence</option>
-          <option value="Urban">Urban</option>
-          <option value="Rural">Rural</option>  
-        </select>  
+          <div id="residence_container">
+            <select name="residence" class="form-control" id="residence">
+              <option value="">Select Residence</option>
+              <option value="Urban">Urban</option>
+              <option value="Rural">Rural</option>  
+            </select>  
+          </div>
         </div>
-      </div>
 
-         <div class="form-group">
+        <div class="form-group">
           <label  for="dateOfBirth">Chairman or Local Elite person:</label>
 
           <input type="text" class="form-control" id="localAgent" name="localAgent" placeholder="Enter the Chairman or Local elite person name" >
@@ -160,14 +160,90 @@
 
        <div class="form-group">
         <label  for="division">Division:*</label>
+        <select name="division" class="form-control" id="division" required>
+          <option value="">Select Division</option>
+          <option value="Rangpur">Rangpur</option>
+          <option value="Rajshahi">Rajshahi</option>
+          <option value="Mymensingh">Mymensingh</option>
+          <option value="Sylhet">Sylhet</option>
+          <option value="Dhaka">Dhaka</option>
+          <option value="Khulna">Khulna</option>
+          <option value="Chittagong">Chittagong</option>
+          <option value="Barisal">Barisal</option>
 
-        <input type="text" class="form-control" id="division" name="division" placeholder="Enter division name" required>
+        </select>    
 
       </div>
       <div class="form-group">
         <label for="district">District:*</label>
+        <select name="district" class="form-control" id="district" required>
+          <option value="">Select District</option>
+          <option value="Bagerhat">Bagerhat</option>
+          <option value="Bandarban">Bandarban</option>
+          <option value="Barguna">Barguna</option>
+          <option value="4">Barisal</option>
+          <option value="Barisal">Bhola</option>
+          <option value="Bogra">Bogra</option>
+          <option value="Brahamanbaria">Brahamanbaria</option>
+          <option value="8">Chandpur</option>
+          <option value="Chandpur">Chapai Nawabganj</option>
+          <option value="Chittagong">Chittagong</option>
+          <option value="Chuadanga">Chuadanga</option>
+          <option value="Comilla">Comilla</option>
+          <option value="Cox's Bazar">Cox's Bazar</option>
+          <option value="Dhaka">Dhaka</option>
+          <option value="Dinajpur">Dinajpur</option>
+          <option value="Faridpur">Faridpur</option>
+          <option value="Feni">Feni</option>
+          <option value="Gaibandha">Gaibandha</option>
+          <option value="Gazipur">Gazipur</option>
+          <option value="Gopalganj">Gopalganj</option>
+          <option value="Habiganj">Habiganj</option>
+          <option value="Jamalpur">Jamalpur</option>
+          <option value="Jessore">Jessore</option>
+          <option value="Jhalokathi">Jhalokathi</option>
+          <option value="Jhenaidah">Jhenaidah</option>
+          <option value="Joypurhat">Joypurhat</option>
+          <option value="Khagrachhari">Khagrachhari</option>
+          <option value="Khulna">Khulna</option>
+          <option value="Kishorganj">Kishorganj</option>
+          <option value="Kurigram">Kurigram</option>
+          <option value="Kushtia">Kushtia</option>
+          <option value="Lalmonirhat">Lalmonirhat</option>
+          <option value="Laxmipur">Laxmipur</option>
+          <option value="Madaripur">Madaripur</option>
+          <option value="Magura">Magura</option>
+          <option value="Manikganj">Manikganj</option>
+          <option value="Meherpur">Meherpur</option>
+          <option value="Moulavibazar">Moulavibazar</option>
+          <option value="Munshiganj">Munshiganj</option>
+          <option value="Mymensingh">Mymensingh</option>
+          <option value="Naogaon">Naogaon</option>
+          <option value="Narayanganj">Narayanganj</option>
+          <option value="Natore">Natore</option>
+          <option value="Netrakona">Netrakona</option>
+          <option value="Nilphamari">Nilphamari</option>
+          <option value="Noakhali">Noakhali</option>
+          <option value="Norail">Norail</option>
+          <option value="Norsingdi">Norsingdi</option>
+          <option value="Pabna">Pabna</option>
+          <option value="Panchagarh">Panchagarh</option>
+          <option value="Patuakhali">Patuakhali</option>
+          <option value="Pirojpur">Pirojpur</option>
+          <option value="Rajbari">Rajbari</option>
+          <option value="Rajshahi">Rajshahi</option>
+          <option value="Rangamati">Rangamati</option>
+          <option value="Rangpur">Rangpur</option>
+          <option value="Satkhira">Satkhira</option>
+          <option value="Shariatpur">Shariatpur</option>
+          <option value="Sherpur">Sherpur</option>
+          <option value="Sirajganj">Sirajganj</option>
+          <option value="Sunamganj">Sunamganj</option>
+          <option value="Sylhet">Sylhet</option>
+          <option value="Tangail">Tangail</option>
+          <option value="Thakurgaon">Thakurgaon</option>
 
-        <input type="text" class="form-control" id="district" name="district" placeholder="Enter district Name">
+        </select> 
 
       </div>
       <div class="form-group">
@@ -213,19 +289,19 @@
 
       <h6 class="column-title"><i class="fa fa-plus fa-2x blue"> Additional Information</i></h6>
 
-        <div class="form-group">
-          <label for="Occupation">Occupation:*</label>
+      <div class="form-group">
+        <label for="Occupation">Occupation:*</label>
 
-          <input type="tex" class="form-control" id="occupation" name="occupation" placeholder="Enter your Occupation" required>
+        <input type="tex" class="form-control" id="occupation" name="occupation" placeholder="Enter your Occupation" required>
 
-        </div>
-        <div class="form-group">
-          <label for="monthlyIncom">Monthly Income AVG:*</label>
+      </div>
+      <div class="form-group">
+        <label for="monthlyIncom">Monthly Income AVG:*</label>
 
-          <input type="number" class="form-control" id="monthlyIncom" name="monthlyIncom" placeholder="Enter your monthly income" required>
+        <input type="number" class="form-control" id="monthlyIncom" name="monthlyIncom" placeholder="Enter your monthly income" required>
 
-        </div>
-        
+      </div>
+
 
       <h6 class="column-title"><i class="fa fa-plus fa-2x blue"> Effective for Poor People</i></h6> 
 
@@ -239,8 +315,8 @@
         </label>
         <span class="red"></span>     
       </div>    
-   
-    <div class="form-group">
+
+      <div class="form-group">
         <label>Any Tec. or Agr. Training? *</label>
         <label class="radio-inline">
           <input type="radio" name="t_a_trainig" value="YES" >Yes
@@ -252,82 +328,82 @@
       </div>
 
       <div class="form-group">
-         <label>Any Working Scope in the neighborhood? *</label>
-        <label class="radio-inline">
-          <input type="radio" name="working_scope" value="YES" >Yes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="working_scope" value="NO" >No
-        </label>
-        <span class="red"></span>     
-      </div> 
-
-       <div class="form-group">
-        <label>Do you know about Tec or Agr training? *</label>
-        <label class="radio-inline">
-          <input type="radio" name="know_t_a_trainig" value="YES" >Yes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="know_t_a_trainig" value="NO" >No
-        </label>
-        <span class="red"></span>     
-      </div>
-
-       <div class="form-group">
-         <label>Any personal land for cultivation? *</label>
-        <label class="radio-inline">
-          <input type="radio" name="any_c_land" value="YES" >Yes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="any_c_land" value="NO" >No
-        </label>
-        <span class="red"></span>     
-      </div>   
-
-       <div class="form-group">
-        <label>Drug Addiction? *</label>
-        <label class="radio-inline">
-          <input type="radio" name="drugAddiction" value="YES" >Yes
-        </label>
-        <label class="radio-inline">
-          <input type="radio" name="drugAddiction" value="NO" >No
-        </label>
-        <span class="red"></span>     
-      </div>     
-
-      <div class="form-group">
-       <label for="natural_reson">Any Other Reason *</label>
-        <select name="natural_reson" class="form-control" id="natural_reson">       
-          <option value="">Select Natural Reason</option>
-          <option value="Flood">Flood</option>
-          <option value="River Erosion">River Erosion</option>
-          <option value="Cyclone">Cyclone</option>
-          <option value="Natural Disaster">Natural Disaster</option>
-          <option value="Others">Others</option>
-          <option value="non">None of them</option>
-          
-        </select>               
-        <span class="red"></span>       
-      </div>    
-    
-
-
-    </div>
-
-
+       <label>Any Working Scope in the neighborhood? *</label>
+       <label class="radio-inline">
+        <input type="radio" name="working_scope" value="YES" >Yes
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="working_scope" value="NO" >No
+      </label>
+      <span class="red"></span>     
+    </div> 
 
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-       <div class="form-group">
-        <label>
-          <input type="checkbox" id="check"> I would like to help or I need help!
-        </label>
-      </div>
-
-      <button type="submit" id="insert" class="btn btn-primary btn-lg btn-block">Submit</button>
-
+      <label>Do you know about Tec or Agr training? *</label>
+      <label class="radio-inline">
+        <input type="radio" name="know_t_a_trainig" value="YES" >Yes
+      </label>
+      <label class="radio-inline">
+        <input type="radio" name="know_t_a_trainig" value="NO" >No
+      </label>
+      <span class="red"></span>     
     </div>
+
+    <div class="form-group">
+     <label>Any personal land for cultivation? *</label>
+     <label class="radio-inline">
+      <input type="radio" name="any_c_land" value="YES" >Yes
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="any_c_land" value="NO" >No
+    </label>
+    <span class="red"></span>     
+  </div>   
+
+  <div class="form-group">
+    <label>Drug Addiction? *</label>
+    <label class="radio-inline">
+      <input type="radio" name="drugAddiction" value="YES" >Yes
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="drugAddiction" value="NO" >No
+    </label>
+    <span class="red"></span>     
+  </div>     
+
+  <div class="form-group">
+   <label for="natural_reson">Any Other Reason *</label>
+   <select name="natural_reson" class="form-control" id="natural_reson">       
+    <option value="">Select Natural Reason</option>
+    <option value="Flood">Flood</option>
+    <option value="River Erosion">River Erosion</option>
+    <option value="Cyclone">Cyclone</option>
+    <option value="Natural Disaster">Natural Disaster</option>
+    <option value="Others">Others</option>
+    <option value="non">None of them</option>
+
+  </select>               
+  <span class="red"></span>       
+</div>    
+
+
+
+</div>
+
+
+
+<div class="form-group">
+  <div class="col-sm-offset-2 col-sm-10">
+   <div class="form-group">
+    <label>
+      <input type="checkbox" id="check"> I would like to help or I need help!
+    </label>
   </div>
+
+  <button type="submit" id="insert" class="btn btn-primary btn-lg btn-block">Submit</button>
+
+</div>
+</div>
 </form>
 
 </div>
@@ -358,7 +434,5 @@
     $('#insert').attr('disabled','disabled');
   }
 });
-
-
 
 </script>

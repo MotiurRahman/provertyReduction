@@ -5,6 +5,7 @@ var peoples = require('./../libs/peoplesSchema');
 var institute = require("./../libs/t_institute");
 var surveyor = require("./../libs/surveyorSchema");
 var suggest = require('./../libs/recomend');
+var dist = require("./../libs/dist");
 
 
 
@@ -24,8 +25,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/tec', function(req, res, next) {
     console.log("peoples API")
-    //peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }], $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": "1216" }).exec(function(err, docs) {
- peoples.find({$and:[{ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }]}, {$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {"postCode": "1216" }]}).exec(function(err, docs) {
+        //peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }], $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": "1216" }).exec(function(err, docs) {
+    peoples.find({ $and: [{ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "NO" }] }, { $or: [{ status: "Poor" }, { status: "Extremely Poor" }] }, { "postCode": "1216" }] }).exec(function(err, docs) {
         if (err) {
             res.json(err)
         } else {
@@ -40,8 +41,8 @@ router.get('/tec', function(req, res, next) {
 
 router.get('/agr', function(req, res, next) {
     console.log("peoples API")
-    //peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }], $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": req.session.postCode }).exec(function(err, docs) {
-  peoples.find({$and:[{ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }]}, {$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {"postCode": "1216" }]}).exec(function(err, docs) {
+        //peoples.find({ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }], $or: [{ status: "Poor" }, { status: "Extremely Poor" }], "postCode": req.session.postCode }).exec(function(err, docs) {
+    peoples.find({ $and: [{ $or: [{ t_a_trainig: "NO" }, { working_scope: "NO" }, { any_c_land: "YES" }] }, { $or: [{ status: "Poor" }, { status: "Extremely Poor" }] }, { "postCode": "1216" }] }).exec(function(err, docs) {
         if (err) {
             res.json(err)
         } else {
@@ -56,7 +57,7 @@ router.get('/agr', function(req, res, next) {
 
 router.get('/Info', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({$and:[{$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {know_t_a_trainig: "NO"}, {"postCode": "1216" }]}).exec(function(err, docs) {
+    peoples.find({ $and: [{ $or: [{ status: "Poor" }, { status: "Extremely Poor" }] }, { know_t_a_trainig: "NO" }, { "postCode": "1216" }] }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -72,7 +73,7 @@ router.get('/Info', function(req, res, next) {
 
 router.get('/ngo', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({$and:[{$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {saving: "NO"}, {"postCode": "1216" }]}).exec(function(err, docs) {
+    peoples.find({ $and: [{ $or: [{ status: "Poor" }, { status: "Extremely Poor" }] }, { saving: "NO" }, { "postCode": "1216" }] }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -88,7 +89,7 @@ router.get('/ngo', function(req, res, next) {
 
 router.get('/medical', function(req, res, next) {
     console.log("peoples API")
-    peoples.find({$and:[{$or: [{ status: "Poor" }, { status: "Extremely Poor" }]}, {drugAddiction: "YES"}, {"postCode": req.session.postCode }]}).exec(function(err, docs) {
+    peoples.find({ $and: [{ $or: [{ status: "Poor" }, { status: "Extremely Poor" }] }, { drugAddiction: "YES" }, { "postCode": req.session.postCode }] }).exec(function(err, docs) {
 
         if (err) {
             res.json(err)
@@ -279,7 +280,45 @@ router.get('/pass', function(req, res, next) {
 
 });
 
+router.get('/district', function(req, res, next) {
 
+    //{ dist_name: req.params.district }
+    dist.find().exec(function(err, docs) {
+
+        res.json(docs);
+
+    });
+
+
+});
+
+
+router.post('/district', function(req, res, next) {
+
+    var dist_name = req.body.dist_name;
+    var ps = req.body.ps;
+
+    // console.log("name:" + name);
+    // console.log("PS:" + PS);
+
+    var dist_ps = {
+        dist_name: dist_name,
+        ps: ps
+    };
+
+    var new_dist_ps = new dist(dist_ps);
+    new_dist_ps.save(function(err) {
+
+        if (err) {
+            res.json(err)
+
+        } else {
+            res.json("Data Inserted successfully");
+        }
+
+
+    });
+});
 
 
 module.exports = router;

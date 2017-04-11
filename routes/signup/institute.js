@@ -131,17 +131,20 @@ router.post('/', function(req, res, next) {
 
 
 router.get('/userNamecheck/:email', function(req, res, next) {
+    if (validator.isEmail(req.params.email)) {
+        institute.find({ email: req.params.email }).exec(function(err, docs) {
+            if (docs.length > 0) {
+                res.json("Email Already Exist");
 
-    institute.find({ email: req.params.email }).exec(function(err, docs) {
-        if (docs.length > 0) {
-            res.json("Email Already Exist");
+            } else {
 
-        } else {
+                res.json("User Email is OK");
 
-            res.json("User Email is OK");
-
-        }
-    });
+            }
+        });
+    } else {
+        res.json("Email is not valid");
+    }
 
 
 

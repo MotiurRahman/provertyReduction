@@ -4,6 +4,8 @@ var validator = require("validator");
 var nodemailer = require('nodemailer');
 
 var surveyor = require("../../libs/surveyorSchema");
+var dist = require("../../libs/dist");
+
 
 
 router.get('/', function(req, res, next) {
@@ -171,18 +173,99 @@ router.post('/', function(req, res, next) {
 
 router.get('/userNamecheck/:email', function(req, res, next) {
 
-    surveyor.find({ email: req.params.email }).exec(function(err, docs) {
-        if (docs.length > 0) {
+    if (validator.isEmail(req.params.email)) {
 
-            res.json("Email Already Exist");
+        surveyor.find({ email: req.params.email }).exec(function(err, docs) {
+            if (docs.length > 0) {
+
+                res.json("Email Already Exist");
+            } else {
+
+                res.json("User Email is OK");
+            }
+        });
+    } else {
+        res.json("Email is not valid");
+
+    }
+
+
+});
+
+
+router.get('/district/:district', function(req, res, next) {
+
+    dist.find({ dist_name: req.params.district }).exec(function(err, docs) {
+        if (err) {
+
+            res.json("Something went wrong");
+
         } else {
 
-            res.json("User Email is OK");
+            console.log("upzilaNumber:"+docs.length);
+
+            res.json(docs);
         }
     });
 
 
+
 });
+
+
+router.post('/district', function(req, res, next) {
+
+    var dist_name = req.body.dist_name;
+    var ps = req.body.ps;
+
+    //console.log("name:" + name);
+    //console.log("PS:" + PS);
+
+    var dist_ps = {
+        dist_name: dist_name,
+        ps: ps
+    };
+
+    var new_dist_ps = new dist(dist_ps);
+    new_dist_ps.save(function(err) {
+
+        if (err) {
+            res.json(err)
+
+        } else {
+            res.json("Data Inserted successfully");
+        }
+
+
+    });
+
+
+});
+
+router.get('/district', function(req, res, next) {
+
+
+    dist.find().exec(function(err, docs) {
+        res.json(docs);
+    });
+
+
+
+});
+
+router.delete('/district/:district', function(req, res, next) {
+
+
+    dist.remove({ dist_name: req.params.district }).exec(function(err, docs) {
+        res.json(docs);
+    });
+
+
+
+});
+
+
+
 
 
 module.exports = router;

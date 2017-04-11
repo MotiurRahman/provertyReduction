@@ -137,19 +137,101 @@
        <div class="form-group">
         <label  for="division">Division:*</label>
 
-        <input type="text" class="form-control" id="division" name="division" placeholder="Enter division name" required>
+        <select name="division" class="form-control" id="division" required>
+          <option value="">Select Division</option>
+          <option value="Rangpur">Rangpur</option>
+          <option value="Rajshahi">Rajshahi</option>
+          <option value="Mymensingh">Mymensingh</option>
+          <option value="Sylhet">Sylhet</option>
+          <option value="Dhaka">Dhaka</option>
+          <option value="Khulna">Khulna</option>
+          <option value="Chittagong">Chittagong</option>
+          <option value="Barisal">Barisal</option>
+          
+        </select>     
 
       </div>
       <div class="form-group">
         <label for="district">District:*</label>
 
-        <input type="text" class="form-control" id="district" name="district" placeholder="Enter district Name">
+        <select name="district" class="form-control" id="district" onchange="changeDistrict()" required>
+          <option value="">Select District</option>
+          <option value="Bagerhat">Bagerhat</option>
+          <option value="Bandarban">Bandarban</option>
+          <option value="Barguna">Barguna</option>
+          <option value="4">Barisal</option>
+          <option value="Barisal">Bhola</option>
+          <option value="Bogra">Bogra</option>
+          <option value="Brahamanbaria">Brahamanbaria</option>
+          <option value="Chandpur">Chandpur</option>
+          <option value="Chapai Nawabganj">Chapai Nawabganj</option>
+          <option value="Chittagong">Chittagong</option>
+          <option value="Chuadanga">Chuadanga</option>
+          <option value="Comilla">Comilla</option>
+          <option value="Cox's Bazar">Cox's Bazar</option>
+          <option value="Dhaka">Dhaka</option>
+          <option value="Dinajpur">Dinajpur</option>
+          <option value="Faridpur">Faridpur</option>
+          <option value="Feni">Feni</option>
+          <option value="Gaibandha">Gaibandha</option>
+          <option value="Gazipur">Gazipur</option>
+          <option value="Gopalganj">Gopalganj</option>
+          <option value="Habiganj">Habiganj</option>
+          <option value="Jamalpur">Jamalpur</option>
+          <option value="Jessore">Jessore</option>
+          <option value="Jhalokathi">Jhalokathi</option>
+          <option value="Jhenaidah">Jhenaidah</option>
+          <option value="Joypurhat">Joypurhat</option>
+          <option value="Khagrachhari">Khagrachhari</option>
+          <option value="Khulna">Khulna</option>
+          <option value="Kishorganj">Kishorganj</option>
+          <option value="Kurigram">Kurigram</option>
+          <option value="Kushtia">Kushtia</option>
+          <option value="Lalmonirhat">Lalmonirhat</option>
+          <option value="Laxmipur">Laxmipur</option>
+          <option value="Madaripur">Madaripur</option>
+          <option value="Magura">Magura</option>
+          <option value="Manikganj">Manikganj</option>
+          <option value="Meherpur">Meherpur</option>
+          <option value="Moulavibazar">Moulavibazar</option>
+          <option value="Munshiganj">Munshiganj</option>
+          <option value="Mymensingh">Mymensingh</option>
+          <option value="Naogaon">Naogaon</option>
+          <option value="Narayanganj">Narayanganj</option>
+          <option value="Natore">Natore</option>
+          <option value="Netrakona">Netrakona</option>
+          <option value="Nilphamari">Nilphamari</option>
+          <option value="Noakhali">Noakhali</option>
+          <option value="Norail">Norail</option>
+          <option value="Norsingdi">Norsingdi</option>
+          <option value="Pabna">Pabna</option>
+          <option value="Panchagarh">Panchagarh</option>
+          <option value="Patuakhali">Patuakhali</option>
+          <option value="Pirojpur">Pirojpur</option>
+          <option value="Rajbari">Rajbari</option>
+          <option value="Rajshahi">Rajshahi</option>
+          <option value="Rangamati">Rangamati</option>
+          <option value="Rangpur">Rangpur</option>
+          <option value="Satkhira">Satkhira</option>
+          <option value="Shariatpur">Shariatpur</option>
+          <option value="Sherpur">Sherpur</option>
+          <option value="Sirajganj">Sirajganj</option>
+          <option value="Sunamganj">Sunamganj</option>
+          <option value="Sylhet">Sylhet</option>
+          <option value="Tangail">Tangail</option>
+          <option value="Thakurgaon">Thakurgaon</option>
+
+        </select> 
 
       </div>
       <div class="form-group">
         <label for="ps">P.S:*</label>
+         <input type="text" class="form-control" id="ps" name="ps" placeholder="Enter ps Address" required>
 
-        <input type="text" class="form-control" id="ps" name="ps" placeholder="Enter ps Address" required>
+       <!--  <select name="ps" class="form-control" id="ps" required>
+          <option value="">Select PS</option>
+          
+        </select>      -->
 
       </div>
       <div class="form-group">
@@ -222,7 +304,7 @@
 
       <div class="form-group">
 
-       <button type="button" class="btn btn-primary" id="serverCheck"><i class="fa fa-spinner fa-spin"></i> Uses Name and Pass Checking</button>
+       <button type="button" class="btn btn-primary" id="serverCheck"><i class="fa fa-spinner fa-spin"></i> User Name and Pass Checking</button>
      </div>
 
      <div class="form-group">
@@ -258,22 +340,56 @@
 </div>
 
 
+<!-- <script type="text/javascript">
+  
+  function changeDistrict(){
+    $("#ps").empty();
+    var option = $("<option>Select PS</option>");
+    option.attr({
+     value: "",
+     
+   });
 
+    $("#ps").append(option);
+    $.ajax({
+     url: 'surveyor_signup/district/'+$("#district").val(),
+     type: 'GET',
+     dataType: 'json',
+   })
+    .done(function(result) {
+   //alert(result.length);
+
+   for (var i = 0; i < result.length; i++) {
+     var option = $("<option>"+result[i].ps+"</option>");
+     option.attr({
+       value: result[i].ps,
+       
+     });
+     $("#ps").append(option);
+     
+   }
+
+
+
+ })
+    .fail(function() {
+     console.log("error");
+   })
+    .always(function() {
+     console.log("complete");
+   });
+    
+  }
+
+
+
+</script> -->
 
 <script type="text/javascript"> 
-  "use strict";
 
+ 
   $('#insert').attr('disabled','disabled');
-  $("#noMarrage").click(function(event) {
-    $("#childNumber").hide();
-  });
-
-  $("#yesMarrage").click(function(event) {
-    $("#childNumber").show();
-  });
-
-
-
+  
   $("#check").change( function(){
    if( $(this).is(':checked') ) {
      $('#insert').removeAttr('disabled');
@@ -281,18 +397,13 @@
     $('#insert').attr('disabled','disabled');
   }
 });
-
-
-
 </script>
-
-
 
 
 <script type="text/javascript">
 
   $(document).ready(function(){
-     $("#serverCheck").hide();
+   $("#serverCheck").hide();
 
    $("#checkUser").click(function() {
 
@@ -316,7 +427,7 @@
 
       $("#serverCheck").hide();
       $("#checkUser").show();
-     
+      
 
       if (result == "User Email is OK") {
 
@@ -339,11 +450,11 @@
 
 
    } else {
- 
- $("#resultInfo").removeClass("alert alert-success").addClass("alert alert-danger").text("Password does not match");
+     
+     $("#resultInfo").removeClass("alert alert-success").addClass("alert alert-danger").text("Password does not match");
 
-}
-});
+   }
+ });
  });
 
-</script>>
+</script>
